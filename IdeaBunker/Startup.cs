@@ -1,13 +1,7 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using IdeaBunker.Models;
+﻿using Microsoft.EntityFrameworkCore;
 using IdeaBunker.Data;
 using IdeaBunker.Areas.Identity.Data;
+using IdeaBunker.Areas.Public.Data;
 
 namespace IdeaBunker;
 
@@ -24,10 +18,10 @@ public class Startup
     {
         services.AddDbContext<IdeaBunkerContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("IdeaBunkerContextConnection")));
-
+        services.AddDbContext<PublicContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("IdeaBunkerContextConnection")));
         services.AddDefaultIdentity<IdeaBunkerUser>(options => options.SignIn.RequireConfirmedAccount = true)
             .AddEntityFrameworkStores<IdeaBunkerContext>();
-
         services.AddControllersWithViews();
         services.AddRazorPages();
     }
@@ -44,15 +38,11 @@ public class Startup
             app.UseExceptionHandler("/Home/Error");
             app.UseHsts();
         }
-
         app.UseHttpsRedirection();
         app.UseStaticFiles();
-
         app.UseRouting();
-
         app.UseAuthentication();
         app.UseAuthorization();
-
         app.UseEndpoints(endpoints =>
         {
             endpoints.MapControllerRoute(

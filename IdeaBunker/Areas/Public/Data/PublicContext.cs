@@ -1,13 +1,12 @@
 ﻿using IdeaBunker.Areas.Identity.Data;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace IdeaBunker.Data;
+namespace IdeaBunker.Areas.Public.Data;
 
-public class IdeaBunkerContext : IdentityDbContext<IdeaBunkerUser>
+public class PublicContext : DbContext
 {
-    public IdeaBunkerContext(DbContextOptions<IdeaBunkerContext> options) : base(options) { }
+    public PublicContext(DbContextOptions<PublicContext> options) : base(options) { }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
