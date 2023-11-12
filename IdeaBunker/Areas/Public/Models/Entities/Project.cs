@@ -1,9 +1,9 @@
 ﻿using IdeaBunker.Areas.Public.Models.Enums;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
 using IdeaBunker.Models;
 using IdeaBunker.Areas.Identity.Models.Entities;
 using IdeaBunker.Areas.Private.Models.Enums;
+using IdeaBunker.Areas.Private.Models.Entities;
 
 namespace IdeaBunker.Areas.Public.Models.Entities;
 

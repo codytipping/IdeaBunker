@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using IdeaBunker.Areas.Public.Models.Entities;
 using IdeaBunker.Areas.Identity.Models.Enums;
 using IdeaBunker.Areas.Private.Models.Enums;
+using IdeaBunker.Areas.Private.Models.Entities;
 
 namespace IdeaBunker.Areas.Identity.Models.Entities;
 public class User : IdentityUser
