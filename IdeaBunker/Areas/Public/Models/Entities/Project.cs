@@ -1,8 +1,9 @@
-﻿using IdeaBunker.Areas.Identity.Data;
-using IdeaBunker.Areas.Public.Models.Enums;
+﻿using IdeaBunker.Areas.Public.Models.Enums;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using IdeaBunker.Models;
+using IdeaBunker.Areas.Identity.Models.Entities;
+using IdeaBunker.Areas.Private.Models.Enums;
 
 namespace IdeaBunker.Areas.Public.Models.Entities;
 
@@ -21,7 +22,7 @@ public class Project : Entity
 
     [ForeignKey("IdentityUser")]
     public required string UserId { get; set; }
-    public required virtual IdeaBunkerUser IdentityUser { get; set; }
+    public required virtual User IdentityUser { get; set; }
 
     [ForeignKey("Status")]
     public required Guid StatusId { get; set; }

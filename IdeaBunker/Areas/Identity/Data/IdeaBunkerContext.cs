@@ -1,11 +1,11 @@
-﻿using IdeaBunker.Areas.Identity.Data;
+﻿using IdeaBunker.Areas.Identity.Models.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace IdeaBunker.Data;
 
-public class IdeaBunkerContext : IdentityDbContext<IdeaBunkerUser>
+public class IdeaBunkerContext : IdentityDbContext<User>
 {
     public IdeaBunkerContext(DbContextOptions<IdeaBunkerContext> options) : base(options) { }
 

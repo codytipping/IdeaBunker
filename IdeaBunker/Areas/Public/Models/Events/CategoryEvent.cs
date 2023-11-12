@@ -2,7 +2,7 @@
 
 namespace IdeaBunker.Areas.Public.Models.Events;
 
-public class CategoryDelete : Event
+public class CategoryEvent : Event
 {
     public required Guid CategoryId { get; set; }
     public required string CategoryName { get; set; }

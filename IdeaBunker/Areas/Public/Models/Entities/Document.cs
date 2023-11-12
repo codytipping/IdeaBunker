@@ -1,7 +1,7 @@
-﻿using IdeaBunker.Areas.Identity.Data;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using IdeaBunker.Models;
+using IdeaBunker.Areas.Identity.Models.Entities;
 
 namespace IdeaBunker.Areas.Public.Models.Entities;
 
@@ -13,7 +13,7 @@ public class Document : Entity
 
     [ForeignKey("IdentityUser")]
     public required string UserId { get; set; }
-    public required virtual IdeaBunkerUser IdentityUser { get; set; }
+    public required virtual User IdentityUser { get; set; }
 
     [ForeignKey("Project")]
     public required Guid ProjectId { get; set; }

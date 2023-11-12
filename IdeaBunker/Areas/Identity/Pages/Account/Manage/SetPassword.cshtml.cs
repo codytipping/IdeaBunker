@@ -5,7 +5,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
-using IdeaBunker.Areas.Identity.Data;
+using IdeaBunker.Areas.Identity.Models.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -14,12 +14,12 @@ namespace IdeaBunker.Areas.Identity.Pages.Account.Manage
 {
     public class SetPasswordModel : PageModel
     {
-        private readonly UserManager<IdeaBunkerUser> _userManager;
-        private readonly SignInManager<IdeaBunkerUser> _signInManager;
+        private readonly UserManager<User> _userManager;
+        private readonly SignInManager<User> _signInManager;
 
         public SetPasswordModel(
-            UserManager<IdeaBunkerUser> userManager,
-            SignInManager<IdeaBunkerUser> signInManager)
+            UserManager<User> userManager,
+            SignInManager<User> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;

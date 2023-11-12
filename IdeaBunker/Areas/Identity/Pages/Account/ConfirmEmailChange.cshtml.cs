@@ -6,20 +6,20 @@ using System;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using IdeaBunker.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using IdeaBunker.Areas.Identity.Models.Entities;
 
 namespace IdeaBunker.Areas.Identity.Pages.Account
 {
     public class ConfirmEmailChangeModel : PageModel
     {
-        private readonly UserManager<IdeaBunkerUser> _userManager;
-        private readonly SignInManager<IdeaBunkerUser> _signInManager;
+        private readonly UserManager<User> _userManager;
+        private readonly SignInManager<User> _signInManager;
 
-        public ConfirmEmailChangeModel(UserManager<IdeaBunkerUser> userManager, SignInManager<IdeaBunkerUser> signInManager)
+        public ConfirmEmailChangeModel(UserManager<User> userManager, SignInManager<User> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;

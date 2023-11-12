@@ -2,10 +2,11 @@
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations.Schema;
 using IdeaBunker.Areas.Public.Models.Entities;
-using IdeaBunker.Areas.Public.Models.Enums;
+using IdeaBunker.Areas.Identity.Models.Enums;
+using IdeaBunker.Areas.Private.Models.Enums;
 
-namespace IdeaBunker.Areas.Identity.Data;
-public class IdeaBunkerUser : IdentityUser
+namespace IdeaBunker.Areas.Identity.Models.Entities;
+public class User : IdentityUser
 {
     [PersonalData]
     [StringLength(100)]
@@ -14,7 +15,7 @@ public class IdeaBunkerUser : IdentityUser
     [PersonalData]
     [StringLength(100)]
     public required string LastName { get; set; }
-    
+
     [ForeignKey("MilitaryRank")]
     public Guid RankId { get; set; }
     public required virtual Rank Rank { get; set; }
@@ -30,7 +31,7 @@ public class IdeaBunkerUser : IdentityUser
     public virtual ICollection<DivisionUser>? DivisionUsers { get; set; }
     public virtual ICollection<Project>? Projects { get; set; }
     public virtual ICollection<ProjectTask>? ProjectTasks { get; set; }
-    public virtual ICollection<IdeaBunkerRole>? Roles { get; set; }
+    public virtual ICollection<Role>? Roles { get; set; }
     public virtual ICollection<SectionUser>? SectionUsers { get; set; }
     public virtual ICollection<TeamUser>? TeamUsers { get; set; }
 }

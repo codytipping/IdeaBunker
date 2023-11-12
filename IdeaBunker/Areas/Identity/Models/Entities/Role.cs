@@ -2,13 +2,13 @@
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace IdeaBunker.Areas.Identity.Data;
-public class IdeaBunkerRole : IdentityRole
+namespace IdeaBunker.Areas.Identity.Models.Entities;
+public class Role : IdentityRole
 {
     [MinLength(50), StringLength(1000)]
     public required string Description { get; set; }
 
     [ForeignKey("IdeaBunkerUser")]
     public required string UserId { get; set; }
-    public required virtual IdeaBunkerUser IdeaBunkerUser { get; set; }   
+    public required virtual User IdeaBunkerUser { get; set; }
 }

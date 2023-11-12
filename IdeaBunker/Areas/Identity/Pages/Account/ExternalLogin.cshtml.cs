@@ -11,30 +11,30 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Options;
-using IdeaBunker.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using IdeaBunker.Areas.Identity.Models.Entities;
 
 namespace IdeaBunker.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
     public class ExternalLoginModel : PageModel
     {
-        private readonly SignInManager<IdeaBunkerUser> _signInManager;
-        private readonly UserManager<IdeaBunkerUser> _userManager;
-        private readonly IUserStore<IdeaBunkerUser> _userStore;
-        private readonly IUserEmailStore<IdeaBunkerUser> _emailStore;
+        private readonly SignInManager<User> _signInManager;
+        private readonly UserManager<User> _userManager;
+        private readonly IUserStore<User> _userStore;
+        private readonly IUserEmailStore<User> _emailStore;
         private readonly IEmailSender _emailSender;
         private readonly ILogger<ExternalLoginModel> _logger;
 
         public ExternalLoginModel(
-            SignInManager<IdeaBunkerUser> signInManager,
-            UserManager<IdeaBunkerUser> userManager,
-            IUserStore<IdeaBunkerUser> userStore,
+            SignInManager<User> signInManager,
+            UserManager<User> userManager,
+            IUserStore<User> userStore,
             ILogger<ExternalLoginModel> logger,
             IEmailSender emailSender)
         {
@@ -198,27 +198,27 @@ namespace IdeaBunker.Areas.Identity.Pages.Account
             return Page();
         }
 
-        private IdeaBunkerUser CreateUser()
+        private User CreateUser()
         {
             try
             {
-                return Activator.CreateInstance<IdeaBunkerUser>();
+                return Activator.CreateInstance<User>();
             }
             catch
             {
-                throw new InvalidOperationException($"Can't create an instance of '{nameof(IdeaBunkerUser)}'. " +
-                    $"Ensure that '{nameof(IdeaBunkerUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
+                throw new InvalidOperationException($"Can't create an instance of '{nameof(Models.Entities.User)}'. " +
+                    $"Ensure that '{nameof(Models.Entities.User)}' is not an abstract class and has a parameterless constructor, or alternatively " +
                     $"override the external login page in /Areas/Identity/Pages/Account/ExternalLogin.cshtml");
             }
         }
 
-        private IUserEmailStore<IdeaBunkerUser> GetEmailStore()
+        private IUserEmailStore<User> GetEmailStore()
         {
             if (!_userManager.SupportsUserEmail)
             {
                 throw new NotSupportedException("The default UI requires a user store with email support.");
             }
-            return (IUserEmailStore<IdeaBunkerUser>)_userStore;
+            return (IUserEmailStore<User>)_userStore;
         }
     }
 }

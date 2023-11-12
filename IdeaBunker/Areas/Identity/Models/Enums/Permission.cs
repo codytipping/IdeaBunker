@@ -1,8 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using IdeaBunker.Areas.Public.Models.Entities;
-using IdeaBunker.Models;
 
-namespace IdeaBunker.Areas.Public.Models.Enums;
+namespace IdeaBunker.Areas.Identity.Models.Enums;
 
 public class Permission : IdeaBunker.Models.Enum
 {

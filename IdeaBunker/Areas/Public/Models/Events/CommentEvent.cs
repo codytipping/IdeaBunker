@@ -1,8 +1,9 @@
-﻿using IdeaBunker.Models;
+﻿using System.ComponentModel.DataAnnotations;
+using IdeaBunker.Models;
 
 namespace IdeaBunker.Areas.Public.Models.Events;
 
-public class CommentEdit : Event
+public class CommentEvent : Event
 {
     public required Guid CommentId { get; set; }
     public required Guid ProjectId { get; set; }

@@ -1,8 +1,8 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@using IdeaBunker.Areas.Identity.Data
+@using IdeaBunker.Areas.Identity.Models.Entities
 
-@inject SignInManager<IdeaBunkerUser> SignInManager
-@inject UserManager<IdeaBunkerUser> UserManager
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
 
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))

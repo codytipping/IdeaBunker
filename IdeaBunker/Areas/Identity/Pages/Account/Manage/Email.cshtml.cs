@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
-using IdeaBunker.Areas.Identity.Data;
+using IdeaBunker.Areas.Identity.Models.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -18,13 +18,13 @@ namespace IdeaBunker.Areas.Identity.Pages.Account.Manage
 {
     public class EmailModel : PageModel
     {
-        private readonly UserManager<IdeaBunkerUser> _userManager;
-        private readonly SignInManager<IdeaBunkerUser> _signInManager;
+        private readonly UserManager<User> _userManager;
+        private readonly SignInManager<User> _signInManager;
         private readonly IEmailSender _emailSender;
 
         public EmailModel(
-            UserManager<IdeaBunkerUser> userManager,
-            SignInManager<IdeaBunkerUser> signInManager,
+            UserManager<User> userManager,
+            SignInManager<User> signInManager,
             IEmailSender emailSender)
         {
             _userManager = userManager;
@@ -74,7 +74,7 @@ namespace IdeaBunker.Areas.Identity.Pages.Account.Manage
             public string NewEmail { get; set; }
         }
 
-        private async Task LoadAsync(IdeaBunkerUser user)
+        private async Task LoadAsync(User user)
         {
             var email = await _userManager.GetEmailAsync(user);
             Email = email;

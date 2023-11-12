@@ -2,7 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 using System;
 using System.Threading.Tasks;
-using IdeaBunker.Areas.Identity.Data;
+using IdeaBunker.Areas.Identity.Models.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -12,11 +12,11 @@ namespace IdeaBunker.Areas.Identity.Pages.Account.Manage
 {
     public class PersonalDataModel : PageModel
     {
-        private readonly UserManager<IdeaBunkerUser> _userManager;
+        private readonly UserManager<User> _userManager;
         private readonly ILogger<PersonalDataModel> _logger;
 
         public PersonalDataModel(
-            UserManager<IdeaBunkerUser> userManager,
+            UserManager<User> userManager,
             ILogger<PersonalDataModel> logger)
         {
             _userManager = userManager;

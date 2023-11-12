@@ -19,7 +19,7 @@
 
   <ItemGroup>
     <Folder Include="Areas\Private\Data\" />
-    <Folder Include="Areas\Private\Models\" />
+    <Folder Include="Areas\Private\Models\Events\" />
     <Folder Include="Areas\Public\Controllers\" />
     <Folder Include="Areas\Public\Views\" />
   </ItemGroup>

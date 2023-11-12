@@ -8,22 +8,22 @@ using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using IdeaBunker.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using IdeaBunker.Areas.Identity.Models.Entities;
 
 namespace IdeaBunker.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
     public class ResendEmailConfirmationModel : PageModel
     {
-        private readonly UserManager<IdeaBunkerUser> _userManager;
+        private readonly UserManager<User> _userManager;
         private readonly IEmailSender _emailSender;
 
-        public ResendEmailConfirmationModel(UserManager<IdeaBunkerUser> userManager, IEmailSender emailSender)
+        public ResendEmailConfirmationModel(UserManager<User> userManager, IEmailSender emailSender)
         {
             _userManager = userManager;
             _emailSender = emailSender;

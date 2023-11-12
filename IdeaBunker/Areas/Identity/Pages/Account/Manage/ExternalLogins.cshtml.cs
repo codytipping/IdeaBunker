@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using IdeaBunker.Areas.Identity.Data;
+using IdeaBunker.Areas.Identity.Models.Entities;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -17,14 +17,14 @@ namespace IdeaBunker.Areas.Identity.Pages.Account.Manage
 {
     public class ExternalLoginsModel : PageModel
     {
-        private readonly UserManager<IdeaBunkerUser> _userManager;
-        private readonly SignInManager<IdeaBunkerUser> _signInManager;
-        private readonly IUserStore<IdeaBunkerUser> _userStore;
+        private readonly UserManager<User> _userManager;
+        private readonly SignInManager<User> _signInManager;
+        private readonly IUserStore<User> _userStore;
 
         public ExternalLoginsModel(
-            UserManager<IdeaBunkerUser> userManager,
-            SignInManager<IdeaBunkerUser> signInManager,
-            IUserStore<IdeaBunkerUser> userStore)
+            UserManager<User> userManager,
+            SignInManager<User> signInManager,
+            IUserStore<User> userStore)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -70,7 +70,7 @@ namespace IdeaBunker.Areas.Identity.Pages.Account.Manage
                 .ToList();
 
             string passwordHash = null;
-            if (_userStore is IUserPasswordStore<IdeaBunkerUser> userPasswordStore)
+            if (_userStore is IUserPasswordStore<User> userPasswordStore)
             {
                 passwordHash = await userPasswordStore.GetPasswordHashAsync(user, HttpContext.RequestAborted);
             }

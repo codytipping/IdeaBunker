@@ -1,8 +1,8 @@
 ﻿using IdeaBunker.Models;
 
-namespace IdeaBunker.Areas.Public.Models.Events;
+namespace IdeaBunker.Areas.Identity.Models.Events;
 
-public class RoleAssign : Event
+public class RoleEvent : Event
 {
     public required string ClaimantId { get; set; }
     public required string ClaimantNameAndRank { get; set; }

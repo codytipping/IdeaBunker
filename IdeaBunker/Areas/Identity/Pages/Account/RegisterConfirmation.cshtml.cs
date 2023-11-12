@@ -6,22 +6,22 @@ using System;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using IdeaBunker.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using IdeaBunker.Areas.Identity.Models.Entities;
 
 namespace IdeaBunker.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
     public class RegisterConfirmationModel : PageModel
     {
-        private readonly UserManager<IdeaBunkerUser> _userManager;
+        private readonly UserManager<User> _userManager;
         private readonly IEmailSender _sender;
 
-        public RegisterConfirmationModel(UserManager<IdeaBunkerUser> userManager, IEmailSender sender)
+        public RegisterConfirmationModel(UserManager<User> userManager, IEmailSender sender)
         {
             _userManager = userManager;
             _sender = sender;

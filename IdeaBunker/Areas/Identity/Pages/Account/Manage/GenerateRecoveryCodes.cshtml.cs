@@ -5,7 +5,7 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using IdeaBunker.Areas.Identity.Data;
+using IdeaBunker.Areas.Identity.Models.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -15,11 +15,11 @@ namespace IdeaBunker.Areas.Identity.Pages.Account.Manage
 {
     public class GenerateRecoveryCodesModel : PageModel
     {
-        private readonly UserManager<IdeaBunkerUser> _userManager;
+        private readonly UserManager<User> _userManager;
         private readonly ILogger<GenerateRecoveryCodesModel> _logger;
 
         public GenerateRecoveryCodesModel(
-            UserManager<IdeaBunkerUser> userManager,
+            UserManager<User> userManager,
             ILogger<GenerateRecoveryCodesModel> logger)
         {
             _userManager = userManager;
