@@ -2,6 +2,7 @@
 using IdeaBunker.Data;
 using IdeaBunker.Areas.Public.Data;
 using IdeaBunker.Areas.Identity.Models.Entities;
+using IdeaBunker.Areas.Private.Data;
 
 namespace IdeaBunker;
 
@@ -17,6 +18,8 @@ public class Startup
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddDbContext<IdentityContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("IdeaBunkerContextConnection")));
+        services.AddDbContext<PrivateContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("IdeaBunkerContextConnection")));
         services.AddDbContext<PublicContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("IdeaBunkerContextConnection")));

@@ -7,11 +7,7 @@ using IdeaBunker.Areas.Identity.Models.Entities;
 namespace IdeaBunker.Areas.Public.Models.Entities;
 
 public class Comment : Entity
-{
-    [ForeignKey("IdentityUser")]
-    public required string UserId { get; set; }
-    public required virtual User IdentityUser { get; set; }
-    
+{   
     [ForeignKey("Project")]
     public required Guid ProjectId { get; set; }
     public required virtual Project Project { get; set; }

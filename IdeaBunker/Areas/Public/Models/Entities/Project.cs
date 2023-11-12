@@ -20,10 +20,6 @@ public class Project : Entity
     public required Guid ClearanceId { get; set; }
     public required virtual Clearance Clearance { get; set; }
 
-    [ForeignKey("IdentityUser")]
-    public required string UserId { get; set; }
-    public required virtual User IdentityUser { get; set; }
-
     [ForeignKey("Status")]
     public required Guid StatusId { get; set; }
     public required virtual StatusProject Status { get; set; }

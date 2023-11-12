@@ -6,11 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace IdeaBunker.Areas.Public.Models.Entities;
 
 public class Category : Entity
-{
-    [ForeignKey("IdentityUser")]
-    public required string UserId { get; set; }
-    public required virtual User IdentityUser { get; set; }
-    
+{   
     [ForeignKey("Status")]
     public required Guid StatusId { get; set; }
     public required virtual StatusCategory Status { get; set; }
