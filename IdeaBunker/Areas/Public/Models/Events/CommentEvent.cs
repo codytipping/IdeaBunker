@@ -5,7 +5,7 @@ namespace IdeaBunker.Areas.Public.Models.Events;
 
 public class CommentEvent : Event
 {
-    public required Guid CommentId { get; set; }
-    public required Guid ProjectId { get; set; }
+    public required string CommentId { get; set; }
+    public required string ProjectId { get; set; }
     public required string ProjectName { get; set; }
 }

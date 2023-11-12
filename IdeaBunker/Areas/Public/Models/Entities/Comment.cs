@@ -9,10 +9,14 @@ namespace IdeaBunker.Areas.Public.Models.Entities;
 public class Comment : Entity
 {   
     [ForeignKey("Project")]
-    public required Guid ProjectId { get; set; }
+    public required string ProjectId { get; set; }
     public required virtual Project Project { get; set; }
 
     [ForeignKey("ProjectTask")]
-    public required Guid ProjectTaskId { get; set; }
+    public required string ProjectTaskId { get; set; }
     public required virtual ProjectTask ProjectTask { get; set; }
+
+    [ForeignKey("User")]
+    public required string UserId { get; set; }
+    public required virtual User User { get; set; }
 }

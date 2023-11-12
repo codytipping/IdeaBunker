@@ -14,17 +14,17 @@ public class Directorate : Entity
 
 public class DirectorateProject
 {
-    public required Guid ProjectId { get; set; }
+    public required string ProjectId { get; set; }
     public required Project Project { get; set; }
-    public required Guid DirectorateId { get; set; }
+    public required string DirectorateId { get; set; }
     public required Directorate Directorate { get; set; }
 }
 
 public class DirectorateRole
 {
-    public required Guid RoleId { get; set; }
+    public required string RoleId { get; set; }
     public required Role Role { get; set; }
-    public required Guid DirectorateId { get; set; }
+    public required string DirectorateId { get; set; }
     public required Directorate Directorate { get; set; }
 }
 
@@ -32,6 +32,6 @@ public class DirectorateUser
 {
     public required string UserId { get; set; }
     public required User User { get; set; }
-    public required Guid DirectorateId { get; set; }
+    public required string DirectorateId { get; set; }
     public required Directorate Directorate { get; set; }
 }

@@ -1,13 +1,14 @@
 ﻿using IdeaBunker.Areas.Private.Models.Entities;
 using IdeaBunker.Areas.Private.Models.Enums;
 using IdeaBunker.Areas.Private.Models.Events;
+using IdeaBunker.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace IdeaBunker.Areas.Private.Data;
 
-public class PrivateContext : DbContext
+public class PrivateContext : IdentityContext
 {
-    public PrivateContext(DbContextOptions<PrivateContext> options) : base(options) { }
+    public PrivateContext(DbContextOptions<IdentityContext> options) : base(options) { }
 
     public DbSet<Clearance> Clearances { get; set; }
     public DbSet<Directorate> Directorates { get; set; }
@@ -121,25 +122,25 @@ public class PrivateContext : DbContext
             .WithMany(s => s.SectionRoles)
             .HasForeignKey(sr => sr.RoleId)
             .OnDelete(DeleteBehavior.Cascade);
-
+        
         builder.Entity<SectionRole>()
             .HasOne(sr => sr.Role)
             .WithMany(u => u.SectionRoles)
             .HasForeignKey(sr => sr.RoleId)
             .OnDelete(DeleteBehavior.Cascade);
-
+        
         builder.Entity<SectionUser>()
             .HasOne(su => su.Section)
             .WithMany(s => s.SectionUsers)
             .HasForeignKey(su => su.SectionId)
             .OnDelete(DeleteBehavior.Cascade);
-
+        
         builder.Entity<SectionUser>()
             .HasOne(su => su.User)
             .WithMany(u => u.SectionUsers)
             .HasForeignKey(su => su.UserId)
             .OnDelete(DeleteBehavior.Cascade);
-
+        
         builder.Entity<TeamProject>()
             .HasOne(tp => tp.Team)
             .WithMany(p => p.TeamProjects)

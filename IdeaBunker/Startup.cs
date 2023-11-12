@@ -3,6 +3,9 @@ using IdeaBunker.Data;
 using IdeaBunker.Areas.Public.Data;
 using IdeaBunker.Areas.Identity.Models.Entities;
 using IdeaBunker.Areas.Private.Data;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.Identity;
 
 namespace IdeaBunker;
 
@@ -13,7 +16,7 @@ public class Startup
     public Startup(IConfiguration configuration)
     {
         Configuration = configuration;
-    }   
+    }
 
     public void ConfigureServices(IServiceCollection services)
     {
@@ -23,8 +26,12 @@ public class Startup
             options.UseSqlServer(Configuration.GetConnectionString("IdeaBunkerContextConnection")));
         services.AddDbContext<PublicContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("IdeaBunkerContextConnection")));
+        services.AddDbContext<Context>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("IdeaBunkerContextConnection")));
         services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
-            .AddEntityFrameworkStores<IdentityContext>();
+            .AddEntityFrameworkStores<IdentityContext>()
+            .AddDefaultUI()
+            .AddDefaultTokenProviders();
         services.AddControllersWithViews();
         services.AddRazorPages();
     }

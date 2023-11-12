@@ -1,13 +1,15 @@
-﻿using IdeaBunker.Areas.Public.Models.Entities;
+﻿using IdeaBunker.Areas.Private.Data;
+using IdeaBunker.Areas.Public.Models.Entities;
 using IdeaBunker.Areas.Public.Models.Enums;
 using IdeaBunker.Areas.Public.Models.Events;
+using IdeaBunker.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace IdeaBunker.Areas.Public.Data;
 
-public class PublicContext : DbContext
+public class PublicContext : PrivateContext
 {
-    public PublicContext(DbContextOptions<PublicContext> options) : base(options) { }
+    public PublicContext(DbContextOptions<IdentityContext> options) : base(options) { }
 
     public DbSet<Category> Categories { get; set; }
     public DbSet<CategoryEvent> CategoryEvents { get; set; }
@@ -23,7 +25,7 @@ public class PublicContext : DbContext
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
-
+        
         builder.Entity<Category>()
             .HasOne(c => c.User)
             .WithMany(u => u.Categories)

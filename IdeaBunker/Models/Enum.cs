@@ -5,7 +5,7 @@ namespace IdeaBunker.Models;
 public class Enum
 {
     [Key]
-    public Guid Id { get; set; }
+    public string Id { get; set; } = Guid.NewGuid().ToString();
 
     [StringLength(100)]
     public required string Name { get; set; }

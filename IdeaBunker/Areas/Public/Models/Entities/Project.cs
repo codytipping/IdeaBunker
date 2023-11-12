@@ -13,16 +13,20 @@ public class Project : Entity
     public int DownvoteCount { get; set; } = 0;
 
     [ForeignKey("Category")]
-    public required Guid CategoryId { get; set; }
+    public required string CategoryId { get; set; }
     public required virtual Category Category { get; set; }
 
     [ForeignKey("Clearance")]
-    public required Guid ClearanceId { get; set; }
+    public required string ClearanceId { get; set; }
     public required virtual Clearance Clearance { get; set; }
 
     [ForeignKey("Status")]
-    public required Guid StatusId { get; set; }
+    public required string StatusId { get; set; }
     public required virtual StatusProject Status { get; set; }
+
+    [ForeignKey("User")]
+    public required string UserId { get; set; }
+    public required virtual User User { get; set; }
 
     public virtual ICollection<Comment>? Comments { get; set; }
     public virtual ICollection<DirectorateProject>? DirectorateProjects { get; set; }

@@ -8,7 +8,7 @@ namespace IdeaBunker.Areas.Private.Models.Entities;
 public class Team : Entity
 {
     [ForeignKey("Division")]
-    public required Guid DivisionId { get; set; }
+    public required string DivisionId { get; set; }
     public required virtual Division Division { get; set; }
 
     public virtual ICollection<TeamProject>? TeamProjects { get; set; }
@@ -18,17 +18,17 @@ public class Team : Entity
 
 public class TeamProject
 {
-    public required Guid ProjectId { get; set; }
+    public required string ProjectId { get; set; }
     public required Project Project { get; set; }
-    public required Guid TeamId { get; set; }
+    public required string TeamId { get; set; }
     public required Team Team { get; set; }
 }
 
 public class TeamRole
 {
-    public required Guid RoleId { get; set; }
+    public required string RoleId { get; set; }
     public required Role Role { get; set; }
-    public required Guid TeamId { get; set; }
+    public required string TeamId { get; set; }
     public required Team Team { get; set; }
 }
 
@@ -36,6 +36,6 @@ public class TeamUser
 {
     public required string UserId { get; set; }
     public required User User { get; set; }
-    public required Guid TeamId { get; set; }
+    public required string TeamId { get; set; }
     public required Team Team { get; set; }
 }

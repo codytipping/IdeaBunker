@@ -1,4 +1,4 @@
-namespace IdeaBunker.Models;
+namespace IdeaBunker.ViewModels;
 
 public class ErrorViewModel
 {

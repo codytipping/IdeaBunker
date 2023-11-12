@@ -8,7 +8,7 @@ namespace IdeaBunker.Areas.Private.Models.Entities;
 public class Section : Entity
 {
     [ForeignKey("Directorate")]
-    public required Guid DirectorateId { get; set; }
+    public required string DirectorateId { get; set; }
     public required virtual Directorate Directorate { get; set; }
 
     public virtual ICollection<Division>? Divisions { get; set; }
@@ -19,17 +19,17 @@ public class Section : Entity
 
 public class SectionProject
 {
-    public required Guid ProjectId { get; set; }
+    public required string ProjectId { get; set; }
     public required Project Project { get; set; }
-    public required Guid SectionId { get; set; }
+    public required string SectionId { get; set; }
     public required Section Section { get; set; }
 }
 
 public class SectionRole
 {
-    public required Guid RoleId { get; set; }
+    public required string RoleId { get; set; }
     public required Role Role { get; set; }
-    public required Guid SectionId { get; set; }
+    public required string SectionId { get; set; }
     public required Section Section { get; set; }
 }
 
@@ -37,6 +37,6 @@ public class SectionUser
 {
     public required string UserId { get; set; }
     public required User User { get; set; }
-    public required Guid SectionId { get; set; }
+    public required string SectionId { get; set; }
     public required Section Section { get; set; }
 }

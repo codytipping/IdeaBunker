@@ -18,11 +18,11 @@ public class User : IdentityUser
     public required string LastName { get; set; }
 
     [ForeignKey("MilitaryRank")]
-    public Guid RankId { get; set; }
+    public required string RankId { get; set; }
     public required virtual Rank Rank { get; set; }
 
     [ForeignKey("Clearance")]
-    public Guid ClearanceId { get; set; }
+    public required string ClearanceId { get; set; }
     public required virtual Clearance Clearance { get; set; }
 
     public virtual ICollection<Category>? Categories { get; set; }

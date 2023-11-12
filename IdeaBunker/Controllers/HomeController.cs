@@ -1,4 +1,4 @@
-﻿using IdeaBunker.Models;
+﻿using IdeaBunker.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;

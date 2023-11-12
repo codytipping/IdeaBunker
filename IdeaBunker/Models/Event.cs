@@ -5,7 +5,7 @@ namespace IdeaBunker.Models;
 public class Event
 {
     [Key]
-    public required Guid Id { get; set; }
+    public required string Id { get; set; } = Guid.NewGuid().ToString();
     public required string Action { get; set; }
     public required string UserId { get; set; }
     public required string UserNameAndRank { get; set; }

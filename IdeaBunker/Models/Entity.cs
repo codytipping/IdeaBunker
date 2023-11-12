@@ -7,15 +7,11 @@ namespace IdeaBunker.Models;
 public class Entity
 {
     [Key]
-    public Guid Id { get; set; }
+    public string Id { get; set; } = Guid.NewGuid().ToString();
 
     [StringLength(100)]
     public required string Name { get; set; }
 
     [StringLength(1000)]
     public required string Description { get; set; }
-
-    [ForeignKey("User")]
-    public required string UserId { get; set; }
-    public required virtual User User { get; set; }
 }
