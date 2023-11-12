@@ -1,11 +1,6 @@
-﻿using IdeaBunker.Areas.Public.Models.Enums;
-using System.ComponentModel.DataAnnotations.Schema;
-using IdeaBunker.Models;
-using IdeaBunker.Areas.Identity.Models.Entities;
-using IdeaBunker.Areas.Private.Models.Enums;
-using IdeaBunker.Areas.Private.Models.Entities;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace IdeaBunker.Areas.Public.Models.Entities;
+namespace IdeaBunker.Models;
 
 public class Project : Entity
 {

@@ -1,6 +1,4 @@
-﻿using IdeaBunker.Models;
-
-namespace IdeaBunker.Areas.Identity.Models.Events;
+﻿namespace IdeaBunker.Models;
 
 public class RoleEvent : Event
 {

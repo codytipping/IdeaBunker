@@ -1,8 +1,6 @@
 ﻿using IdeaBunker.Areas.Private.Data;
-using IdeaBunker.Areas.Public.Models.Entities;
-using IdeaBunker.Areas.Public.Models.Enums;
-using IdeaBunker.Areas.Public.Models.Events;
 using IdeaBunker.Data;
+using IdeaBunker.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace IdeaBunker.Areas.Public.Data;

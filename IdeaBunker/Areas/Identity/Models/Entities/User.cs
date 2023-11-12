@@ -1,12 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations.Schema;
-using IdeaBunker.Areas.Public.Models.Entities;
-using IdeaBunker.Areas.Identity.Models.Enums;
-using IdeaBunker.Areas.Private.Models.Enums;
-using IdeaBunker.Areas.Private.Models.Entities;
 
-namespace IdeaBunker.Areas.Identity.Models.Entities;
+namespace IdeaBunker.Models;
 public class User : IdentityUser
 {
     [PersonalData]

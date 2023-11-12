@@ -1,5 +1,5 @@
-﻿using IdeaBunker.Areas.Identity.Models.Entities;
-using IdeaBunker.Areas.Private.Data;
+﻿using IdeaBunker.Areas.Private.Data;
+using IdeaBunker.Models;
 using Microsoft.AspNetCore.Identity;
 
 namespace IdeaBunker.Areas.Private.Services;

@@ -1,9 +1,6 @@
-﻿using IdeaBunker.Areas.Identity.Models.Entities;
-using IdeaBunker.Areas.Public.Models.Enums;
-using IdeaBunker.Models;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace IdeaBunker.Areas.Public.Models.Entities;
+namespace IdeaBunker.Models;
 
 public class Category : Entity
 {   

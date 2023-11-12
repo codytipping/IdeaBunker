@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using IdeaBunker.Data;
 using IdeaBunker.Areas.Public.Data;
-using IdeaBunker.Areas.Identity.Models.Entities;
 using IdeaBunker.Areas.Private.Data;
 using Microsoft.AspNetCore.Identity;
 using IdeaBunker.Services;
 using IdeaBunker.Areas.Private.Services;
 using IdeaBunker.Areas.Public.Services;
+using IdeaBunker.Models;
 
 namespace IdeaBunker;
 

@@ -1,7 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using IdeaBunker.Models;
-
-namespace IdeaBunker.Areas.Public.Models.Events;
+﻿namespace IdeaBunker.Models;
 
 public class CommentEvent : Event
 {

@@ -1,9 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
-using IdeaBunker.Areas.Identity.Models.Entities;
-using IdeaBunker.Areas.Public.Models.Entities;
-using IdeaBunker.Models;
 
-namespace IdeaBunker.Areas.Private.Models.Entities;
+namespace IdeaBunker.Models;
 
 public class Division : Entity
 {

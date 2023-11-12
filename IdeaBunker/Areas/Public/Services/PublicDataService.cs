@@ -1,6 +1,4 @@
-﻿using IdeaBunker.Areas.Identity.Models.Entities;
-using IdeaBunker.Areas.Public.Data;
-using Microsoft.AspNetCore.Identity;
+﻿using IdeaBunker.Areas.Public.Data;
 
 namespace IdeaBunker.Areas.Public.Services;
 

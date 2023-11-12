@@ -1,6 +1,4 @@
-﻿using IdeaBunker.Models;
-
-namespace IdeaBunker.Areas.Private.Models.Events;
+﻿namespace IdeaBunker.Models;
 
 public class DirectorateEvent : Event
 {

@@ -1,6 +1,4 @@
-﻿using IdeaBunker.Areas.Identity.Models.Entities;
-using IdeaBunker.Areas.Identity.Models.Enums;
-using IdeaBunker.Areas.Identity.Models.Events;
+﻿using IdeaBunker.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;

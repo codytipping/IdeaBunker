@@ -1,9 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using IdeaBunker.Areas.Private.Models.Entities;
 
-namespace IdeaBunker.Areas.Identity.Models.Entities;
+namespace IdeaBunker.Models;
 public class Role : IdentityRole
 {
     [MinLength(50), StringLength(1000)]

@@ -1,12 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿namespace IdeaBunker.Models;
 
-namespace IdeaBunker.Areas.Identity.Models.Enums;
-
-public class Permission : IdeaBunker.Models.Enum
+public class Permission : Enum
 {
-    [StringLength(100)]
     public required string Module { get; set; }
-
-    [StringLength(100)]
     public required string Action { get; set; }
 }
