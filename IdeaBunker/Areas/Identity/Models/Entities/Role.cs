@@ -10,5 +10,5 @@ public class Role : IdentityRole
 
     [ForeignKey("IdeaBunkerUser")]
     public required string UserId { get; set; }
-    public required virtual User IdeaBunkerUser { get; set; }
+    public required virtual User User { get; set; }
 }

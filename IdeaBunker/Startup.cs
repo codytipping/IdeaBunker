@@ -16,12 +16,12 @@ public class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
-        services.AddDbContext<IdeaBunkerContext>(options =>
+        services.AddDbContext<IdentityContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("IdeaBunkerContextConnection")));
         services.AddDbContext<PublicContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("IdeaBunkerContextConnection")));
         services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
-            .AddEntityFrameworkStores<IdeaBunkerContext>();
+            .AddEntityFrameworkStores<IdentityContext>();
         services.AddControllersWithViews();
         services.AddRazorPages();
     }
