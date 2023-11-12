@@ -11,9 +11,9 @@ public class ProjectTask : Entity
     public int? UpvoteCount { get; set; }
     public int? DownvoteCount { get; set; }
 
-    [ForeignKey("IdentityUser")]
+    [ForeignKey("User")]
     public required string UserId { get; set; }
-    public required virtual User IdentityUser { get; set; }
+    public required virtual User User { get; set; }
 
     [ForeignKey("Status")]
     public required Guid StatusId { get; set; }

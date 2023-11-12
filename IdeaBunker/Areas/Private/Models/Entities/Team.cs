@@ -12,6 +12,7 @@ public class Team : Entity
     public required virtual Division Division { get; set; }
 
     public virtual ICollection<TeamProject>? TeamProjects { get; set; }
+    public virtual ICollection<TeamRole>? TeamRoles { get; set; }
     public virtual ICollection<TeamUser>? TeamUsers { get; set; }
 }
 
@@ -19,6 +20,14 @@ public class TeamProject
 {
     public required Guid ProjectId { get; set; }
     public required Project Project { get; set; }
+    public required Guid TeamId { get; set; }
+    public required Team Team { get; set; }
+}
+
+public class TeamRole
+{
+    public required Guid RoleId { get; set; }
+    public required Role Role { get; set; }
     public required Guid TeamId { get; set; }
     public required Team Team { get; set; }
 }

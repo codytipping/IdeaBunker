@@ -13,6 +13,7 @@ public class Section : Entity
 
     public virtual ICollection<Division>? Divisions { get; set; }
     public virtual ICollection<SectionProject>? SectionProjects { get; set; }
+    public virtual ICollection<SectionRole>? SectionRoles { get; set; }
     public virtual ICollection<SectionUser>? SectionUsers { get; set; }
 }
 
@@ -20,6 +21,14 @@ public class SectionProject
 {
     public required Guid ProjectId { get; set; }
     public required Project Project { get; set; }
+    public required Guid SectionId { get; set; }
+    public required Section Section { get; set; }
+}
+
+public class SectionRole
+{
+    public required Guid RoleId { get; set; }
+    public required Role Role { get; set; }
     public required Guid SectionId { get; set; }
     public required Section Section { get; set; }
 }
