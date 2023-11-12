@@ -7,7 +7,7 @@ namespace IdeaBunker.Areas.Identity.Models.Entities;
 public class Role : IdentityRole
 {
     [MinLength(50), StringLength(1000)]
-    public required string Description { get; set; }
+    public required string Description { get; set; } = string.Empty;
 
     [ForeignKey("IdeaBunkerUser")]
     public required string UserId { get; set; }

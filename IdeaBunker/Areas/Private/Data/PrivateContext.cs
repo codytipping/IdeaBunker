@@ -1,4 +1,5 @@
-﻿using IdeaBunker.Areas.Private.Models.Entities;
+﻿using IdeaBunker.Areas.Identity.Models.Enums;
+using IdeaBunker.Areas.Private.Models.Entities;
 using IdeaBunker.Areas.Private.Models.Enums;
 using IdeaBunker.Areas.Private.Models.Events;
 using IdeaBunker.Data;
@@ -39,41 +40,18 @@ public class PrivateContext : IdentityContext
     {
         base.OnModelCreating(builder);
 
-        builder.Entity<DirectorateProject>()
-            .HasKey(dp => new { dp.ProjectId, dp.DirectorateId });
-
-        builder.Entity<DivisionProject>()
-            .HasKey(dp => new { dp.ProjectId, dp.DivisionId });
-
-        builder.Entity<SectionProject>()
-            .HasKey(sp => new { sp.ProjectId, sp.SectionId });
-
-        builder.Entity<TeamProject>()
-            .HasKey(tp => new { tp.ProjectId, tp.TeamId });
-
-        builder.Entity<DirectorateRole>()
-            .HasKey(dr => new { dr.RoleId, dr.DirectorateId });
-
-        builder.Entity<DivisionRole>()
-            .HasKey(dr => new { dr.RoleId, dr.DivisionId });
-
-        builder.Entity<SectionRole>()
-            .HasKey(sr => new { sr.RoleId, sr.SectionId });
-
-        builder.Entity<TeamRole>()
-            .HasKey(tr => new { tr.RoleId, tr.TeamId });
-
-        builder.Entity<DirectorateUser>()
-            .HasKey(du => new { du.UserId, du.DirectorateId });
-
-        builder.Entity<DivisionUser>()
-            .HasKey(du => new { du.UserId, du.DivisionId });
-
-        builder.Entity<SectionUser>()
-            .HasKey(su => new { su.UserId, su.SectionId });
-
-        builder.Entity<TeamUser>()
-            .HasKey(tu => new { tu.UserId, tu.TeamId });
+        builder.Entity<DirectorateProject>().HasKey(dp => new { dp.ProjectId, dp.DirectorateId });
+        builder.Entity<DivisionProject>().HasKey(dp => new { dp.ProjectId, dp.DivisionId });
+        builder.Entity<SectionProject>().HasKey(sp => new { sp.ProjectId, sp.SectionId });
+        builder.Entity<TeamProject>().HasKey(tp => new { tp.ProjectId, tp.TeamId });
+        builder.Entity<DirectorateRole>().HasKey(dr => new { dr.RoleId, dr.DirectorateId });
+        builder.Entity<DivisionRole>().HasKey(dr => new { dr.RoleId, dr.DivisionId });
+        builder.Entity<SectionRole>().HasKey(sr => new { sr.RoleId, sr.SectionId });
+        builder.Entity<TeamRole>().HasKey(tr => new { tr.RoleId, tr.TeamId });
+        builder.Entity<DirectorateUser>().HasKey(du => new { du.UserId, du.DirectorateId });
+        builder.Entity<DivisionUser>().HasKey(du => new { du.UserId, du.DivisionId });
+        builder.Entity<SectionUser>().HasKey(su => new { su.UserId, su.SectionId });
+        builder.Entity<TeamUser>().HasKey(tu => new { tu.UserId, tu.TeamId });
 
         builder.Entity<Directorate>()
             .HasMany(d => d.Sections)
