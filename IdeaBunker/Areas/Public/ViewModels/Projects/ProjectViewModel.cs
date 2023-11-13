@@ -2,9 +2,12 @@
 
 public class ProjectViewModel : ViewModel
 {
-    public string? CategoryId { get; set; }
-    public string? ClearanceId { get; set; }
-    public string? StatusId { get; set; }
-    public int? UpvoteCount { get; set; }
-    public int? DownvoteCount { get; set; }
+    public string CategoryId { get; set; } = string.Empty;
+    public string CategoryName { get; set; } = string.Empty;
+    public string ClearanceId { get; set; } = string.Empty;
+    public string ClearanceName { get; set; } = string.Empty;
+    public string StatusId { get; set; } = string.Empty;
+    public string StatusName { get; set; } = string.Empty;
+    public int UpvoteCount { get; set; } = 0;
+    public int DownvoteCount { get; set; } = 0;
 }

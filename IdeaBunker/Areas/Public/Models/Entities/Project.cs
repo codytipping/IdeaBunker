@@ -8,19 +8,19 @@ public class Project : Entity
     public int DownvoteCount { get; set; } = 0;
 
     [ForeignKey("Category")]
-    public required string CategoryId { get; set; }
+    public string CategoryId { get; set; } = string.Empty;
     public virtual Category? Category { get; set; }
 
     [ForeignKey("Clearance")]
-    public required string ClearanceId { get; set; }
+    public string ClearanceId { get; set; } = string.Empty;
     public virtual Clearance? Clearance { get; set; }
 
     [ForeignKey("Status")]
-    public required string StatusId { get; set; }
+    public string StatusId { get; set; } = string.Empty;
     public virtual StatusProject? Status { get; set; }
 
     [ForeignKey("User")]
-    public required string UserId { get; set; }
+    public string UserId { get; set; } = string.Empty;
     public virtual User? User { get; set; }
 
     public virtual ICollection<Comment>? Comments { get; set; }

@@ -6,7 +6,7 @@ namespace IdeaBunker.Services;
 
 public interface IUserDataService
 {
-    Task<string> GetFullNameAndRankAsync(string userId);
+    Task<string> GetNameAndRankAsync(string userId);
     Task<string> GetRankNameAsync(string userId);
 }
 
@@ -21,7 +21,7 @@ public class UserDataService : IUserDataService
         _userManager = userManager;
     }
 
-    public async Task<string> GetFullNameAndRankAsync(string userId)
+    public async Task<string> GetNameAndRankAsync(string userId)
     {
         var user = await _userManager.FindByIdAsync(userId);
         var rankName = _context.Ranks
