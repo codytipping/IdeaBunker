@@ -14,16 +14,18 @@ public interface IProjectEventService
 
 public class ProjectEventService : IProjectEventService
 {
-    private readonly Context _context;    
+    private readonly Context _context;  
+    private readonly UserLockoutService _lockoutService;
 
-    public ProjectEventService(Context context)
+    public ProjectEventService(Context context, UserLockoutService lockoutService)
     {
         _context = context;
+        _lockoutService = lockoutService;
     }
 
     public async Task SetEventAsync(ProjectViewModel viewModel, string id)
     {
-        //var securityCount = await _userLockoutService.GetSecurityCountAsync<ProjectCreate>(userId);
+        var count = await _lockoutService.GetSecurityCountAsync<ProjectEvent>(viewModel.UserId);
         var model = viewModel ?? new();
         ProjectEvent projectEvent = new()
         {
@@ -34,7 +36,7 @@ public class ProjectEventService : IProjectEventService
             UserNameAndRank = model.UserNameAndRank,
             Description = model.Description,
             EventDescription = model.EventDescription,
-            SecurityCount = 0, //Change this later.
+            SecurityCount = count,
         };
         _context.Add(projectEvent);
         await _context.SaveChangesAsync();
