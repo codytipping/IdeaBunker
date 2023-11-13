@@ -10,14 +10,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace IdeaBunker.Controllers;
 
-public class ProjectsController : Controller
+[Authorize(Policy = "Permissions.Projects.Create")]
+public class ProjectsDraftController : Controller
 {
     private readonly Context _context;
     private readonly ProjectEventService _eventService;
     private readonly UserDataService _dataService;
     private readonly UserManager<User> _userManager;
 
-    public ProjectsController(Context context, ProjectEventService eventService, UserDataService dataService,
+    public ProjectsDraftController(Context context, ProjectEventService eventService, UserDataService dataService,
         UserManager<User> userManager)
     {
         _context = context;
@@ -26,40 +27,14 @@ public class ProjectsController : Controller
         _userManager = userManager;
     }
 
-    [Authorize(Policy = "Permissions.Projects.Create")]
-    public IActionResult Create()
-    {
-        ProjectViewModel model = new();
-        ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name");
-        return View(model);
-    }
-
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    [Authorize(Policy = "Permissions.Projects.Create")]
-    public async Task<IActionResult> Create(ProjectViewModel viewModel)
-    {
-        if (ModelState.IsValid)
-        {
-            viewModel.Action = "Create";
-            var model = await SetUserInfoAsync(viewModel);
-            await _eventService.SetProjectAsync(model);                       
-            return RedirectToAction(nameof(Index), "ProjectsUnpublished");
-        }
-        ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", viewModel.CategoryId);
-        return View(viewModel);
-    }
-
-    [Authorize(Policy = "Permissions.Projects.Delete")]
     public async Task<IActionResult> Delete(string id)
-    {      
+    {
         var model = await _eventService.SetProjectViewModelAsync(id);
         return View(model);
     }
 
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
-    [Authorize(Policy = "Permissions.Projects.Delete")]
     public async Task<IActionResult> DeleteConfirmed(string id, ProjectViewModel viewModel)
     {
         var project = await _context.Projects.FindAsync(id);
@@ -73,7 +48,6 @@ public class ProjectsController : Controller
         return RedirectToAction(nameof(Index));
     }
 
-    [Authorize(Policy = "Permissions.Projects.View")]
     public async Task<IActionResult> Details(string id)
     {
         var project = await _context.Projects.FindAsync(id);
@@ -84,46 +58,37 @@ public class ProjectsController : Controller
             Name = project?.Name ?? string.Empty,
             UserNameAndRank = userNameAndRank,
             Description = project?.Description ?? string.Empty,
-            CategoryDescription = $"{project?.Category?.Name}: {project?.Category?.Description}",
-            ClearanceDescription = $"{project?.Clearance?.Name}: {project?.Clearance?.Description}",
-            StatusDescription = $"{project?.Status?.Name}: {project?.Status?.Description}",
+            CategoryDescription = $"{project?.Category?.Name}: {project?.Category?.Description}",         
         };
         return View(projectViewModel);
     }
 
-    [Authorize(Policy = "Permissions.Projects.Edit")]
     public async Task<IActionResult> Edit(string id)
     {
         var model = await _eventService.SetProjectViewModelAsync(id);
         ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", model.CategoryId);
-        ViewData["ClearanceId"] = new SelectList(_context.Clearances, "Id", "Name", model.ClearanceId);
-        ViewData["StatusId"] = new SelectList(_context.StatusProjects, "Id", "Name", model.StatusId);
         return View(model);
     }
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    [Authorize(Policy = "Permissions.Projects.Edit")]
     public async Task<IActionResult> Edit(string id, ProjectViewModel viewModel)
     {
         if (ModelState.IsValid)
         {
             var model = await SetUserInfoAsync(viewModel);
-            await _eventService.SetProjectAsync(model);                     
+            await _eventService.SetProjectAsync(model);
             return RedirectToAction(nameof(Index));
         }
-        ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", viewModel.CategoryId);
-        ViewData["ClearanceId"] = new SelectList(_context.Clearances, "Id", "Name", viewModel.ClearanceId);
-        ViewData["StatusId"] = new SelectList(_context.StatusProjects, "Id", "Name", viewModel.StatusId);
+        ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", viewModel.CategoryId);       
         return View(viewModel);
     }
 
-    [Authorize(Policy = "Permissions.Projects.View")]
     public async Task<IActionResult> Index()
     {
         var userId = _userManager.GetUserId(User);
         var projects = await _context.Projects
-            .Where(p => p.Status != null && p.Status.Name != "Unpublished")
+            .Where(p => p.Status != null && p.Status.Name == "Unpublished" && p.UserId == userId)
             .Include(p => p.Category)
             .Include(p => p.Clearance)
             .Include(p => p.User)
@@ -137,6 +102,8 @@ public class ProjectsController : Controller
         }
         return View(projectViewModels);
     }
+
+    // NEEDS A PUBLISH METHOD (GET & POST)
 
     public async Task<(string UserId, string UserNameAndRank)> GetUserInfoAsync()
     {
