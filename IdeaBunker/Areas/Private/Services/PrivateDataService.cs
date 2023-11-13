@@ -2,7 +2,7 @@
 using IdeaBunker.Models;
 using Microsoft.AspNetCore.Identity;
 
-namespace IdeaBunker.Areas.Private.Services;
+namespace IdeaBunker.Services;
 
 public interface IPrivateDataService 
 {

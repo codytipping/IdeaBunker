@@ -5,15 +5,19 @@ namespace IdeaBunker.Models;
 public class Event
 {
     [Key]
-    public required string Id { get; set; } = Guid.NewGuid().ToString();
+    public string Id { get; set; }
     public required string Action { get; set; }
     public required string UserId { get; set; }
     public required string UserNameAndRank { get; set; }
+    public required string Description { get; set; }
+    public required string EventDescription { get; set; }
     public required int SecurityCount { get; set; } = 0;
 
-    [StringLength(1000)]
-    public required string Description { get; set; }
-
     [DataType(DataType.DateTime)]
-    public required DateTime Date { get; set; } = DateTime.Now;
+    public DateTime Date { get; set; } = DateTime.Now;
+
+    public Event()
+    {
+        Id = Guid.NewGuid().ToString();
+    }
 }

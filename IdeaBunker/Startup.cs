@@ -4,8 +4,6 @@ using IdeaBunker.Areas.Public.Data;
 using IdeaBunker.Areas.Private.Data;
 using Microsoft.AspNetCore.Identity;
 using IdeaBunker.Services;
-using IdeaBunker.Areas.Private.Services;
-using IdeaBunker.Areas.Public.Services;
 using IdeaBunker.Models;
 
 namespace IdeaBunker;
@@ -78,5 +76,6 @@ public class Startup
         services.AddScoped<IUserDataService, UserDataService>();
         services.AddScoped<IPrivateDataService, PrivateDataService>();
         services.AddScoped<IPublicDataService, PublicDataService>();
+        services.AddScoped<IProjectEventService, ProjectEventService>();
     }
 }

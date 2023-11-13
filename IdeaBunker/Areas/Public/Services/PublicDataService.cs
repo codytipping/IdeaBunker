@@ -1,10 +1,10 @@
 ﻿using IdeaBunker.Areas.Public.Data;
 
-namespace IdeaBunker.Areas.Public.Services;
+namespace IdeaBunker.Services;
 
 public interface IPublicDataService 
 {
-    public string GetCategoryName(string id);
+    string GetCategoryName(string id);
 }
 
 public class PublicDataService : IPublicDataService
