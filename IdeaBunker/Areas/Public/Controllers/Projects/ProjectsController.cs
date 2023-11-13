@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace IdeaBunker.Areas.Public.Controllers.Projects;
+namespace IdeaBunker.Controllers;
 
 public class ProjectsController : Controller
 {

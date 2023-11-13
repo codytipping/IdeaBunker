@@ -12,10 +12,10 @@ public interface IPrivateDataService
 
 public class PrivateDataService : IPrivateDataService
 {
-    private readonly PrivateContext _context;
+    private readonly Context _context;
     private readonly UserManager<User> _userManager;
 
-    public PrivateDataService(PrivateContext context, UserManager<User> userManager)
+    public PrivateDataService(Context context, UserManager<User> userManager)
     {
         _context = context;
         _userManager = userManager;

@@ -12,9 +12,9 @@ public interface IPublicDataService
 
 public class PublicDataService : IPublicDataService
 {
-    private readonly PublicContext _context;
+    private readonly Context _context;
 
-    public PublicDataService(PublicContext context) { _context = context; }
+    public PublicDataService(Context context) { _context = context; }
 
     public string GetCategoryName(string id)
     {
