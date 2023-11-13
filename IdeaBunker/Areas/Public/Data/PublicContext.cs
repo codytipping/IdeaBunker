@@ -1,9 +1,7 @@
-﻿using IdeaBunker.Areas.Private.Data;
-using IdeaBunker.Data;
-using IdeaBunker.Models;
+﻿using IdeaBunker.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace IdeaBunker.Areas.Public.Data;
+namespace IdeaBunker.Data;
 
 public class PublicContext : PrivateContext
 {

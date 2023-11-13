@@ -1,10 +1,32 @@
-﻿namespace IdeaBunker;
+﻿using IdeaBunker.Areas.Identity.Data.Seeds;
+using IdeaBunker.Data;
+using IdeaBunker.Models;
+using Microsoft.AspNetCore.Identity;
+
+namespace IdeaBunker;
 
 public class Program
 {
     public static void Main(string[] args)
     {
-        CreateHostBuilder(args).Build().Run();
+        var host = CreateHostBuilder(args).Build();
+        using (var scope = host.Services.CreateScope())
+        {
+            var services = scope.ServiceProvider;
+            var loggerFactory = services.GetRequiredService<ILoggerFactory>();
+            var logger = loggerFactory.CreateLogger("app");
+            var identityContext = services.GetRequiredService<IdentityContext>();
+            try
+            {                
+                logger.LogInformation("Finished Seeding Default Data");
+                logger.LogInformation("Application Starting");
+            }
+            catch (Exception ex)
+            {
+                logger.LogWarning(ex, "An error occurred seeding the DB");
+            }
+        }
+        host.Run();
     }
 
     public static IHostBuilder CreateHostBuilder(string[] args) =>

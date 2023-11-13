@@ -1,10 +1,13 @@
-﻿using IdeaBunker.Areas.Public.Data;
+﻿using IdeaBunker.Data;
+using IdeaBunker.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace IdeaBunker.Services;
 
 public interface IPublicDataService 
 {
     string GetCategoryName(string id);
+    Task<Project> GetProjectInfoAsync(string id);
 }
 
 public class PublicDataService : IPublicDataService
@@ -20,5 +23,16 @@ public class PublicDataService : IPublicDataService
             .Select(c => c.Name)
             .FirstOrDefault();
         return categoryName ?? string.Empty;
+    }
+
+    public async Task<Project> GetProjectInfoAsync(string id)
+    {
+        var project = await _context.Projects
+            .Include(p => p.Category)
+            .Include(p => p.Clearance)
+            .Include(p => p.User)
+            .Include(p => p.Status)
+            .FirstOrDefaultAsync(p => p.Id == id);
+        return project ?? new();
     }
 }

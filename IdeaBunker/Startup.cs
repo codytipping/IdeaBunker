@@ -1,7 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using IdeaBunker.Data;
-using IdeaBunker.Areas.Public.Data;
-using IdeaBunker.Areas.Private.Data;
 using Microsoft.AspNetCore.Identity;
 using IdeaBunker.Services;
 using IdeaBunker.Models;
@@ -22,7 +20,7 @@ public class Startup
         if (env.IsDevelopment())
         {
             app.UseDeveloperExceptionPage();
-            //app.UseMigrationsEndPoint();
+            app.UseMigrationsEndPoint();
         }
         else
         {
@@ -48,19 +46,6 @@ public class Startup
 
     public void ConfigureServices(IServiceCollection services)
     {
-        ConfigureContextServices(services);
-        ConfigureInterfaceServices(services);
-
-        services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
-            .AddEntityFrameworkStores<IdentityContext>()
-            .AddDefaultUI()
-            .AddDefaultTokenProviders();
-        services.AddControllersWithViews();
-        services.AddRazorPages();
-    }
-
-    private void ConfigureContextServices(IServiceCollection services)
-    {
         services.AddDbContext<IdentityContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("IdeaBunkerContextConnection")));
         services.AddDbContext<PrivateContext>(options =>
@@ -69,13 +54,19 @@ public class Startup
             options.UseSqlServer(Configuration.GetConnectionString("IdeaBunkerContextConnection")));
         services.AddDbContext<Context>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("IdeaBunkerContextConnection")));
-    }
 
-    private static void ConfigureInterfaceServices(IServiceCollection services)
-    {
+
         services.AddScoped<IUserDataService, UserDataService>();
         services.AddScoped<IPrivateDataService, PrivateDataService>();
         services.AddScoped<IPublicDataService, PublicDataService>();
         services.AddScoped<IProjectEventService, ProjectEventService>();
+
+
+        services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
+            .AddEntityFrameworkStores<IdentityContext>()
+            .AddDefaultUI()
+            .AddDefaultTokenProviders();
+        services.AddControllersWithViews();
+        services.AddRazorPages();
     }
 }

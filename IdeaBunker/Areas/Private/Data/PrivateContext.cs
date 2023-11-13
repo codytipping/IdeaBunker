@@ -2,7 +2,7 @@
 using IdeaBunker.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace IdeaBunker.Areas.Private.Data;
+namespace IdeaBunker.Data;
 
 public class PrivateContext : IdentityContext
 {

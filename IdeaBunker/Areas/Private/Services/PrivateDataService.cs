@@ -1,4 +1,4 @@
-﻿using IdeaBunker.Areas.Private.Data;
+﻿using IdeaBunker.Data;
 using IdeaBunker.Models;
 using Microsoft.AspNetCore.Identity;
 

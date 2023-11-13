@@ -1,5 +1,4 @@
-﻿using IdeaBunker.Areas.Public.Data;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace IdeaBunker.Data;
 
