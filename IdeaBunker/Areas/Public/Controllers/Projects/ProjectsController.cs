@@ -53,7 +53,7 @@ public class ProjectsController : Controller
     [Authorize(Policy = "Permissions.Projects.Delete")]
     public async Task<IActionResult> Delete(string id)
     {      
-        var model = await _eventService.SetProjectViewModelAsync(id);
+        var model = await _eventService.SetViewModelAsync(id);
         return View(model);
     }
 
@@ -94,7 +94,7 @@ public class ProjectsController : Controller
     [Authorize(Policy = "Permissions.Projects.Edit")]
     public async Task<IActionResult> Edit(string id)
     {
-        var model = await _eventService.SetProjectViewModelAsync(id);
+        var model = await _eventService.SetViewModelAsync(id);
         ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", model.CategoryId);
         ViewData["ClearanceId"] = new SelectList(_context.Clearances, "Id", "Name", model.ClearanceId);
         ViewData["StatusId"] = new SelectList(_context.StatusProjects, "Id", "Name", model.StatusId);
@@ -132,7 +132,7 @@ public class ProjectsController : Controller
         var projectViewModels = new List<ProjectViewModel>();
         foreach (var project in projects)
         {
-            var viewModel = await _eventService.SetProjectViewModelAsync(project.Id);
+            var viewModel = await _eventService.SetViewModelAsync(project.Id);
             projectViewModels.Add(viewModel);
         }
         return View(projectViewModels);

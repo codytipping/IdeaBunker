@@ -29,7 +29,7 @@ public class ProjectsDraftController : Controller
 
     public async Task<IActionResult> Delete(string id)
     {
-        var model = await _eventService.SetProjectViewModelAsync(id);
+        var model = await _eventService.SetViewModelAsync(id);
         return View(model);
     }
 
@@ -65,7 +65,7 @@ public class ProjectsDraftController : Controller
 
     public async Task<IActionResult> Edit(string id)
     {
-        var model = await _eventService.SetProjectViewModelAsync(id);
+        var model = await _eventService.SetViewModelAsync(id);
         ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", model.CategoryId);
         return View(model);
     }
@@ -97,7 +97,7 @@ public class ProjectsDraftController : Controller
         var projectViewModels = new List<ProjectViewModel>();
         foreach (var project in projects)
         {
-            var viewModel = await _eventService.SetProjectViewModelAsync(project.Id);
+            var viewModel = await _eventService.SetViewModelAsync(project.Id);
             projectViewModels.Add(viewModel);
         }
         return View(projectViewModels);

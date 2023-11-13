@@ -2,14 +2,16 @@
 using IdeaBunker.Models;
 using IdeaBunker.ViewModels;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace IdeaBunker.Services;
 
 public interface IProjectEventService
 {
+    Task<ProjectEvent?> GetEventAsync(string userId, string projectId);
     Task SetEventAsync(ProjectViewModel viewModel, string id);
     Task SetProjectAsync(ProjectViewModel viewModel);
-    Task<ProjectViewModel> SetProjectViewModelAsync(string id);
+    Task<ProjectViewModel> SetViewModelAsync(string id);
 }
 
 public class ProjectEventService : IProjectEventService
@@ -23,6 +25,15 @@ public class ProjectEventService : IProjectEventService
         _lockoutService = lockoutService;
     }
 
+    public async Task<ProjectEvent?> GetEventAsync(string userId, string projectId)
+    {
+        var projectEvent = await _context.ProjectEvents
+            .Where(p => p.UserId == userId && p.ProjectId == projectId)
+            .OrderByDescending(p => p.Date)
+            .FirstOrDefaultAsync();
+        return projectEvent ?? null;
+    }
+
     public async Task SetEventAsync(ProjectViewModel viewModel, string id)
     {
         var count = await _lockoutService.GetSecurityCountAsync<ProjectEvent>(viewModel.UserId);
@@ -31,6 +42,7 @@ public class ProjectEventService : IProjectEventService
         {
             ProjectId = id,
             ProjectName = model.Name,
+            VoteType = model.VoteType,
             Action = model.Action,
             UserId = model.UserId,
             UserNameAndRank = model.UserNameAndRank,
@@ -61,7 +73,7 @@ public class ProjectEventService : IProjectEventService
         await SetEventAsync(model, project.Id);
     }
 
-    public async Task<ProjectViewModel> SetProjectViewModelAsync(string id)
+    public async Task<ProjectViewModel> SetViewModelAsync(string id)
     {
         var project = await _context.Projects.FindAsync(id) ?? new();
         ProjectViewModel viewModel = new()
