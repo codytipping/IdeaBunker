@@ -1,7 +1,4 @@
-﻿using IdeaBunker.Areas.Identity.Data.Seeds;
-using IdeaBunker.Data;
-using IdeaBunker.Models;
-using Microsoft.AspNetCore.Identity;
+﻿using IdeaBunker.Data;
 
 namespace IdeaBunker;
 

@@ -60,7 +60,7 @@ public class Startup
         services.AddScoped<IUserLockoutService, UserLockoutService>();
         services.AddScoped<IPrivateDataService, PrivateDataService>();
         services.AddScoped<IPublicDataService, PublicDataService>();
-        services.AddScoped<IProjectEventService, ProjectEventService>();
+        //services.AddScoped<IProjectEventService, ProjectEventService>();
         
 
         services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)

@@ -21,7 +21,15 @@ public class PublicContext : PrivateContext
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
-        
+        ConfigureCategory(builder);
+        ConfigureComment(builder);
+        ConfigureDocument(builder);
+        ConfigureProject(builder);
+        ConfigureSeedData(builder);
+    }
+
+    private static void ConfigureCategory(ModelBuilder builder)
+    {
         builder.Entity<Category>()
             .HasOne(c => c.User)
             .WithMany(u => u.Categories)
@@ -33,7 +41,10 @@ public class PublicContext : PrivateContext
             .WithMany(s => s.Categories)
             .HasForeignKey(c => c.StatusId)
             .OnDelete(DeleteBehavior.Restrict);
+    }
 
+    private static void ConfigureComment(ModelBuilder builder)
+    {
         builder.Entity<Comment>()
             .HasOne(c => c.User)
             .WithMany(u => u.Comments)
@@ -51,7 +62,10 @@ public class PublicContext : PrivateContext
             .WithMany(pt => pt.Comments)
             .HasForeignKey(c => c.ProjectTaskId)
             .OnDelete(DeleteBehavior.Cascade);
+    }
 
+    private static void ConfigureDocument(ModelBuilder builder)
+    {
         builder.Entity<Document>()
             .HasOne(d => d.User)
             .WithMany(u => u.Documents)
@@ -63,7 +77,10 @@ public class PublicContext : PrivateContext
             .WithMany(p => p.Documents)
             .HasForeignKey(d => d.ProjectId)
             .OnDelete(DeleteBehavior.Restrict);
+    }
 
+    private static void ConfigureProject(ModelBuilder builder)
+    {
         builder.Entity<Project>()
             .HasOne(p => p.Category)
             .WithMany(c => c.Projects)
@@ -93,5 +110,35 @@ public class PublicContext : PrivateContext
             .WithMany(ps => ps.Projects)
             .HasForeignKey(p => p.StatusId)
             .OnDelete(DeleteBehavior.Restrict);
+    }
+
+    private static void ConfigureSeedData(ModelBuilder builder)
+    {
+        StatusCategory status = new() { Name = "Unpublished" };
+        builder.Entity<StatusCategory>().HasData(
+            status,
+            new StatusCategory() { Name = "Active" },
+            new StatusCategory() { Name = "Approved" },
+            new StatusCategory() { Name = "Archive" },
+            new StatusCategory() { Name = "Pending" });
+
+        builder.Entity<Category>().HasData(
+            new Category() { Name = "Performing Operations, Transporting", StatusId = status.Id, },
+            new Category() { Name = "Chemistry, Metallurgy", StatusId = status.Id, },
+            new Category() { Name = "Textiles, Paper", StatusId = status.Id, },
+            new Category() { Name = "Fixed Constructions", StatusId = status.Id, },
+            new Category() { Name = "Mechanical Engineering", StatusId = status.Id, },
+            new Category() { Name = "Physics", StatusId = status.Id, },
+            new Category() { Name = "Electricity", StatusId = status.Id, });
+
+        builder.Entity<StatusProject>().HasData(
+            new StatusProject() { Name = "Active" },
+            new StatusProject() { Name = "Approved" },
+            new StatusProject() { Name = "Archive" },
+            new StatusProject() { Name = "Completed" },
+            new StatusProject() { Name = "Denied" },
+            new StatusProject() { Name = "Pending" },
+            new StatusProject() { Name = "Unpublished" },
+            new StatusProject() { Name = "Waitlist" });
     }
 }

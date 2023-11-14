@@ -15,11 +15,11 @@ public class User : IdentityUser
 
     [ForeignKey("MilitaryRank")]
     public required string RankId { get; set; }
-    public required virtual Rank Rank { get; set; }
+    public virtual Rank? Rank { get; set; }
 
     [ForeignKey("Clearance")]
-    public required string ClearanceId { get; set; }
-    public required virtual Clearance Clearance { get; set; }
+    public string ClearanceId { get; set; } = string.Empty;
+    public virtual Clearance? Clearance { get; set; }
 
     public virtual ICollection<Category>? Categories { get; set; }
     public virtual ICollection<Comment>? Comments { get; set; }
