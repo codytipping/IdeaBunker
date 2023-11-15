@@ -1,8 +1,5 @@
 ﻿using IdeaBunker.Models;
-using IdeaBunker.Permissions;
 using Microsoft.AspNetCore.Identity;
-using System.Reflection;
-using System.Security.Claims;
 
 namespace IdeaBunker.Seeds;
 
@@ -16,7 +13,7 @@ public static class UsersSeed
 
     private static string GetPassword() { return Password; }
 
-    public static async Task SeedUserAsync(UserManager<User> userManager, RoleManager<Role> roleManager)
+    public static async Task SeedUserAsync(UserManager<User> userManager)
     {
         if (!userManager.Users.Any()) 
         {
@@ -30,34 +27,7 @@ public static class UsersSeed
                 PhoneNumberConfirmed = true,
             };
             await userManager.CreateAsync(user, GetPassword());         
-            await userManager.AddToRoleAsync(user, "SuperAdmin");
-            await roleManager.SeedClaimsAsync();
-        }
-    }
-
-    private static async Task SeedClaimsAsync(this RoleManager<Role> roleManager)
-    {
-        var role = await roleManager.FindByNameAsync("SuperAdmin") ?? new();
-        var modules = typeof(PermissionsMaster).GetNestedTypes();
-        foreach (var module in modules)
-        {
-            var list = module.GetMethod("GetList");
-            if (list is IList<string> permissions)
-            {
-                await roleManager.AddPermissionClaimsAsync(role, permissions);
-            }
-        }       
-    }
-
-    private static async Task AddPermissionClaimsAsync(this RoleManager<Role> roleManager, Role role, IList<string> permissions)
-    {
-        var claims = await roleManager.GetClaimsAsync(role);
-        foreach (var permission in permissions)
-        {
-            if (!claims.Any(c => c.Type == "Permission" && c.Value == permission))
-            {
-                await roleManager.AddClaimAsync(role, new Claim("Permission", permission));
-            }
+            await userManager.AddToRoleAsync(user, RolesSeed.GetName());            
         }
     }
 }
