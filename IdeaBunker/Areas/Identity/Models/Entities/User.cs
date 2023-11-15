@@ -14,7 +14,7 @@ public class User : IdentityUser
     public required string LastName { get; set; }
 
     [ForeignKey("MilitaryRank")]
-    public required string RankId { get; set; }
+    public string? RankId { get; set; }
     public virtual Rank? Rank { get; set; }
 
     [ForeignKey("Clearance")]

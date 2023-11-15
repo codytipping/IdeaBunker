@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace IdeaBunker.Seeds;
 
-public class DefaultRoles
+public class RolesSeed
 {
     public static async Task SeedAsync(RoleManager<Role> roleManager)
     {       

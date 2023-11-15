@@ -24,6 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\Private\Permissions\" />
     <Folder Include="Areas\Public\Views\" />
   </ItemGroup>
 

@@ -14,7 +14,8 @@ public class Program
             var logger = loggerFactory.CreateLogger("app");
             var identityContext = services.GetRequiredService<Context>();
             try
-            {                
+            {  
+                // Insert Seed Data for users and roles.
                 logger.LogInformation("Finished Seeding Default Data");
                 logger.LogInformation("Application Starting");
             }
