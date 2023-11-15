@@ -1,5 +1,4 @@
-﻿using System.Security.Claims;
-using IdeaBunker.Data;
+﻿using IdeaBunker.Data;
 using IdeaBunker.Models;
 using Microsoft.AspNetCore.Identity;
 
@@ -7,98 +6,38 @@ namespace IdeaBunker.Seeds;
 
 public static class DefaultUsers
 {
-    public static async Task SeedBasicUserAsync
-        (UserManager<User> userManager, RoleManager<Role> roleManager, Context context)
+    public static async Task SeedUserAsync(UserManager<User> userManager, RoleManager<Role> roleManager, Context context)
     {
-        var defaultMilitaryRank = context.Ranks.FirstOrDefault();
-        var defaultSecurityClearance = context.Clearances.FirstOrDefault();
-        var defaultUser = new User
+        if (!userManager.Users.Any()) 
         {
-            FirstName = "Basic",
-            LastName = "User",
-            RankId = defaultMilitaryRank?.Id ?? string.Empty,
-            ClearanceId = defaultSecurityClearance?.Id ?? string.Empty,
-            UserName = "basicuser@gmail.com",
-            Email = "basicuser@gmail.com",
-            EmailConfirmed = true,
-            PhoneNumberConfirmed = true,
-        };
-        if (userManager.Users.All(u => u.Id != defaultUser.Id))
-        {
-            var user = await userManager.FindByEmailAsync(defaultUser.Email);
-            if (user == null)
+            var rank = context.Ranks.FirstOrDefault();
+            var clearance = context.Clearances.FirstOrDefault();
+            var user = new User
             {
-                await userManager.CreateAsync(defaultUser, "123Pa$$word!");
-                await userManager.AddToRoleAsync(defaultUser, "Basic");
-            }
-        }
-        var roleExists = await roleManager.RoleExistsAsync("Basic");
-        var userRole = await roleManager.FindByNameAsync("Basic");
-        if (roleExists && userRole?.UserId == null)
-        {
-            var user = await userManager.FindByEmailAsync(defaultUser.Email);
-            userRole.UserId = user.Id;
-            await roleManager.UpdateAsync(userRole);
+                FirstName = "Super",
+                LastName = "Admin",
+                UserName = "superadmin@gmail.com",
+                Email = "superadmin@gmail.com",
+                EmailConfirmed = true,
+                PhoneNumberConfirmed = true,
+                RankId = rank?.Id ?? string.Empty,
+                ClearanceId = clearance?.Id ?? string.Empty,
+            };
+            await userManager.CreateAsync(user, "123Pa$$word!");         
+            await userManager.AddToRoleAsync(user, "SuperAdmin");
+            await roleManager.SeedClaimsAsync();
         }
     }
 
-    public static async Task SeedSuperAdminAsync
-        (UserManager<User> userManager, RoleManager<Role> roleManager, Context context)
+    private static async Task SeedClaimsAsync(this RoleManager<Role> roleManager)
     {
-        var defaultMilitaryRank = context.Ranks.FirstOrDefault();
-        var defaultSecurityClearance = context.Clearances.FirstOrDefault();
-        var defaultUser = new User
-        {
-            FirstName = "Super",
-            LastName = "Admin",
-            RankId = defaultMilitaryRank?.Id ?? string.Empty,
-            ClearanceId = defaultSecurityClearance?.Id ?? string.Empty,
-            UserName = "superadmin@gmail.com",
-            Email = "superadmin@gmail.com",
-            EmailConfirmed = true,
-            PhoneNumberConfirmed = true,
-        };
-        if (userManager.Users.All(u => u.Id != defaultUser.Id))
-        {
-            var user = await userManager.FindByEmailAsync(defaultUser.Email);
-            if (user == null)
-            {
-                await userManager.CreateAsync(defaultUser, "123Pa$$word!");
-                await userManager.AddToRoleAsync(defaultUser, "SuperAdmin");
-            }
-            await roleManager.SeedClaimsForSuperAdmin();
-        }
-        var roleExists = await roleManager.RoleExistsAsync("SuperAdmin");
-        var userRole = await roleManager.FindByNameAsync("SuperAdmin");
-        if (roleExists && userRole.UserId == null)
-        {
-            var user = await userManager.FindByEmailAsync(defaultUser.Email);
-            userRole.UserId = user.Id;
-            await roleManager.UpdateAsync(userRole);
-        }
-    }
-
-    private async static Task SeedClaimsForSuperAdmin(this RoleManager<Role> roleManager)
-    {
-        var adminRole = await roleManager.FindByNameAsync("SuperAdmin");
-        await roleManager.AddPermissionClaim(adminRole, "Categories");
-        await roleManager.AddPermissionClaim(adminRole, "Comments");
-        await roleManager.AddPermissionClaim(adminRole, "Documents");
-        await roleManager.AddPermissionClaim(adminRole, "PermissionSet");
-        await roleManager.AddPermissionClaim(adminRole, "Projects");
-        await roleManager.AddPermissionClaim(adminRole, "Roles");
-    }
-    public static async Task AddPermissionClaim
-        (this RoleManager<Role> roleManager, Role role, string module)
-    {
-        var allClaims = await roleManager.GetClaimsAsync(role);
-        var allPermissions = PermissionSeeds.GeneratePermissionsForModule(module);
-        foreach (var permission in allPermissions)
-        {
-            if (!allClaims.Any(a => a.Type == "Permission" && a.Value == permission))
-            {
-                await roleManager.AddClaimAsync(role, new Claim("Permission", permission));
-            }
-        }
+        var role = await roleManager.FindByNameAsync("SuperAdmin") ?? new();
+        // Create a for-loop to address each permission module:
+        await roleManager.AddPermissionClaim(role, "Categories");
+        await roleManager.AddPermissionClaim(role, "Comments");
+        await roleManager.AddPermissionClaim(role, "Documents");
+        await roleManager.AddPermissionClaim(role, "PermissionSet");
+        await roleManager.AddPermissionClaim(role, "Projects");
+        await roleManager.AddPermissionClaim(role, "Roles");
     }
 }
