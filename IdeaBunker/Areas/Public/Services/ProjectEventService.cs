@@ -24,8 +24,7 @@ public partial class EventService : IEventService
     }
 
     public async Task SetProjectEventAsync(ProjectViewModel viewModel, string id)
-    {
-        //var count = await _lockoutService.GetSecurityCountAsync<ProjectEvent>(viewModel.UserId);
+    {       
         var model = viewModel ?? new();
         ProjectEvent projectEvent = new()
         {
@@ -37,15 +36,15 @@ public partial class EventService : IEventService
             UserNameAndRank = model.UserNameAndRank,
             Description = model.Description,
             EventDescription = model.EventDescription,
-            SecurityCount = 0,
+            SecurityCount = model.SecurityCount,
         };
         _context.Add(projectEvent);
         await _context.SaveChangesAsync();
     }
 
-    public async Task SetProjectAsync(ProjectViewModel viewModel)
+    public async Task SetProjectAsync(ProjectViewModel model)
     {
-        var model = viewModel ?? new();
+        model ??= new();
         Project project = new()
         {
             Name = model.Name,
@@ -65,7 +64,7 @@ public partial class EventService : IEventService
     public async Task<ProjectViewModel> SetProjectViewModelAsync(string id)
     {
         var project = await _context.Projects.FindAsync(id) ?? new();
-        ProjectViewModel viewModel = new()
+        ProjectViewModel model = new()
         {
             Name = project.Name,
             Description = project.Description,
@@ -73,6 +72,6 @@ public partial class EventService : IEventService
             ClearanceName = project?.Clearance?.Name ?? string.Empty,
             StatusName = project?.Status?.Name ?? string.Empty,
         };
-        return viewModel;
+        return model;
     }
 }
