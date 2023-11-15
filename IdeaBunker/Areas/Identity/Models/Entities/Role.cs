@@ -9,7 +9,7 @@ public class Role : IdentityRole
     public string Description { get; set; } = string.Empty;
 
     [ForeignKey("IdeaBunkerUser")]
-    public required string UserId { get; set; }
+    public string? UserId { get; set; }
     public virtual User? User { get; set; }
     public virtual ICollection<DirectorateRole>? DirectorateRoles { get; set; }
     public virtual ICollection<DivisionRole>? DivisionRoles { get; set; }

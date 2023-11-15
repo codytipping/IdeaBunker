@@ -12,7 +12,7 @@ public class Program
             var services = scope.ServiceProvider;
             var loggerFactory = services.GetRequiredService<ILoggerFactory>();
             var logger = loggerFactory.CreateLogger("app");
-            var identityContext = services.GetRequiredService<IdentityContext>();
+            var identityContext = services.GetRequiredService<Context>();
             try
             {                
                 logger.LogInformation("Finished Seeding Default Data");

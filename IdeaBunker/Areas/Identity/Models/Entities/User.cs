@@ -18,7 +18,7 @@ public class User : IdentityUser
     public virtual Rank? Rank { get; set; }
 
     [ForeignKey("Clearance")]
-    public string ClearanceId { get; set; } = string.Empty;
+    public string? ClearanceId { get; set; }
     public virtual Clearance? Clearance { get; set; }
 
     public virtual ICollection<Category>? Categories { get; set; }

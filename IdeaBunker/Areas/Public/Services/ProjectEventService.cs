@@ -27,7 +27,7 @@ public class ProjectEventService : IProjectEventService
 
     public async Task<ProjectEvent?> GetEventAsync(string userId, string projectId)
     {
-        var projectEvent = await _context.ProjectEvents
+        var projectEvent = await _context.ProjectsEvent
             .Where(p => p.UserId == userId && p.ProjectId == projectId)
             .OrderByDescending(p => p.Date)
             .FirstOrDefaultAsync();

@@ -12,10 +12,10 @@ public interface IUserDataService
 
 public class UserDataService : IUserDataService
 {
-    private readonly IdentityContext _context;
+    private readonly Context _context;
     private readonly UserManager<User> _userManager;
 
-    public UserDataService(IdentityContext context, UserManager<User> userManager)
+    public UserDataService(Context context, UserManager<User> userManager)
     {
         _context = context;
         _userManager = userManager;

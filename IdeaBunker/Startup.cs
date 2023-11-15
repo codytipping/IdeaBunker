@@ -45,13 +45,7 @@ public class Startup
     }
 
     public void ConfigureServices(IServiceCollection services)
-    {
-        services.AddDbContext<IdentityContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("IdeaBunkerContextConnection")));
-        services.AddDbContext<PrivateContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("IdeaBunkerContextConnection")));
-        services.AddDbContext<PublicContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("IdeaBunkerContextConnection")));
+    {      
         services.AddDbContext<Context>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("IdeaBunkerContextConnection")));
 
@@ -64,7 +58,7 @@ public class Startup
         
 
         services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
-            .AddEntityFrameworkStores<IdentityContext>()
+            .AddEntityFrameworkStores<Context>()
             .AddDefaultUI()
             .AddDefaultTokenProviders();
         services.AddControllersWithViews();

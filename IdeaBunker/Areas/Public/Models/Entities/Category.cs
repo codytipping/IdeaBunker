@@ -9,7 +9,7 @@ public class Category : Entity
     public virtual StatusCategory? Status { get; set; }
 
     [ForeignKey("User")]
-    public string UserId { get; set; } = string.Empty;
+    public string? UserId { get; set; }
     public virtual User? User { get; set; }
 
     public ICollection<Project>? Projects { get; set; }
