@@ -17,7 +17,7 @@ public class Project : Entity
 
     [ForeignKey("Status")]
     public string StatusId { get; set; } = string.Empty;
-    public virtual StatusProject? Status { get; set; }
+    public virtual ProjectStatus? Status { get; set; }
 
     [ForeignKey("User")]
     public string UserId { get; set; } = string.Empty;

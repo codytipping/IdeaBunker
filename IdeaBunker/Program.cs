@@ -1,10 +1,12 @@
-﻿using IdeaBunker.Data;
+﻿using IdeaBunker.Models;
+using IdeaBunker.Seeds;
+using Microsoft.AspNetCore.Identity;
 
 namespace IdeaBunker;
 
 public class Program
 {
-    public static void Main(string[] args)
+    public static async Task Main(string[] args)
     {
         var host = CreateHostBuilder(args).Build();
         using (var scope = host.Services.CreateScope())
@@ -12,10 +14,12 @@ public class Program
             var services = scope.ServiceProvider;
             var loggerFactory = services.GetRequiredService<ILoggerFactory>();
             var logger = loggerFactory.CreateLogger("app");
-            var identityContext = services.GetRequiredService<Context>();
             try
-            {  
-                // Insert Seed Data for users and roles.
+            {
+                var userManager = services.GetRequiredService<UserManager<User>>();
+                var roleManager = services.GetRequiredService<RoleManager<Role>>();
+                await RolesSeed.SeedRoleAsync(roleManager);
+                //await UsersSeed.SeedUserAsync(userManager);
                 logger.LogInformation("Finished Seeding Default Data");
                 logger.LogInformation("Application Starting");
             }

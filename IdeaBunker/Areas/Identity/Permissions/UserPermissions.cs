@@ -1,6 +1,12 @@
 ﻿namespace IdeaBunker.Permissions;
 
-public static partial class PermissionsMaster 
-{ 
-    public static class UserPermissions { }
+public partial class PermissionsMaster
+{
+    public class UserPermissions : BasePermissions 
+    {
+        public override IList<string> GetList()
+        {
+            return new List<string>();
+        }
+    }
 }

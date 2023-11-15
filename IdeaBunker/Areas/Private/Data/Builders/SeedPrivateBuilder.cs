@@ -14,10 +14,10 @@ public class SeedPrivateBuilder
            new Clearance() { Name = "Top Secret Clearance SCI" },
            new Clearance() { Name = "Top Secret Clearance SAP" });
 
-        builder.Entity<StatusProjectTask>().HasData(
-            new StatusProjectTask() { Name = "Active" },
-            new StatusProjectTask() { Name = "Archive" },
-            new StatusProjectTask() { Name = "Complete" },
-            new StatusProjectTask() { Name = "Waitlist" });
+        builder.Entity<ProjectTaskStatus>().HasData(
+            new ProjectTaskStatus() { Name = "Active" },
+            new ProjectTaskStatus() { Name = "Archive" },
+            new ProjectTaskStatus() { Name = "Complete" },
+            new ProjectTaskStatus() { Name = "Waitlist" });
     }
 }

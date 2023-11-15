@@ -34,6 +34,19 @@ namespace IdeaBunker.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "CategoriesStatus",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CategoriesStatus", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Clearances",
                 columns: table => new
                 {
@@ -181,6 +194,19 @@ namespace IdeaBunker.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ProjectsStatus",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProjectsStatus", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ProjectTasksEvent",
                 columns: table => new
                 {
@@ -198,6 +224,19 @@ namespace IdeaBunker.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ProjectTasksEvent", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProjectTasksStatus",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProjectTasksStatus", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -255,45 +294,6 @@ namespace IdeaBunker.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_SectionsEvent", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "StatusCategories",
-                columns: table => new
-                {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_StatusCategories", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "StatusProjects",
-                columns: table => new
-                {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_StatusProjects", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "StatusProjectTasks",
-                columns: table => new
-                {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_StatusProjectTasks", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -363,7 +363,7 @@ namespace IdeaBunker.Migrations
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    RankId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    RankId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     ClearanceId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -431,9 +431,9 @@ namespace IdeaBunker.Migrations
                 {
                     table.PrimaryKey("PK_Categories", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Categories_StatusCategories_StatusId",
+                        name: "FK_Categories_CategoriesStatus_StatusId",
                         column: x => x.StatusId,
-                        principalTable: "StatusCategories",
+                        principalTable: "CategoriesStatus",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
@@ -516,7 +516,7 @@ namespace IdeaBunker.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserClaims",
+                name: "UsersClaim",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -527,9 +527,9 @@ namespace IdeaBunker.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserClaims", x => x.Id);
+                    table.PrimaryKey("PK_UsersClaim", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_UserClaims_Users_UserId",
+                        name: "FK_UsersClaim_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -537,19 +537,19 @@ namespace IdeaBunker.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserLogins",
+                name: "UsersLogin",
                 columns: table => new
                 {
-                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
-                    ProviderKey = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ProviderKey = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserLogins", x => new { x.LoginProvider, x.ProviderKey });
+                    table.PrimaryKey("PK_UsersLogin", x => new { x.LoginProvider, x.ProviderKey });
                     table.ForeignKey(
-                        name: "FK_UserLogins_Users_UserId",
+                        name: "FK_UsersLogin_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -557,19 +557,19 @@ namespace IdeaBunker.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserTokens",
+                name: "UsersToken",
                 columns: table => new
                 {
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserTokens", x => new { x.UserId, x.LoginProvider, x.Name });
+                    table.PrimaryKey("PK_UsersToken", x => new { x.UserId, x.LoginProvider, x.Name });
                     table.ForeignKey(
-                        name: "FK_UserTokens_Users_UserId",
+                        name: "FK_UsersToken_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -650,9 +650,9 @@ namespace IdeaBunker.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Projects_StatusProjects_StatusId",
+                        name: "FK_Projects_ProjectsStatus_StatusId",
                         column: x => x.StatusId,
-                        principalTable: "StatusProjects",
+                        principalTable: "ProjectsStatus",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
@@ -712,7 +712,7 @@ namespace IdeaBunker.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "RoleClaims",
+                name: "RolesClaim",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -723,9 +723,9 @@ namespace IdeaBunker.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RoleClaims", x => x.Id);
+                    table.PrimaryKey("PK_RolesClaim", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_RoleClaims_Roles_RoleId",
+                        name: "FK_RolesClaim_Roles_RoleId",
                         column: x => x.RoleId,
                         principalTable: "Roles",
                         principalColumn: "Id",
@@ -757,7 +757,7 @@ namespace IdeaBunker.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserRoles",
+                name: "UsersRole",
                 columns: table => new
                 {
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
@@ -765,15 +765,15 @@ namespace IdeaBunker.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserRoles", x => new { x.UserId, x.RoleId });
+                    table.PrimaryKey("PK_UsersRole", x => new { x.UserId, x.RoleId });
                     table.ForeignKey(
-                        name: "FK_UserRoles_Roles_RoleId",
+                        name: "FK_UsersRole_Roles_RoleId",
                         column: x => x.RoleId,
                         principalTable: "Roles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_UserRoles_Users_UserId",
+                        name: "FK_UsersRole_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -923,15 +923,15 @@ namespace IdeaBunker.Migrations
                 {
                     table.PrimaryKey("PK_ProjectTasks", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ProjectTasks_Projects_ProjectId",
-                        column: x => x.ProjectId,
-                        principalTable: "Projects",
+                        name: "FK_ProjectTasks_ProjectTasksStatus_StatusId",
+                        column: x => x.StatusId,
+                        principalTable: "ProjectTasksStatus",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_ProjectTasks_StatusProjectTasks_StatusId",
-                        column: x => x.StatusId,
-                        principalTable: "StatusProjectTasks",
+                        name: "FK_ProjectTasks_Projects_ProjectId",
+                        column: x => x.ProjectId,
+                        principalTable: "Projects",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
@@ -1025,72 +1025,72 @@ namespace IdeaBunker.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "CategoriesStatus",
+                columns: new[] { "Id", "Description", "Name" },
+                values: new object[,]
+                {
+                    { "024bb64d-c873-4c35-a5b1-51fbc26f8a6b", "", "Approved" },
+                    { "0b176dba-2f19-4fd1-9e33-872465166182", "", "Pending" },
+                    { "2ce80e29-1a6d-40a5-935d-571cd71e9852", "", "Archive" },
+                    { "6f4adee2-4344-4069-b563-3ffc120b3849", "", "Unpublished" },
+                    { "cdd4c49d-9fac-42ec-bae3-d7e6e6e90270", "", "Active" }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Clearances",
                 columns: new[] { "Id", "Description", "Name" },
                 values: new object[,]
                 {
-                    { "522a8ec1-5b4e-4625-b01d-f3947b069e7d", "", "No Clearance" },
-                    { "62d496d2-cd3c-4a19-ad32-e9362cf759f7", "", "Top Secret Clearance SAP" },
-                    { "7032abb7-5995-4cc8-a806-165cb91490ea", "", "Top Secret Clearance SCI" },
-                    { "7176f0bb-a2ca-46ce-9261-4ed3036d30c7", "", "Top Secret Clearance" },
-                    { "88382427-42ad-4958-bddf-9b271dd0296a", "", "Secret Clearance" }
+                    { "6c675c87-06b7-434b-a885-e796d40c019c", "", "No Clearance" },
+                    { "74a642b5-2f2d-4502-b4c9-4260b32d81ff", "", "Top Secret Clearance" },
+                    { "790bae56-1621-4484-96d4-672d52525f86", "", "Secret Clearance" },
+                    { "7c459317-f426-408d-813d-140654141478", "", "Top Secret Clearance SCI" },
+                    { "e63b295a-a8a9-4dde-ad98-27b52efaa84e", "", "Top Secret Clearance SAP" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "ProjectTasksStatus",
+                columns: new[] { "Id", "Description", "Name" },
+                values: new object[,]
+                {
+                    { "6c23e295-304e-41e7-9829-e8a8f86c5ec6", "", "Complete" },
+                    { "861d64c7-3995-4406-aca9-acbd46e591c7", "", "Active" },
+                    { "cdbae5f8-6aa1-47a4-8344-9907a11c8bc3", "", "Archive" },
+                    { "fc2e0d8b-88c2-4772-918d-17728ff8da34", "", "Waitlist" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "ProjectsStatus",
+                columns: new[] { "Id", "Description", "Name" },
+                values: new object[,]
+                {
+                    { "091b6c36-531a-4f86-ac43-4f97746888bf", "", "Archive" },
+                    { "09867194-48a0-4807-8592-8a23ca9f2cc4", "", "Active" },
+                    { "417898e3-bdb8-44d6-8c67-d0041b7d05e2", "", "Denied" },
+                    { "5509214e-98e4-42e3-a83f-25af9feb1efd", "", "Pending" },
+                    { "79de5727-d8fe-4959-8a40-85d4c2cf624f", "", "Waitlist" },
+                    { "9e603850-d120-45cc-b802-0a734ae7bdc1", "", "Completed" },
+                    { "f17cd6eb-3e42-4994-bf79-443fa698ae4e", "", "Unpublished" },
+                    { "fdb35ee6-485e-4fae-a316-7c1fc07d72ca", "", "Approved" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Ranks",
                 columns: new[] { "Id", "Description", "Name" },
-                values: new object[] { "712f2d85-3f9d-4cde-9eb2-908b03efa7bc", "", "Default" });
-
-            migrationBuilder.InsertData(
-                table: "StatusCategories",
-                columns: new[] { "Id", "Description", "Name" },
-                values: new object[,]
-                {
-                    { "058d6601-9b70-4651-948a-308c49820aeb", "", "Active" },
-                    { "12bcae0b-5f78-479b-a77e-474df8547d72", "", "Archive" },
-                    { "2ef2118f-cbe1-42e2-96b3-64e26dcc6436", "", "Pending" },
-                    { "68b8ada8-2939-490e-9029-5f6a098e5ea7", "", "Approved" },
-                    { "737d0be8-8f41-47b1-a8f2-6bda07a7ca7c", "", "Unpublished" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "StatusProjectTasks",
-                columns: new[] { "Id", "Description", "Name" },
-                values: new object[,]
-                {
-                    { "12f18204-b57f-4317-afe0-2027fae522d0", "", "Waitlist" },
-                    { "48ca6645-e8b1-4a0c-ba7d-ed00c13a960c", "", "Archive" },
-                    { "acf5ef9b-002a-4a8d-9b5c-64e28b1c66ec", "", "Active" },
-                    { "c1ad7fb5-055a-49b8-aca9-aa54dbc1fbc5", "", "Complete" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "StatusProjects",
-                columns: new[] { "Id", "Description", "Name" },
-                values: new object[,]
-                {
-                    { "1552e123-bc40-4795-8160-8c2b1fafa518", "", "Pending" },
-                    { "5bb0d335-3336-43ab-8c68-98ca4995bb9e", "", "Denied" },
-                    { "69d79510-30a5-4ef0-85a2-46064b3c4b3a", "", "Approved" },
-                    { "8f788d59-2dcb-468f-9338-6abbef9edb16", "", "Completed" },
-                    { "971d6afa-3e93-42ea-81e8-ab11ece04af6", "", "Unpublished" },
-                    { "9f5b47a8-9cb9-44d7-bb84-12d4e19564d4", "", "Archive" },
-                    { "babf9ec3-33ff-4551-b802-d562cae23d31", "", "Active" },
-                    { "c9fef764-431d-408c-8079-0cd41d0dda26", "", "Waitlist" }
-                });
+                values: new object[] { "aaeadf46-e6fa-4edf-a3e5-51c34be750af", "", "Default" });
 
             migrationBuilder.InsertData(
                 table: "Categories",
                 columns: new[] { "Id", "Description", "Name", "StatusId", "UserId" },
                 values: new object[,]
                 {
-                    { "0225c7cc-367f-49c3-a3a6-d5047a59864c", "", "Chemistry, Metallurgy", "737d0be8-8f41-47b1-a8f2-6bda07a7ca7c", null },
-                    { "1cfebbe2-a664-43c5-a72f-ba3e03b4ca70", "", "Electricity", "737d0be8-8f41-47b1-a8f2-6bda07a7ca7c", null },
-                    { "37f53908-34cd-4475-8fa2-4a8af2c17c5f", "", "Physics", "737d0be8-8f41-47b1-a8f2-6bda07a7ca7c", null },
-                    { "47403d47-739f-4c21-8be9-344ba70327f8", "", "Mechanical Engineering", "737d0be8-8f41-47b1-a8f2-6bda07a7ca7c", null },
-                    { "6bfbd993-35e8-48ab-8408-a9b50516b848", "", "Textiles, Paper", "737d0be8-8f41-47b1-a8f2-6bda07a7ca7c", null },
-                    { "97da0b79-b916-4cd2-b61b-535a2292617b", "", "Fixed Constructions", "737d0be8-8f41-47b1-a8f2-6bda07a7ca7c", null },
-                    { "dbf7cae5-84c9-44b2-9813-0d6e5d38f1ae", "", "Performing Operations, Transporting", "737d0be8-8f41-47b1-a8f2-6bda07a7ca7c", null }
+                    { "43b28b18-b94e-4238-97b2-207c9a3c85e4", "", "Electricity", "6f4adee2-4344-4069-b563-3ffc120b3849", null },
+                    { "5b0b4dd4-121c-4577-845d-a40c0316d82e", "", "Fixed Constructions", "6f4adee2-4344-4069-b563-3ffc120b3849", null },
+                    { "5d7d5f75-8da2-4250-8f5b-fedae6efaf0c", "", "Textiles, Paper", "6f4adee2-4344-4069-b563-3ffc120b3849", null },
+                    { "88398d37-d263-473c-9b4c-fc1e12ab3700", "", "Mechanical Engineering", "6f4adee2-4344-4069-b563-3ffc120b3849", null },
+                    { "b6d94461-3680-4d06-8d47-d18ec967ea79", "", "Chemistry, Metallurgy", "6f4adee2-4344-4069-b563-3ffc120b3849", null },
+                    { "f323f649-ce6a-4564-9c8c-7f5ef65c127a", "", "Physics", "6f4adee2-4344-4069-b563-3ffc120b3849", null },
+                    { "fbf6bc8b-7d1d-47c7-9dee-09ff7035c67c", "", "Performing Operations, Transporting", "6f4adee2-4344-4069-b563-3ffc120b3849", null }
                 });
 
             migrationBuilder.CreateIndex(
@@ -1199,11 +1199,6 @@ namespace IdeaBunker.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RoleClaims_RoleId",
-                table: "RoleClaims",
-                column: "RoleId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Roles_UserId",
                 table: "Roles",
                 column: "UserId");
@@ -1214,6 +1209,11 @@ namespace IdeaBunker.Migrations
                 column: "NormalizedName",
                 unique: true,
                 filter: "[NormalizedName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RolesClaim_RoleId",
+                table: "RolesClaim",
+                column: "RoleId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Sections_DirectorateId",
@@ -1251,21 +1251,6 @@ namespace IdeaBunker.Migrations
                 column: "TeamId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserClaims_UserId",
-                table: "UserClaims",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UserLogins_UserId",
-                table: "UserLogins",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UserRoles_RoleId",
-                table: "UserRoles",
-                column: "RoleId");
-
-            migrationBuilder.CreateIndex(
                 name: "EmailIndex",
                 table: "Users",
                 column: "NormalizedEmail");
@@ -1286,6 +1271,21 @@ namespace IdeaBunker.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UsersClaim_UserId",
+                table: "UsersClaim",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UsersLogin_UserId",
+                table: "UsersLogin",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UsersRole_RoleId",
+                table: "UsersRole",
+                column: "RoleId");
         }
 
         /// <inheritdoc />
@@ -1340,7 +1340,7 @@ namespace IdeaBunker.Migrations
                 name: "ProjectTasksEvent");
 
             migrationBuilder.DropTable(
-                name: "RoleClaims");
+                name: "RolesClaim");
 
             migrationBuilder.DropTable(
                 name: "RolesEvent");
@@ -1370,19 +1370,19 @@ namespace IdeaBunker.Migrations
                 name: "TeamsUser");
 
             migrationBuilder.DropTable(
-                name: "UserClaims");
-
-            migrationBuilder.DropTable(
-                name: "UserLogins");
-
-            migrationBuilder.DropTable(
-                name: "UserRoles");
+                name: "UsersClaim");
 
             migrationBuilder.DropTable(
                 name: "UsersEvent");
 
             migrationBuilder.DropTable(
-                name: "UserTokens");
+                name: "UsersLogin");
+
+            migrationBuilder.DropTable(
+                name: "UsersRole");
+
+            migrationBuilder.DropTable(
+                name: "UsersToken");
 
             migrationBuilder.DropTable(
                 name: "ProjectTasks");
@@ -1394,10 +1394,10 @@ namespace IdeaBunker.Migrations
                 name: "Roles");
 
             migrationBuilder.DropTable(
-                name: "Projects");
+                name: "ProjectTasksStatus");
 
             migrationBuilder.DropTable(
-                name: "StatusProjectTasks");
+                name: "Projects");
 
             migrationBuilder.DropTable(
                 name: "Divisions");
@@ -1406,13 +1406,13 @@ namespace IdeaBunker.Migrations
                 name: "Categories");
 
             migrationBuilder.DropTable(
-                name: "StatusProjects");
+                name: "ProjectsStatus");
 
             migrationBuilder.DropTable(
                 name: "Sections");
 
             migrationBuilder.DropTable(
-                name: "StatusCategories");
+                name: "CategoriesStatus");
 
             migrationBuilder.DropTable(
                 name: "Users");

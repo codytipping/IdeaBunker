@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IdeaBunker.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20231114220710_Skeleton")]
+    [Migration("20231115155750_Skeleton")]
     partial class Skeleton
     {
         /// <inheritdoc />
@@ -56,52 +56,52 @@ namespace IdeaBunker.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "dbf7cae5-84c9-44b2-9813-0d6e5d38f1ae",
+                            Id = "fbf6bc8b-7d1d-47c7-9dee-09ff7035c67c",
                             Description = "",
                             Name = "Performing Operations, Transporting",
-                            StatusId = "737d0be8-8f41-47b1-a8f2-6bda07a7ca7c"
+                            StatusId = "6f4adee2-4344-4069-b563-3ffc120b3849"
                         },
                         new
                         {
-                            Id = "0225c7cc-367f-49c3-a3a6-d5047a59864c",
+                            Id = "b6d94461-3680-4d06-8d47-d18ec967ea79",
                             Description = "",
                             Name = "Chemistry, Metallurgy",
-                            StatusId = "737d0be8-8f41-47b1-a8f2-6bda07a7ca7c"
+                            StatusId = "6f4adee2-4344-4069-b563-3ffc120b3849"
                         },
                         new
                         {
-                            Id = "6bfbd993-35e8-48ab-8408-a9b50516b848",
+                            Id = "5d7d5f75-8da2-4250-8f5b-fedae6efaf0c",
                             Description = "",
                             Name = "Textiles, Paper",
-                            StatusId = "737d0be8-8f41-47b1-a8f2-6bda07a7ca7c"
+                            StatusId = "6f4adee2-4344-4069-b563-3ffc120b3849"
                         },
                         new
                         {
-                            Id = "97da0b79-b916-4cd2-b61b-535a2292617b",
+                            Id = "5b0b4dd4-121c-4577-845d-a40c0316d82e",
                             Description = "",
                             Name = "Fixed Constructions",
-                            StatusId = "737d0be8-8f41-47b1-a8f2-6bda07a7ca7c"
+                            StatusId = "6f4adee2-4344-4069-b563-3ffc120b3849"
                         },
                         new
                         {
-                            Id = "47403d47-739f-4c21-8be9-344ba70327f8",
+                            Id = "88398d37-d263-473c-9b4c-fc1e12ab3700",
                             Description = "",
                             Name = "Mechanical Engineering",
-                            StatusId = "737d0be8-8f41-47b1-a8f2-6bda07a7ca7c"
+                            StatusId = "6f4adee2-4344-4069-b563-3ffc120b3849"
                         },
                         new
                         {
-                            Id = "37f53908-34cd-4475-8fa2-4a8af2c17c5f",
+                            Id = "f323f649-ce6a-4564-9c8c-7f5ef65c127a",
                             Description = "",
                             Name = "Physics",
-                            StatusId = "737d0be8-8f41-47b1-a8f2-6bda07a7ca7c"
+                            StatusId = "6f4adee2-4344-4069-b563-3ffc120b3849"
                         },
                         new
                         {
-                            Id = "1cfebbe2-a664-43c5-a72f-ba3e03b4ca70",
+                            Id = "43b28b18-b94e-4238-97b2-207c9a3c85e4",
                             Description = "",
                             Name = "Electricity",
-                            StatusId = "737d0be8-8f41-47b1-a8f2-6bda07a7ca7c"
+                            StatusId = "6f4adee2-4344-4069-b563-3ffc120b3849"
                         });
                 });
 
@@ -149,6 +149,56 @@ namespace IdeaBunker.Migrations
                     b.ToTable("CategoriesEvent");
                 });
 
+            modelBuilder.Entity("IdeaBunker.Models.CategoryStatus", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CategoriesStatus");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "6f4adee2-4344-4069-b563-3ffc120b3849",
+                            Description = "",
+                            Name = "Unpublished"
+                        },
+                        new
+                        {
+                            Id = "cdd4c49d-9fac-42ec-bae3-d7e6e6e90270",
+                            Description = "",
+                            Name = "Active"
+                        },
+                        new
+                        {
+                            Id = "024bb64d-c873-4c35-a5b1-51fbc26f8a6b",
+                            Description = "",
+                            Name = "Approved"
+                        },
+                        new
+                        {
+                            Id = "2ce80e29-1a6d-40a5-935d-571cd71e9852",
+                            Description = "",
+                            Name = "Archive"
+                        },
+                        new
+                        {
+                            Id = "0b176dba-2f19-4fd1-9e33-872465166182",
+                            Description = "",
+                            Name = "Pending"
+                        });
+                });
+
             modelBuilder.Entity("IdeaBunker.Models.Clearance", b =>
                 {
                     b.Property<string>("Id")
@@ -169,31 +219,31 @@ namespace IdeaBunker.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "522a8ec1-5b4e-4625-b01d-f3947b069e7d",
+                            Id = "6c675c87-06b7-434b-a885-e796d40c019c",
                             Description = "",
                             Name = "No Clearance"
                         },
                         new
                         {
-                            Id = "88382427-42ad-4958-bddf-9b271dd0296a",
+                            Id = "790bae56-1621-4484-96d4-672d52525f86",
                             Description = "",
                             Name = "Secret Clearance"
                         },
                         new
                         {
-                            Id = "7176f0bb-a2ca-46ce-9261-4ed3036d30c7",
+                            Id = "74a642b5-2f2d-4502-b4c9-4260b32d81ff",
                             Description = "",
                             Name = "Top Secret Clearance"
                         },
                         new
                         {
-                            Id = "7032abb7-5995-4cc8-a806-165cb91490ea",
+                            Id = "7c459317-f426-408d-813d-140654141478",
                             Description = "",
                             Name = "Top Secret Clearance SCI"
                         },
                         new
                         {
-                            Id = "62d496d2-cd3c-4a19-ad32-e9362cf759f7",
+                            Id = "e63b295a-a8a9-4dde-ad98-27b52efaa84e",
                             Description = "",
                             Name = "Top Secret Clearance SAP"
                         });
@@ -722,6 +772,74 @@ namespace IdeaBunker.Migrations
                     b.ToTable("ProjectsEvent");
                 });
 
+            modelBuilder.Entity("IdeaBunker.Models.ProjectStatus", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProjectsStatus");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "09867194-48a0-4807-8592-8a23ca9f2cc4",
+                            Description = "",
+                            Name = "Active"
+                        },
+                        new
+                        {
+                            Id = "fdb35ee6-485e-4fae-a316-7c1fc07d72ca",
+                            Description = "",
+                            Name = "Approved"
+                        },
+                        new
+                        {
+                            Id = "091b6c36-531a-4f86-ac43-4f97746888bf",
+                            Description = "",
+                            Name = "Archive"
+                        },
+                        new
+                        {
+                            Id = "9e603850-d120-45cc-b802-0a734ae7bdc1",
+                            Description = "",
+                            Name = "Completed"
+                        },
+                        new
+                        {
+                            Id = "417898e3-bdb8-44d6-8c67-d0041b7d05e2",
+                            Description = "",
+                            Name = "Denied"
+                        },
+                        new
+                        {
+                            Id = "5509214e-98e4-42e3-a83f-25af9feb1efd",
+                            Description = "",
+                            Name = "Pending"
+                        },
+                        new
+                        {
+                            Id = "f17cd6eb-3e42-4994-bf79-443fa698ae4e",
+                            Description = "",
+                            Name = "Unpublished"
+                        },
+                        new
+                        {
+                            Id = "79de5727-d8fe-4959-8a40-85d4c2cf624f",
+                            Description = "",
+                            Name = "Waitlist"
+                        });
+                });
+
             modelBuilder.Entity("IdeaBunker.Models.ProjectTask", b =>
                 {
                     b.Property<string>("Id")
@@ -808,6 +926,50 @@ namespace IdeaBunker.Migrations
                     b.ToTable("ProjectTasksEvent");
                 });
 
+            modelBuilder.Entity("IdeaBunker.Models.ProjectTaskStatus", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProjectTasksStatus");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "861d64c7-3995-4406-aca9-acbd46e591c7",
+                            Description = "",
+                            Name = "Active"
+                        },
+                        new
+                        {
+                            Id = "cdbae5f8-6aa1-47a4-8344-9907a11c8bc3",
+                            Description = "",
+                            Name = "Archive"
+                        },
+                        new
+                        {
+                            Id = "6c23e295-304e-41e7-9829-e8a8f86c5ec6",
+                            Description = "",
+                            Name = "Complete"
+                        },
+                        new
+                        {
+                            Id = "fc2e0d8b-88c2-4772-918d-17728ff8da34",
+                            Description = "",
+                            Name = "Waitlist"
+                        });
+                });
+
             modelBuilder.Entity("IdeaBunker.Models.Rank", b =>
                 {
                     b.Property<string>("Id")
@@ -828,7 +990,7 @@ namespace IdeaBunker.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "712f2d85-3f9d-4cde-9eb2-908b03efa7bc",
+                            Id = "aaeadf46-e6fa-4edf-a3e5-51c34be750af",
                             Description = "",
                             Name = "Default"
                         });
@@ -1001,168 +1163,6 @@ namespace IdeaBunker.Migrations
                     b.HasIndex("SectionId");
 
                     b.ToTable("SectionsUser");
-                });
-
-            modelBuilder.Entity("IdeaBunker.Models.StatusCategory", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("StatusCategories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "737d0be8-8f41-47b1-a8f2-6bda07a7ca7c",
-                            Description = "",
-                            Name = "Unpublished"
-                        },
-                        new
-                        {
-                            Id = "058d6601-9b70-4651-948a-308c49820aeb",
-                            Description = "",
-                            Name = "Active"
-                        },
-                        new
-                        {
-                            Id = "68b8ada8-2939-490e-9029-5f6a098e5ea7",
-                            Description = "",
-                            Name = "Approved"
-                        },
-                        new
-                        {
-                            Id = "12bcae0b-5f78-479b-a77e-474df8547d72",
-                            Description = "",
-                            Name = "Archive"
-                        },
-                        new
-                        {
-                            Id = "2ef2118f-cbe1-42e2-96b3-64e26dcc6436",
-                            Description = "",
-                            Name = "Pending"
-                        });
-                });
-
-            modelBuilder.Entity("IdeaBunker.Models.StatusProject", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("StatusProjects");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "babf9ec3-33ff-4551-b802-d562cae23d31",
-                            Description = "",
-                            Name = "Active"
-                        },
-                        new
-                        {
-                            Id = "69d79510-30a5-4ef0-85a2-46064b3c4b3a",
-                            Description = "",
-                            Name = "Approved"
-                        },
-                        new
-                        {
-                            Id = "9f5b47a8-9cb9-44d7-bb84-12d4e19564d4",
-                            Description = "",
-                            Name = "Archive"
-                        },
-                        new
-                        {
-                            Id = "8f788d59-2dcb-468f-9338-6abbef9edb16",
-                            Description = "",
-                            Name = "Completed"
-                        },
-                        new
-                        {
-                            Id = "5bb0d335-3336-43ab-8c68-98ca4995bb9e",
-                            Description = "",
-                            Name = "Denied"
-                        },
-                        new
-                        {
-                            Id = "1552e123-bc40-4795-8160-8c2b1fafa518",
-                            Description = "",
-                            Name = "Pending"
-                        },
-                        new
-                        {
-                            Id = "971d6afa-3e93-42ea-81e8-ab11ece04af6",
-                            Description = "",
-                            Name = "Unpublished"
-                        },
-                        new
-                        {
-                            Id = "c9fef764-431d-408c-8079-0cd41d0dda26",
-                            Description = "",
-                            Name = "Waitlist"
-                        });
-                });
-
-            modelBuilder.Entity("IdeaBunker.Models.StatusProjectTask", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("StatusProjectTasks");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "acf5ef9b-002a-4a8d-9b5c-64e28b1c66ec",
-                            Description = "",
-                            Name = "Active"
-                        },
-                        new
-                        {
-                            Id = "48ca6645-e8b1-4a0c-ba7d-ed00c13a960c",
-                            Description = "",
-                            Name = "Archive"
-                        },
-                        new
-                        {
-                            Id = "c1ad7fb5-055a-49b8-aca9-aa54dbc1fbc5",
-                            Description = "",
-                            Name = "Complete"
-                        },
-                        new
-                        {
-                            Id = "12f18204-b57f-4317-afe0-2027fae522d0",
-                            Description = "",
-                            Name = "Waitlist"
-                        });
                 });
 
             modelBuilder.Entity("IdeaBunker.Models.Team", b =>
@@ -1340,7 +1340,6 @@ namespace IdeaBunker.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("RankId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("SecurityStamp")
@@ -1463,7 +1462,7 @@ namespace IdeaBunker.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("RoleClaims", (string)null);
+                    b.ToTable("RolesClaim", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -1488,18 +1487,16 @@ namespace IdeaBunker.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserClaims", (string)null);
+                    b.ToTable("UsersClaim", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderKey")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -1512,7 +1509,7 @@ namespace IdeaBunker.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserLogins", (string)null);
+                    b.ToTable("UsersLogin", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
@@ -1527,7 +1524,7 @@ namespace IdeaBunker.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("UserRoles", (string)null);
+                    b.ToTable("UsersRole", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -1536,19 +1533,17 @@ namespace IdeaBunker.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("UserTokens", (string)null);
+                    b.ToTable("UsersToken", (string)null);
                 });
 
             modelBuilder.Entity("IdeaBunker.Models.Role", b =>
@@ -1561,7 +1556,6 @@ namespace IdeaBunker.Migrations
                         .HasColumnType("nvarchar(1000)");
 
                     b.Property<string>("UserId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasIndex("UserId");
@@ -1573,7 +1567,7 @@ namespace IdeaBunker.Migrations
 
             modelBuilder.Entity("IdeaBunker.Models.Category", b =>
                 {
-                    b.HasOne("IdeaBunker.Models.StatusCategory", "Status")
+                    b.HasOne("IdeaBunker.Models.CategoryStatus", "Status")
                         .WithMany("Categories")
                         .HasForeignKey("StatusId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -1774,7 +1768,7 @@ namespace IdeaBunker.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("IdeaBunker.Models.StatusProject", "Status")
+                    b.HasOne("IdeaBunker.Models.ProjectStatus", "Status")
                         .WithMany("Projects")
                         .HasForeignKey("StatusId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -1803,7 +1797,7 @@ namespace IdeaBunker.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("IdeaBunker.Models.StatusProjectTask", "Status")
+                    b.HasOne("IdeaBunker.Models.ProjectTaskStatus", "Status")
                         .WithMany("ProjectTasks")
                         .HasForeignKey("StatusId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -1968,8 +1962,7 @@ namespace IdeaBunker.Migrations
                     b.HasOne("IdeaBunker.Models.Rank", "Rank")
                         .WithMany("Users")
                         .HasForeignKey("RankId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Clearance");
 
@@ -2032,8 +2025,7 @@ namespace IdeaBunker.Migrations
                     b.HasOne("IdeaBunker.Models.User", "User")
                         .WithMany("Roles")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("User");
                 });
@@ -2041,6 +2033,11 @@ namespace IdeaBunker.Migrations
             modelBuilder.Entity("IdeaBunker.Models.Category", b =>
                 {
                     b.Navigation("Projects");
+                });
+
+            modelBuilder.Entity("IdeaBunker.Models.CategoryStatus", b =>
+                {
+                    b.Navigation("Categories");
                 });
 
             modelBuilder.Entity("IdeaBunker.Models.Clearance", b =>
@@ -2089,9 +2086,19 @@ namespace IdeaBunker.Migrations
                     b.Navigation("TeamProjects");
                 });
 
+            modelBuilder.Entity("IdeaBunker.Models.ProjectStatus", b =>
+                {
+                    b.Navigation("Projects");
+                });
+
             modelBuilder.Entity("IdeaBunker.Models.ProjectTask", b =>
                 {
                     b.Navigation("Comments");
+                });
+
+            modelBuilder.Entity("IdeaBunker.Models.ProjectTaskStatus", b =>
+                {
+                    b.Navigation("ProjectTasks");
                 });
 
             modelBuilder.Entity("IdeaBunker.Models.Rank", b =>
@@ -2108,21 +2115,6 @@ namespace IdeaBunker.Migrations
                     b.Navigation("SectionRoles");
 
                     b.Navigation("SectionUsers");
-                });
-
-            modelBuilder.Entity("IdeaBunker.Models.StatusCategory", b =>
-                {
-                    b.Navigation("Categories");
-                });
-
-            modelBuilder.Entity("IdeaBunker.Models.StatusProject", b =>
-                {
-                    b.Navigation("Projects");
-                });
-
-            modelBuilder.Entity("IdeaBunker.Models.StatusProjectTask", b =>
-                {
-                    b.Navigation("ProjectTasks");
                 });
 
             modelBuilder.Entity("IdeaBunker.Models.Team", b =>

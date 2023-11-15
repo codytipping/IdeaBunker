@@ -1,15 +1,18 @@
-﻿namespace IdeaBunker.Permissions;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.CodeAnalysis.Differencing;
 
-public static partial class PermissionsMaster
+namespace IdeaBunker.Permissions;
+
+public partial class PermissionsMaster
 {
-    public static class DocumentPermissions
+    public class DocumentPermissions : BasePermissions
     {
         public const string View = "Permissions.Documents.View";
         public const string Upload = "Permissions.Documents.Upload";
         public const string Download = "Permissions.Documents.Download";
         public const string Delete = "Permissions.Documents.Delete";
 
-        public static IList<string> GetList()
+        public override IList<string> GetList()
         {
             return new List<string> { View, Upload, Download, Delete, };
         }

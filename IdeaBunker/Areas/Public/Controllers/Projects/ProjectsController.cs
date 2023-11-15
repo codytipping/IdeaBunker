@@ -97,7 +97,7 @@ public class ProjectsController : Controller
         var model = await _eventService.SetViewModelAsync(id);
         ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", model.CategoryId);
         ViewData["ClearanceId"] = new SelectList(_context.Clearances, "Id", "Name", model.ClearanceId);
-        ViewData["StatusId"] = new SelectList(_context.StatusProjects, "Id", "Name", model.StatusId);
+        ViewData["StatusId"] = new SelectList(_context.ProjectsStatus, "Id", "Name", model.StatusId);
         return View(model);
     }
 
@@ -114,7 +114,7 @@ public class ProjectsController : Controller
         }
         ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", viewModel.CategoryId);
         ViewData["ClearanceId"] = new SelectList(_context.Clearances, "Id", "Name", viewModel.ClearanceId);
-        ViewData["StatusId"] = new SelectList(_context.StatusProjects, "Id", "Name", viewModel.StatusId);
+        ViewData["StatusId"] = new SelectList(_context.ProjectsStatus, "Id", "Name", viewModel.StatusId);
         return View(viewModel);
     }
 

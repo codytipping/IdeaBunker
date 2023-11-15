@@ -21,25 +21,32 @@ public static class RolesSeed
         }
     }
 
-    private static async Task AddPermissionsAsync(this RoleManager<Role> roleManager, Role role, IList<string> permissions)
-    {       
+    private static async Task AddPermissionsAsync(this RoleManager<Role> manager, IList<string> permissions)
+    {
+        var role = await manager.FindByNameAsync(Name) ?? new();
         foreach (var permission in permissions)
         {
-            await roleManager.AddClaimAsync(role, new Claim(ClaimType, permission));
+            await manager.AddClaimAsync(role, new Claim(ClaimType, permission));
         }
     }
 
-    private static async Task SeedClaimsAsync(this RoleManager<Role> roleManager)
+    private static IList<string> GetPermissions(Type module)
     {
-        var role = await roleManager.FindByNameAsync(Name) ?? new();
+        if (module is not null && typeof(BasePermissions).IsAssignableFrom(module))
+        {
+            var instance = Activator.CreateInstance(module) as BasePermissions;
+            if (instance is not null) { return instance.GetList(); }
+        }
+        return new List<string>();
+    }
+
+    private static async Task SeedClaimsAsync(this RoleManager<Role> manager)
+    {       
         var modules = typeof(PermissionsMaster).GetNestedTypes();
         foreach (var module in modules)
         {
-            var list = module.GetMethod("GetList");
-            if (list is IList<string> permissions)
-            {
-                await roleManager.AddPermissionsAsync(role, permissions);
-            }
+            var permissions = GetPermissions(module);
+            await manager.AddPermissionsAsync(permissions);
         }
     }
 }

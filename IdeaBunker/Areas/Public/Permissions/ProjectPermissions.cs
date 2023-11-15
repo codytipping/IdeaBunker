@@ -1,8 +1,8 @@
 ﻿namespace IdeaBunker.Permissions;
 
-public static partial class PermissionsMaster
+public partial class PermissionsMaster
 {
-    public static class ProjectPermissions
+    public class ProjectPermissions : BasePermissions
     {
         public const string View = "Permissions.Projects.View";
         public const string Create = "Permissions.Projects.Create";
@@ -11,7 +11,7 @@ public static partial class PermissionsMaster
         public const string Publish = "Permissions.Projects.Publish";
         public const string Vote = "Permissions.Projects.Vote";
 
-        public static IList<string> GetList()
+        public override IList<string> GetList()
         {
             return new List<string> { View, Create, Edit, Delete, Publish, Vote, };
         }

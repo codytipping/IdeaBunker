@@ -47,7 +47,7 @@ public class Startup
     public void ConfigureServices(IServiceCollection services)
     {      
         services.AddDbContext<Context>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("IdeaBunkerContextConnection")));
+            options.UseSqlServer(Configuration.GetConnectionString("ContextConnection")));
 
 
         services.AddScoped<IUserDataService, UserDataService>();
@@ -55,12 +55,11 @@ public class Startup
         services.AddScoped<IPrivateDataService, PrivateDataService>();
         services.AddScoped<IPublicDataService, PublicDataService>();
         //services.AddScoped<IProjectEventService, ProjectEventService>();
-        
-
-        services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
-            .AddEntityFrameworkStores<Context>()
-            .AddDefaultUI()
-            .AddDefaultTokenProviders();
+                
+        services.AddIdentity<User, Role>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<Context>()
+                .AddDefaultUI()
+                .AddDefaultTokenProviders();
         services.AddControllersWithViews();
         services.AddRazorPages();
     }

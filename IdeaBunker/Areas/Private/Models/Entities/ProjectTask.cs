@@ -13,7 +13,7 @@ public class ProjectTask : Entity
 
     [ForeignKey("Status")]
     public required string StatusId { get; set; }
-    public required virtual StatusProjectTask Status { get; set; }
+    public required virtual ProjectTaskStatus Status { get; set; }
 
     [ForeignKey("User")]
     public required string UserId { get; set; }
