@@ -7,10 +7,9 @@ namespace IdeaBunker.Services;
 
 public interface IUserLockoutService
 {
-    Task<int> GetSecurityCountAsync<T>(string id) where T : class;
-    Task LockoutUserAsync(string id);
-    Task VerifyCountAsync(string id);
+    Task<int> SecurityAsync<T>(string id, string action) where T : class;
 }
+
 public class UserLockoutService : IUserLockoutService
 {
     private readonly Context _context;
@@ -27,11 +26,12 @@ public class UserLockoutService : IUserLockoutService
     private const int targetCount = 100;
     private static int securityCount = 0;
 
-    public async Task<int> GetSecurityCountAsync<T>(string id) where T : class
+    public async Task<int> SecurityAsync<T>(string id, string action) where T : class
     {
         DateTime currentDate = DateTime.UtcNow.Date;
         securityCount = _context.Set<T>()
             .Where(entry => EF.Property<string>(entry, "UserId") == id &&
+                            EF.Property<string>(entry, "Action") == action &&
                             EF.Property<DateTime>(entry, "Date").Date == currentDate)
             .OrderByDescending(entry => EF.Property<DateTime>(entry, "Date"))
             .Select(entry => EF.Property<int>(entry, "SecurityCount"))
@@ -40,7 +40,7 @@ public class UserLockoutService : IUserLockoutService
         return ++securityCount;
     }
 
-    public async Task LockoutUserAsync(string id)
+    private async Task LockoutUserAsync(string id)
     {
         var user = await _userManager.FindByIdAsync(id);
         if (user is not null)
@@ -51,7 +51,7 @@ public class UserLockoutService : IUserLockoutService
         }
     }
 
-    public async Task VerifyCountAsync(string id)
+    private async Task VerifyCountAsync(string id)
     {
         if (securityCount == targetCount) await LockoutUserAsync(id);  
     }

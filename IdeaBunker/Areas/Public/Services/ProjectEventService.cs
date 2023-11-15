@@ -1,31 +1,20 @@
-﻿using IdeaBunker.Data;
-using IdeaBunker.Models;
+﻿using IdeaBunker.Models;
 using IdeaBunker.ViewModels;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace IdeaBunker.Services;
 
-public interface IProjectEventService
+public partial interface IEventService
 {
-    Task<ProjectEvent?> GetEventAsync(string userId, string projectId);
-    Task SetEventAsync(ProjectViewModel viewModel, string id);
+    Task<ProjectEvent?> GetProjectEventAsync(string userId, string projectId);
+    Task SetProjectEventAsync(ProjectViewModel viewModel, string id);
     Task SetProjectAsync(ProjectViewModel viewModel);
-    Task<ProjectViewModel> SetViewModelAsync(string id);
+    Task<ProjectViewModel> SetProjectViewModelAsync(string id);
 }
 
-public class ProjectEventService : IProjectEventService
+public partial class EventService : IEventService
 {
-    private readonly Context _context;  
-    private readonly UserLockoutService _lockoutService;
-
-    public ProjectEventService(Context context, UserLockoutService lockoutService)
-    {
-        _context = context;
-        _lockoutService = lockoutService;
-    }
-
-    public async Task<ProjectEvent?> GetEventAsync(string userId, string projectId)
+    public async Task<ProjectEvent?> GetProjectEventAsync(string userId, string projectId)
     {
         var projectEvent = await _context.ProjectsEvent
             .Where(p => p.UserId == userId && p.ProjectId == projectId)
@@ -34,9 +23,9 @@ public class ProjectEventService : IProjectEventService
         return projectEvent ?? null;
     }
 
-    public async Task SetEventAsync(ProjectViewModel viewModel, string id)
+    public async Task SetProjectEventAsync(ProjectViewModel viewModel, string id)
     {
-        var count = await _lockoutService.GetSecurityCountAsync<ProjectEvent>(viewModel.UserId);
+        //var count = await _lockoutService.GetSecurityCountAsync<ProjectEvent>(viewModel.UserId);
         var model = viewModel ?? new();
         ProjectEvent projectEvent = new()
         {
@@ -48,7 +37,7 @@ public class ProjectEventService : IProjectEventService
             UserNameAndRank = model.UserNameAndRank,
             Description = model.Description,
             EventDescription = model.EventDescription,
-            SecurityCount = count,
+            SecurityCount = 0,
         };
         _context.Add(projectEvent);
         await _context.SaveChangesAsync();
@@ -70,10 +59,10 @@ public class ProjectEventService : IProjectEventService
         };
         _context.Add(model.Update ? _context.Update(project) : project);
         await _context.SaveChangesAsync();
-        await SetEventAsync(model, project.Id);
+        await SetProjectEventAsync(model, project.Id);
     }
 
-    public async Task<ProjectViewModel> SetViewModelAsync(string id)
+    public async Task<ProjectViewModel> SetProjectViewModelAsync(string id)
     {
         var project = await _context.Projects.FindAsync(id) ?? new();
         ProjectViewModel viewModel = new()

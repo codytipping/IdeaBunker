@@ -35,9 +35,6 @@ public class Startup
         app.UseEndpoints(endpoints =>
         {
             endpoints.MapControllerRoute(
-                name: "areas",
-                pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
-            endpoints.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
             endpoints.MapRazorPages();
@@ -50,11 +47,11 @@ public class Startup
             options.UseSqlServer(Configuration.GetConnectionString("ContextConnection")));
 
 
-        services.AddScoped<IUserDataService, UserDataService>();
-        services.AddScoped<IUserLockoutService, UserLockoutService>();
-        services.AddScoped<IPrivateDataService, PrivateDataService>();
-        services.AddScoped<IPublicDataService, PublicDataService>();
-        //services.AddScoped<IProjectEventService, ProjectEventService>();
+        var result = services.AddScoped<IUserDataService, UserDataService>(); // Combine these into one.
+        var result2 = services.AddScoped<IUserLockoutService, UserLockoutService>();
+        var result3 = services.AddScoped<IPrivateDataService, PrivateDataService>(); // Combine these into one.
+        var result4 = services.AddScoped<IPublicDataService, PublicDataService>(); // Combine these into one.
+        var result5 = services.AddScoped<IEventService, EventService>();
                 
         services.AddIdentity<User, Role>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<Context>()

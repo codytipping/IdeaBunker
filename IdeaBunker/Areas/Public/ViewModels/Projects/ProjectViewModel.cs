@@ -11,4 +11,5 @@ public class ProjectViewModel : ViewModel
     public bool? VoteType { get; set; } = null;
     public int UpvoteCount { get; set; } = 0;
     public int DownvoteCount { get; set; } = 0;
+    public int SecurityCount { get; set; } = 0;
 }
