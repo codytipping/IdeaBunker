@@ -7,9 +7,9 @@ public static class UsersSeed
 {
     private const string FirstName = "Permissions";
     private const string LastName = "Master";
-    private const string UserName = "Permissions Master";
+    private const string UserName = "permissionsmaster@email.com";
     private const string Email = "permissionsmaster@email.com";
-    private const string Password = "123Pa$$word!";
+    private const string Password = "123Pa$$w0rd!";
 
     private static string GetPassword() { return Password; }
 
@@ -27,7 +27,7 @@ public static class UsersSeed
                 PhoneNumberConfirmed = true,
             };
             await userManager.CreateAsync(user, GetPassword());         
-            await userManager.AddToRoleAsync(user, RolesSeed.GetName());            
+            await userManager.AddToRoleAsync(user, RolesSeed.GetName());             
         }
     }
 }
