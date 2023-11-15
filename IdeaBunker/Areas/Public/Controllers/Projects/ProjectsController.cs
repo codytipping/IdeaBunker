@@ -1,4 +1,5 @@
-﻿using IdeaBunker.Data;
+﻿using IdeaBunker.Areas.Identity.Services;
+using IdeaBunker.Data;
 using IdeaBunker.Models;
 using IdeaBunker.Services;
 using IdeaBunker.ViewModels;

@@ -3,6 +3,7 @@ using IdeaBunker.Data;
 using Microsoft.AspNetCore.Identity;
 using IdeaBunker.Services;
 using IdeaBunker.Models;
+using IdeaBunker.Areas.Identity.Services;
 
 namespace IdeaBunker;
 
@@ -45,14 +46,9 @@ public class Startup
     {      
         services.AddDbContext<Context>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("ContextConnection")));
-
-
-        var result = services.AddScoped<IUserDataService, UserDataService>(); // Combine these into one.
-        var result2 = services.AddScoped<IUserLockoutService, UserLockoutService>();
-        var result3 = services.AddScoped<IPrivateDataService, PrivateDataService>(); // Combine these into one.
-        var result4 = services.AddScoped<IPublicDataService, PublicDataService>(); // Combine these into one.
-        var result5 = services.AddScoped<IEventService, EventService>();
-                
+        services.AddScoped<IDataService, DataService>();
+        services.AddScoped<IUserLockoutService, UserLockoutService>();       
+        services.AddScoped<IEventService, EventService>();  
         services.AddIdentity<User, Role>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<Context>()
                 .AddDefaultUI()

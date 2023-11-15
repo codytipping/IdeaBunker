@@ -1,26 +1,13 @@
-﻿using IdeaBunker.Data;
-using IdeaBunker.Models;
-using Microsoft.AspNetCore.Identity;
+﻿namespace IdeaBunker.Services;
 
-namespace IdeaBunker.Services;
-
-public interface IUserDataService
+public partial interface IDataService
 {
     Task<string> GetNameAndRankAsync(string userId);
     Task<string> GetRankNameAsync(string userId);
 }
 
-public class UserDataService : IUserDataService
+public partial class DataService : IDataService
 {
-    private readonly Context _context;
-    private readonly UserManager<User> _userManager;
-
-    public UserDataService(Context context, UserManager<User> userManager)
-    {
-        _context = context;
-        _userManager = userManager;
-    }
-
     public async Task<string> GetNameAndRankAsync(string userId)
     {
         var user = await _userManager.FindByIdAsync(userId);

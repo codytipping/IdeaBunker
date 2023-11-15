@@ -1,21 +1,16 @@
-﻿using IdeaBunker.Data;
-using IdeaBunker.Models;
+﻿using IdeaBunker.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace IdeaBunker.Services;
 
-public interface IPublicDataService 
+public partial interface IDataService 
 {
     string GetCategoryName(string id);
     Task<Project> GetProjectInfoAsync(string id);
 }
 
-public class PublicDataService : IPublicDataService
+public partial class DataService : IDataService
 {
-    private readonly Context _context;
-
-    public PublicDataService(Context context) { _context = context; }
-
     public string GetCategoryName(string id)
     {
         var categoryName = _context.Categories

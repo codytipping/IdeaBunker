@@ -53,6 +53,6 @@ public class UserLockoutService : IUserLockoutService
 
     private async Task VerifyCountAsync(string id)
     {
-        if (securityCount == targetCount) await LockoutUserAsync(id);  
+        if (securityCount == targetCount) await LockoutUserAsync(id);
     }
 }

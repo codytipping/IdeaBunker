@@ -1,26 +1,13 @@
-﻿using IdeaBunker.Data;
-using IdeaBunker.Models;
-using Microsoft.AspNetCore.Identity;
+﻿namespace IdeaBunker.Services;
 
-namespace IdeaBunker.Services;
-
-public interface IPrivateDataService 
+public partial interface IDataService 
 {
     string GetClearanceName(string id);
     Task<string> GetClearanceNameAsync(string userId);
 }
 
-public class PrivateDataService : IPrivateDataService
+public partial class DataService : IDataService
 {
-    private readonly Context _context;
-    private readonly UserManager<User> _userManager;
-
-    public PrivateDataService(Context context, UserManager<User> userManager)
-    {
-        _context = context;
-        _userManager = userManager;
-    }
-
     public string GetClearanceName(string id)
     {
         var clearanceName = _context.Clearances
