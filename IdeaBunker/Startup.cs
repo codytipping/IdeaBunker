@@ -3,7 +3,6 @@ using IdeaBunker.Data;
 using Microsoft.AspNetCore.Identity;
 using IdeaBunker.Services;
 using IdeaBunker.Models;
-using IdeaBunker.Areas.Identity.Services;
 
 namespace IdeaBunker;
 

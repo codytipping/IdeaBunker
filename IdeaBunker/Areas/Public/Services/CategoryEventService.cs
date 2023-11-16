@@ -7,7 +7,10 @@ namespace IdeaBunker.Services;
 
 public partial interface IEventService
 {
-    
+    Task<CategoryEvent?> GetCategoryEventAsync(string userId, string categoryId);
+    Task SetCategoryEventAsync(CategoryViewModel model, string id);
+    Task SetCategoryAsync(CategoryViewModel model);
+    Task<CategoryViewModel> SetCategoryViewModelAsync(string id);
 }
 
 public partial class EventService : IEventService
@@ -33,7 +36,7 @@ public partial class EventService : IEventService
             UserNameAndRank = model.UserNameAndRank,
             Description = model.Description,
             EventDescription = model.EventDescription,
-            SecurityCount = model.Sec,
+            SecurityCount = model.SecurityCount,
         };
         _context.Add(categoryEvent);
         await _context.SaveChangesAsync();
@@ -51,10 +54,10 @@ public partial class EventService : IEventService
         };
         _context.Add(model.Update ? _context.Update(category) : category);
         await _context.SaveChangesAsync();
-        await SetProjectEventAsync(model, category.Id);
+        await SetCategoryEventAsync(model, category.Id);
     }
 
-    public async Task<ProjectViewModel> SetCategoryViewModelAsync(string id)
+    public async Task<CategoryViewModel> SetCategoryViewModelAsync(string id)
     {
         var category = await _context.Categories.FindAsync(id) ?? new();
         CategoryViewModel model = new()

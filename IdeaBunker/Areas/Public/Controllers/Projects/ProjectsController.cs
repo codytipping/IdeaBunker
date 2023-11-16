@@ -1,5 +1,4 @@
-﻿using IdeaBunker.Areas.Identity.Services;
-using IdeaBunker.Data;
+﻿using IdeaBunker.Data;
 using IdeaBunker.Models;
 using IdeaBunker.Services;
 using IdeaBunker.ViewModels;
@@ -12,12 +11,12 @@ public partial class ProjectsController : Controller
 {
     private readonly Context _context;
     private readonly EventService _eventService;
-    private readonly UserDataService _dataService;
+    private readonly DataService _dataService;
     private readonly UserManager<User> _userManager;
 
     private readonly UserLockoutService _lockoutService;
 
-    public ProjectsController(Context context, EventService eventService, UserDataService dataService, UserManager<User> userManager,
+    public ProjectsController(Context context, EventService eventService, DataService dataService, UserManager<User> userManager,
         UserLockoutService lockoutService)
     {
         _context = context;
