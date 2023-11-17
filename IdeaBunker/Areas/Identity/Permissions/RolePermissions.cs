@@ -2,7 +2,7 @@
 
 public partial class PermissionsMaster 
 {
-    public class RolePermissions : BasePermissions
+    public class Role : BasePermissions
     {
         public const string View = "Permissions.Roles.View";
         public const string Create = "Permissions.Roles.Create";

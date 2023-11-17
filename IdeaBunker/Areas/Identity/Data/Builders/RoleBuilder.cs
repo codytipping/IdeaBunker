@@ -5,6 +5,7 @@ namespace IdeaBunker.Data;
 
 public class RoleBuilder
 {
+    /*
     public static void ConfigureRole(ModelBuilder builder)
     {
         builder.Entity<Role>()
@@ -13,4 +14,5 @@ public class RoleBuilder
            .HasForeignKey(u => u.UserId)
            .OnDelete(DeleteBehavior.Restrict);
     }
+    */
 }

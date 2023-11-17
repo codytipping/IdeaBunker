@@ -2,7 +2,7 @@
 
 public partial class PermissionsMaster
 {
-    public class ProjectPermissions : BasePermissions
+    public class Project : BasePermissions
     {
         public const string View = "Permissions.Projects.View";
         public const string Create = "Permissions.Projects.Create";
@@ -16,4 +16,4 @@ public partial class PermissionsMaster
             return new List<string> { View, Create, Edit, Delete, Publish, Vote, };
         }
     }
-}   
+}

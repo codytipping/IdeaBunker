@@ -1,27 +1,25 @@
-﻿namespace IdeaBunker.Services;
+﻿using IdeaBunker.Data;
+using IdeaBunker.Models;
+using Microsoft.AspNetCore.Identity;
 
-public partial interface IDataService
-{
-    Task<string> GetNameAndRankAsync(string userId);
-    Task<string> GetRankNameAsync(string userId);
-}
+namespace IdeaBunker.Services;
 
-public partial class DataService : IDataService
+public static partial class DataService
 {
-    public async Task<string> GetNameAndRankAsync(string userId)
+    public static async Task<string> GetNameAndRankAsync(string userId, UserManager<User> manager, Context context)
     {
-        var user = await _userManager.FindByIdAsync(userId);
-        var rankName = _context.Ranks
+        var user = await manager.FindByIdAsync(userId);
+        var rankName = context.Ranks
             .Where(r => user != null && r.Id == user.RankId)
             .Select(r => r.Name)
             .FirstOrDefault();
         return $"{user?.FirstName} {user?.LastName}, {rankName}" ?? string.Empty;
     }
 
-    public async Task<string> GetRankNameAsync(string userId)
+    public static async Task<string> GetRankNameAsync(string userId, UserManager<User> manager, Context context)
     {
-        var user = await _userManager.FindByIdAsync(userId);
-        var rankName = _context.Ranks
+        var user = await manager.FindByIdAsync(userId);
+        var rankName = context.Ranks
             .Where(r => user != null && r.Id == user.RankId)
             .Select(r => r.Name)
             .FirstOrDefault();

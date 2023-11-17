@@ -1,6 +1,6 @@
-﻿namespace IdeaBunker.Models;
+﻿namespace IdeaBunker.Areas.Public.Models;
 
-public class ProjectStatus : Enum
+public class ProjectStatus : IdeaBunker.Models.Enum
 {
     public virtual ICollection<Project>? Projects { get; set; }
 }

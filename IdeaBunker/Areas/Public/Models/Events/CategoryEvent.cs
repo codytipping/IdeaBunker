@@ -1,4 +1,6 @@
-﻿namespace IdeaBunker.Models;
+﻿using IdeaBunker.Models;
+
+namespace IdeaBunker.Areas.Public.Models;
 
 public class CategoryEvent : Event
 {

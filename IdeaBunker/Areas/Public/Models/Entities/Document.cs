@@ -1,6 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using IdeaBunker.Models;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace IdeaBunker.Models;
+namespace IdeaBunker.Areas.Public.Models;
+
 public class Document : Entity
 {
     public required byte[] Data { get; set; }

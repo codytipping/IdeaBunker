@@ -1,5 +1,4 @@
-﻿using IdeaBunker.Seeds;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace IdeaBunker.Data;
 
@@ -11,7 +10,7 @@ public partial class Context
     {
         base.OnModelCreating(builder);
         IdentityContext(builder);
-        PrivateContext(builder);
+        //PrivateContext(builder);
         PublicContext(builder);
     }
 }

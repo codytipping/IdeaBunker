@@ -11,8 +11,10 @@ public class Role : IdentityRole
     [ForeignKey("IdeaBunkerUser")]
     public string? UserId { get; set; }
     public virtual User? User { get; set; }
+  
+    /*
     public virtual ICollection<DirectorateRole>? DirectorateRoles { get; set; }
     public virtual ICollection<DivisionRole>? DivisionRoles { get; set; }
     public virtual ICollection<SectionRole>? SectionRoles { get; set; }
-    public virtual ICollection<TeamRole>? TeamRoles { get; set; }
+    public virtual ICollection<TeamRole>? TeamRoles { get; set; }*/
 }
