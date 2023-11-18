@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace IdeaBunker.Seeds;
 
-public static class UsersSeed
+public static class UserSeed
 {
     private const string FirstName = "Permissions";
     private const string LastName = "Master";
@@ -27,7 +27,7 @@ public static class UsersSeed
                 PhoneNumberConfirmed = true,
             };
             await userManager.CreateAsync(user, GetPassword());         
-            await userManager.AddToRoleAsync(user, RolesSeed.GetName());             
+            await userManager.AddToRoleAsync(user, RoleSeed.GetName());             
         }
     }
 }

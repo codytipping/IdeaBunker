@@ -11,6 +11,6 @@ public partial class Context : IdentityDbContext<User>
         IdentityBuilder.ConfigureIdentity(builder);
         //RoleBuilder.ConfigureRole(builder);
         //UserBuilder.ConfigureUser(builder);
-        SeedIdentityBuilder.ConfigureSeedData(builder);
+        IdentitySeedBuilder.ConfigureSeedData(builder);
     }
 }

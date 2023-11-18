@@ -1,0 +1,84 @@
+﻿using IdeaBunker.Areas.Public.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using IdeaBunker.Areas.Public.ViewModels.Projects;
+
+namespace IdeaBunker.Areas.Public.Controllers;
+
+public partial class ProjectDraftController : Controller
+{
+    public string GetCategoryName(string id)
+    {
+        return _context.Categories.Where(c => c.Id == id).Select(c => c.Name).FirstOrDefault()!;
+    }
+
+    public string GetClearanceName(string id)
+    {
+        return _context.Clearances.Where(c => c.Id == id).Select(c => c.Name).FirstOrDefault()!;
+    }
+
+    public string GetStatusName(string id)
+    {
+        return _context.ProjectsStatus.Where(s => s.Id == id).Select(s => s.Name).FirstOrDefault()!;
+    }
+
+    public async Task<Project> GetProjectInfoAsync(string id)
+    {
+        var project = await _context.Projects
+            .Include(p => p.Category)
+            .Include(p => p.Clearance)
+            .Include(p => p.User)
+            .Include(p => p.Status)
+            .FirstOrDefaultAsync(p => p.Id == id);
+        return project!;
+    }
+
+    public async Task<IList<Project>> GetProjectsAsync()
+    {
+        var user = await _userManager.GetUserAsync(User);
+        var projects = await _context.Projects
+            .Where(p => p.Status != null && p.UserId == user!.Id && p.Status.Name == "Unpublished")
+            .Include(p => p.Category)
+            .Include(p => p.Clearance)
+            .Include(p => p.User)
+            .Include(p => p.Status)
+            .ToListAsync();
+        return projects!;
+    }
+
+    public async Task<string> GetNameAndRankAsync()
+    {
+        var user = await _userManager.GetUserAsync(User);
+        var rankName = _context.Ranks
+            .Where(r => user != null && r.Id == user.RankId)
+            .Select(r => r.Name)
+            .FirstOrDefault();
+        return $"{user?.FirstName} {user?.LastName}, {rankName}" ?? string.Empty;
+    }
+
+    public async Task<string> GetRankNameAsync(string userId)
+    {
+        var user = await _userManager.FindByIdAsync(userId);
+        var rankName = _context.Ranks
+            .Where(r => user != null && r.Id == user.RankId)
+            .Select(r => r.Name)
+            .FirstOrDefault();
+        return rankName ??= string.Empty;
+    }
+
+    public async Task<(string UserId, string UserNameAndRank)> GetUserInfoAsync()
+    {
+        var user = await _userManager.GetUserAsync(User);
+        var userId = user!.Id;
+        var userNameAndRank = await GetNameAndRankAsync()!;
+        return (userId, userNameAndRank);
+    }
+
+    public async Task<ProjectViewModel> UpdateModelAsync(ProjectViewModel model)
+    {
+        var (userId, userNameAndRank) = await GetUserInfoAsync();
+        model.UserId = userId;
+        model.UserNameAndRank = userNameAndRank;
+        return model;
+    }
+}

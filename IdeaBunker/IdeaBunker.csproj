@@ -26,7 +26,6 @@
 
   <ItemGroup>
     <Folder Include="Areas\Private\Controllers\" />
-    <Folder Include="Areas\Private\Data\" />
     <Folder Include="Areas\Private\Views\" />
   </ItemGroup>
 

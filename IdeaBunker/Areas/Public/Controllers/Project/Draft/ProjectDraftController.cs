@@ -7,12 +7,12 @@ using Microsoft.AspNetCore.Mvc;
 namespace IdeaBunker.Areas.Public.Controllers;
 
 [Area("Public")]
-public partial class ProjectController : Controller
+public partial class ProjectDraftController : Controller
 {
     private readonly Context _context;
     private readonly UserManager<User> _userManager;
 
-    public ProjectController(Context context, UserManager<User> userManager)
+    public ProjectDraftController(Context context, UserManager<User> userManager)
     {
         _context = context;
         _userManager = userManager;

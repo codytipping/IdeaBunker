@@ -5,7 +5,7 @@ using System.Security.Claims;
 
 namespace IdeaBunker.Seeds;
 
-public static class RolesSeed
+public static class RoleSeed
 {
     private const string Name = "PermissionsMaster";
     private const string ClaimType = "Permission";

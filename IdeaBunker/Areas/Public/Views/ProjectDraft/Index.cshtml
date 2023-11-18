@@ -1,0 +1,45 @@
+﻿@model IEnumerable<ProjectViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if ((AuthorizationService.AuthorizeAsync(User, PermissionsMaster.Project.Create)).Result.Succeeded)
+{
+    <h1>Your Unpublished Projects</h1>
+
+    <p>
+        <a asp-controller="Project" asp-action="Create">Create New</a><text> | </text>
+        <a asp-controller="Project" asp-action="Index">View All Published Projects</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>User</th>
+                <th>Category</th>
+                <th>Clearance</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.UserNameAndRank)</td>
+                    <td>@Html.DisplayFor(modelItem => item.CategoryName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.ClearanceName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.StatusName)</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> <text> | </text>
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a><text> | </text>
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

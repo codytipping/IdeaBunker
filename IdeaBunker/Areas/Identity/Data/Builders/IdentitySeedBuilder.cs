@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace IdeaBunker.Data;
 
-public class SeedIdentityBuilder
+public class IdentitySeedBuilder
 {
     public static void ConfigureSeedData(ModelBuilder builder)
     {

@@ -1,0 +1,46 @@
+﻿@model ProjectVoteViewModel
+
+@{
+    ViewData["Title"] = "Vote";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if ((AuthorizationService.AuthorizeAsync(User, PermissionsMaster.Project.Vote)).Result.Succeeded)
+{
+    <h1>Vote</h1>
+    <br />
+    <div class="card">
+        <div id="viewAll" class="card-body table-responsive">
+            <h4>@Model.Name</h4>
+            <form asp-action="Vote" method="post">
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="Name" />
+                <dl class="row">
+                    <dt class="col-sm-2">Upvotes</dt>
+                    <dd class="col-sm-10">
+                        <input type="hidden" asp-for="UpvoteCount" />
+                        @Html.DisplayFor(model => model.UpvoteCount)
+                    </dd>
+                    <dt class="col-sm-2">Downvotes</dt>
+                    <dd class="col-sm-10">
+                        <input type="hidden" asp-for="DownvoteCount" />
+                        @Html.DisplayFor(model => model.DownvoteCount)
+                    </dd>
+                </dl>
+                <div class="form-group">
+                    <label class="control-label">Provide Feedback</label>
+                    <input asp-for="EventDescription" class="form-control" placeholder="Why vote this way for @Model.Name?" />
+                    <span asp-validation-for="EventDescription" class="text-danger"></span>
+                </div>
+                <input type="hidden" asp-for="VoteType" id="VoteType" name="VoteType" />
+                <button type="submit" onclick="setVoteType('upvote')" class="btn btn-success">Upvote</button>
+                <button type="submit" onclick="setVoteType('downvote')" class="btn btn-danger">Downvote</button>
+            </form>
+        </div>
+    </div>
+}
+<script>
+    function setVoteType(voteType) {
+        document.getElementById("VoteType").value = voteType;
+    }
+</script>

@@ -18,8 +18,8 @@ public class Program
             {
                 var userManager = services.GetRequiredService<UserManager<User>>();
                 var roleManager = services.GetRequiredService<RoleManager<Role>>();
-                await RolesSeed.SeedRoleAsync(roleManager);
-                await UsersSeed.SeedUserAsync(userManager);
+                await RoleSeed.SeedRoleAsync(roleManager);
+                await UserSeed.SeedUserAsync(userManager);
                 logger.LogInformation("Finished Seeding Default Data");
                 logger.LogInformation("Application Starting");
             }

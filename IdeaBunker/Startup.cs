@@ -25,12 +25,6 @@ public class Startup
         services.AddDbContext<Context>(options => options.UseSqlServer(Configuration.GetConnectionString("ContextConnection")));
         services.AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>();
         services.AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>();
-
-
-        services.AddScoped<IIdentityEventService, IdentityEventService>();
-        services.AddScoped<IPublicEventService, PublicEventService>();
-
-
         services.AddIdentity<User, Role>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<Context>()
                 .AddDefaultUI()
