@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc;
 using IdeaBunker.Areas.Public.ViewModels.Projects;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.CodeAnalysis.Elfie.Extensions;
 
 namespace IdeaBunker.Areas.Public.Controllers;
 
@@ -25,9 +26,9 @@ public partial class ProjectController : Controller
         {            
             model.Action = "Create";
             model = await UpdateModelAsync(model);
-            model.ClearanceId = _context.Clearances.Select(c => c.Id).FirstOrDefault()!;
-            model.StatusId = _context.ProjectsStatus.Select(s => s.Id).FirstOrDefault()!;           
-            await SetProjectAsync(model);
+            model.ClearanceId = GetClearanceId("No Clearance");
+            model.StatusId = GetStatusId("Unpublished");           
+            await AddProjectAsync(model);
             return RedirectToAction(nameof(Index), "ProjectDraft");
         }
         ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", model.CategoryId);

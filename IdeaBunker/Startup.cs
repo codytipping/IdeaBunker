@@ -1,13 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using IdeaBunker.Data;
 using Microsoft.AspNetCore.Identity;
-using IdeaBunker.Services;
 using IdeaBunker.Models;
 using Microsoft.AspNetCore.Authorization;
 using IdeaBunker.Authorizations;
-using System.Reflection.Metadata;
-using IdeaBunker.Areas.Public.Services;
-using IdeaBunker.Areas.Identity.Services;
 
 namespace IdeaBunker;
 

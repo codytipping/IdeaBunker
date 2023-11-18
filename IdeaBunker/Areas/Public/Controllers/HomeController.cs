@@ -1,24 +1,10 @@
-﻿using IdeaBunker.Areas.Public.Models;
-using IdeaBunker.Areas.Public.Services;
-using IdeaBunker.Data;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace IdeaBunker.Areas.Public.Controllers;
 
 [Area("Public")]
 public class HomeController : Controller
 {
-    private readonly IPublicEventService _publicEventService;
-
-    public HomeController(IPublicEventService publicEventService)
-    {
-        _publicEventService = publicEventService;
-    }
-
-
-
-
     // GET: HomeController
     public ActionResult Index()
     {

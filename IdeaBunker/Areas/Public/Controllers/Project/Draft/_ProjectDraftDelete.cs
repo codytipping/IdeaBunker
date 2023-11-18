@@ -5,7 +5,7 @@ using IdeaBunker.Areas.Public.ViewModels.Projects;
 namespace IdeaBunker.Areas.Public.Controllers;
 
 [Authorize(Policy = "Permissions.Projects.Create")]
-public partial class ProjectController : Controller
+public partial class ProjectDraftController : Controller
 {
     public async Task<IActionResult> Delete(string id)
     {

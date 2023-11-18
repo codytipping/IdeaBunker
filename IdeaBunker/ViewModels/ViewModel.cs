@@ -9,6 +9,5 @@ public class ViewModel
     public string Description { get; set; } = string.Empty;
     public string EventDescription { get; set; } = string.Empty;
     public string Action { get; set; } = string.Empty;
-    public bool Update { get; set; } = false;
     public int SecurityCount { get; set; } = 0;
 }

@@ -8,12 +8,12 @@ public partial class ProjectDraftController : Controller
     public async Task<IActionResult> Index()
     {
         var projects = await GetProjectsAsync();
-        var projectViewModels = new List<ProjectViewModel>();
+        var viewModels = new List<ProjectViewModel>();
         foreach (var project in projects)
         {
             var viewModel = await SetProjectViewModelAsync(project.Id);
-            projectViewModels.Add(viewModel);
+            viewModels.Add(viewModel);
         }
-        return View(projectViewModels);
+        return View(viewModels);
     }
 }

@@ -17,7 +17,7 @@
             <dd class="col-sm-10">
                 @Html.DisplayFor(model => model.Name)
             </dd>
-            <dt class="col-sm-2">User</dt>
+            <dt class="col-sm-2">Author</dt>
             <dd class="col-sm-10">
                 @Html.DisplayFor(model => model.UserNameAndRank)
             </dd>
@@ -37,14 +37,20 @@
             <dd class="col-sm-10">
                 @Html.DisplayFor(model => model.StatusDescription)
             </dd>
+            <dt class="col-sm-2">Upvotes</dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.UpvoteCount)
+            </dd>
+            <dt class="col-sm-2">Downvotes</dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.DownvoteCount)
+            </dd>
         </dl>
     </div>
     <div>
         @if ((AuthorizationService.AuthorizeAsync(User, PermissionsMaster.Project.Edit)).Result.Succeeded)
         {
-            <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a>
-
-            <text> | </text>
+            <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a><text> | </text>
         }
         <a asp-action="Index">Back to List</a>
     </div>

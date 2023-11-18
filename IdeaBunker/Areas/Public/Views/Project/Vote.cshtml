@@ -8,10 +8,10 @@
 @if ((AuthorizationService.AuthorizeAsync(User, PermissionsMaster.Project.Vote)).Result.Succeeded)
 {
     <h1>Vote</h1>
-    <br />
-    <div class="card">
-        <div id="viewAll" class="card-body table-responsive">
+    <div class="row justify-content-center">
+        <div class="col-5 mt-5">                       
             <h4>@Model.Name</h4>
+            <hr />
             <form asp-action="Vote" method="post">
                 <input type="hidden" asp-for="Id" />
                 <input type="hidden" asp-for="Name" />
@@ -28,14 +28,21 @@
                     </dd>
                 </dl>
                 <div class="form-group">
-                    <label class="control-label">Provide Feedback</label>
+                    <label class="control-label"><b>Provide Feedback</b></label>
                     <input asp-for="EventDescription" class="form-control" placeholder="Why vote this way for @Model.Name?" />
                     <span asp-validation-for="EventDescription" class="text-danger"></span>
                 </div>
+                <br />
                 <input type="hidden" asp-for="VoteType" id="VoteType" name="VoteType" />
-                <button type="submit" onclick="setVoteType('upvote')" class="btn btn-success">Upvote</button>
-                <button type="submit" onclick="setVoteType('downvote')" class="btn btn-danger">Downvote</button>
+                <button type="submit" onclick="setVoteType('upvote')" class="btn btn-primary">Upvote</button>
+                <button type="submit" onclick="setVoteType('downvote')" class="btn btn-primary">Downvote</button>
             </form>
+            <div>
+                @if ((AuthorizationService.AuthorizeAsync(User, PermissionsMaster.Project.View)).Result.Succeeded)
+                {
+                    <a asp-action="Index">Back to List</a>
+                }
+            </div>
         </div>
     </div>
 }

@@ -7,14 +7,29 @@ namespace IdeaBunker.Areas.Public.Controllers;
 
 public partial class ProjectDraftController : Controller
 {
+    public string GetCategoryId(string name)
+    {
+        return _context.Categories.Where(c => c.Name == name).Select(c => c.Id).FirstOrDefault()!;
+    }
+
     public string GetCategoryName(string id)
     {
         return _context.Categories.Where(c => c.Id == id).Select(c => c.Name).FirstOrDefault()!;
     }
 
+    public string GetClearanceId(string name)
+    {
+        return _context.Clearances.Where(c => c.Name == name).Select(c => c.Id).FirstOrDefault()!;
+    }
+
     public string GetClearanceName(string id)
     {
         return _context.Clearances.Where(c => c.Id == id).Select(c => c.Name).FirstOrDefault()!;
+    }
+
+    public string GetStatusId(string name)
+    {
+        return _context.ProjectsStatus.Where(s => s.Name == name).Select(s => s.Id).FirstOrDefault()!;
     }
 
     public string GetStatusName(string id)
@@ -46,14 +61,14 @@ public partial class ProjectDraftController : Controller
         return projects!;
     }
 
-    public async Task<string> GetNameAndRankAsync()
+    public async Task<string> GetNameAndRankAsync(string userId)
     {
-        var user = await _userManager.GetUserAsync(User);
+        var user = await _userManager.FindByIdAsync(userId);
         var rankName = _context.Ranks
             .Where(r => user != null && r.Id == user.RankId)
             .Select(r => r.Name)
             .FirstOrDefault();
-        return $"{user?.FirstName} {user?.LastName}, {rankName}" ?? string.Empty;
+        return $"{user!.FirstName} {user.LastName}, {rankName}";
     }
 
     public async Task<string> GetRankNameAsync(string userId)
@@ -69,9 +84,8 @@ public partial class ProjectDraftController : Controller
     public async Task<(string UserId, string UserNameAndRank)> GetUserInfoAsync()
     {
         var user = await _userManager.GetUserAsync(User);
-        var userId = user!.Id;
-        var userNameAndRank = await GetNameAndRankAsync()!;
-        return (userId, userNameAndRank);
+        var userNameAndRank = await GetNameAndRankAsync(user!.Id)!;
+        return (user!.Id, userNameAndRank);
     }
 
     public async Task<ProjectViewModel> UpdateModelAsync(ProjectViewModel model)
