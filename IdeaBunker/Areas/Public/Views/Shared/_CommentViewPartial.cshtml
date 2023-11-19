@@ -5,6 +5,7 @@
         <tr>
             <th>Project</th>
             <th>User</th>
+            <th>Date</th>
             <th></th>
             <th></th>
         </tr>
@@ -12,9 +13,12 @@
     <tbody>
         @foreach (var item in Model)
         {
+            <input type="hidden" asp-for="@item.ProjectId" />
+            <input type="hidden" asp-for="@item.UserId" />
             <tr>
                 <td>@Html.DisplayFor(modelItem => item.Name)</td>
                 <td>@Html.DisplayFor(modelItem => item.UserNameAndRank)</td>
+                <td>@Html.DisplayFor(modelItem => item.Date)</td>
                 <td>@Html.DisplayFor(modelItem => item.Description)</td>
                 <td>
                     @if ((AuthorizationService.AuthorizeAsync(User, PermissionsMaster.Comment.Edit)).Result.Succeeded)

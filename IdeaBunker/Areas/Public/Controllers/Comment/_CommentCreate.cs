@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using IdeaBunker.Permissions;
+using Microsoft.CodeAnalysis;
 
 namespace IdeaBunker.Areas.Public.Controllers;
 
@@ -23,8 +24,8 @@ public partial class CommentController : Controller
             model.Action = "Create";
             model = await UpdateModelAsync(model);
             await AddCommentAsync(model);
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Details", "Project", new { id = model.ProjectId });
         }
-        return View(model);
+        return PartialView(model);
     }
 }

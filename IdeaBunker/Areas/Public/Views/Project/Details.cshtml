@@ -48,15 +48,22 @@
         {
             <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a><text> | </text>
         }
-        @if ((AuthorizationService.AuthorizeAsync(User, PermissionsMaster.Project.Edit)).Result.Succeeded)
-        {
-            <a asp-controller="Comment" asp-action="Create" asp-route-id="@Model?.Id">Comment</a>
-        }
-        <a asp-action="Index">Back to List</a>
     </div>
     <br/>
-    <h4>Comments</h4>
-    <div>
-        @await Html.PartialAsync("_CommentPartial", Model);
-    </div>
+    @if ((AuthorizationService.AuthorizeAsync(User, PermissionsMaster.Comment.View)).Result.Succeeded)
+    {
+        <h4>Comments</h4>
+        <div>
+            @if (Model?.Comments is not null) 
+            { 
+                @await Html.PartialAsync("_CommentViewPartial", Model.Comments) 
+            }
+        </div>
+    }
+    @if ((AuthorizationService.AuthorizeAsync(User, PermissionsMaster.Comment.Create)).Result.Succeeded)
+    {
+        <div>
+            @await Html.PartialAsync("_CommentCreatePartial", Model?.Comment)
+        </div>
+    }
 }

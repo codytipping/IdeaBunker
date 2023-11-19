@@ -61,6 +61,9 @@ public partial class ProjectController : Controller
             ProjectId = comment.ProjectId,
             Name = GetProjectName(comment.ProjectId),
             Description = comment.Description,
+            Date = comment.Date,
+            UserId = comment.UserId,
+            UserNameAndRank = await GetNameAndRankAsync(comment.UserId),
         };
         return model;
     }
@@ -87,12 +90,13 @@ public partial class ProjectController : Controller
         ProjectDetailsViewModel model = new()
         {
             Id = project!.Id,
-            Name = project!.Name,           
+            Name = project!.Name,
             Description = project!.Description,
             CategoryDescription = $"{project?.Category?.Name}: {project?.Category?.Description}",
             StatusDescription = $"{project?.Status?.Name}: {project?.Status?.Description}",
             UserNameAndRank = await GetNameAndRankAsync(project!.UserId),
             Comments = await GetCommentViewModelsAsync(project!.Id),
+            Comment = new() { ProjectId = project!.Id },
         };
         return model;
     }

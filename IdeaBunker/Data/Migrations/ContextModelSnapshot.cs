@@ -53,52 +53,52 @@ namespace IdeaBunker.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "cb00b78f-428a-4c0b-ab90-fc172fd3db77",
+                            Id = "0ed0332f-69e5-4bd0-8e37-1db6ec52d143",
                             Description = "",
                             Name = "Performing Operations, Transporting",
-                            StatusId = "146673e2-9466-4601-99c6-8977c3a2f7c0"
+                            StatusId = "b2df4af1-c3e8-40a9-a95d-e1686744ce58"
                         },
                         new
                         {
-                            Id = "c84bf730-240f-42c7-88a4-929fb5740ebf",
+                            Id = "487cdca2-913a-4c7d-b767-82e73c691e52",
                             Description = "",
                             Name = "Chemistry, Metallurgy",
-                            StatusId = "146673e2-9466-4601-99c6-8977c3a2f7c0"
+                            StatusId = "b2df4af1-c3e8-40a9-a95d-e1686744ce58"
                         },
                         new
                         {
-                            Id = "d3c0764c-a9ac-4190-85bb-6926b4574a94",
+                            Id = "e1fa8704-a22f-4f72-8d8a-4fa5f2d3c0fc",
                             Description = "",
                             Name = "Textiles, Paper",
-                            StatusId = "146673e2-9466-4601-99c6-8977c3a2f7c0"
+                            StatusId = "b2df4af1-c3e8-40a9-a95d-e1686744ce58"
                         },
                         new
                         {
-                            Id = "8f25e033-5e24-4c8b-93da-94a8fde9b978",
+                            Id = "fdc05ee5-af3b-44b3-97f6-ab54af061cb2",
                             Description = "",
                             Name = "Fixed Constructions",
-                            StatusId = "146673e2-9466-4601-99c6-8977c3a2f7c0"
+                            StatusId = "b2df4af1-c3e8-40a9-a95d-e1686744ce58"
                         },
                         new
                         {
-                            Id = "b9768ded-2dc6-43d2-8d2c-4d101b0635da",
+                            Id = "d342870d-397b-4b1b-bcc5-5e4086828935",
                             Description = "",
                             Name = "Mechanical Engineering",
-                            StatusId = "146673e2-9466-4601-99c6-8977c3a2f7c0"
+                            StatusId = "b2df4af1-c3e8-40a9-a95d-e1686744ce58"
                         },
                         new
                         {
-                            Id = "aaee774d-c4b8-4d75-bf71-c9091c9e73aa",
+                            Id = "d880ea24-4797-4393-a777-2ffd14b8889f",
                             Description = "",
                             Name = "Physics",
-                            StatusId = "146673e2-9466-4601-99c6-8977c3a2f7c0"
+                            StatusId = "b2df4af1-c3e8-40a9-a95d-e1686744ce58"
                         },
                         new
                         {
-                            Id = "9df04e8a-dc07-4aa1-b41d-50450473642b",
+                            Id = "f0e83429-6f66-4efd-a6de-87118f607760",
                             Description = "",
                             Name = "Electricity",
-                            StatusId = "146673e2-9466-4601-99c6-8977c3a2f7c0"
+                            StatusId = "b2df4af1-c3e8-40a9-a95d-e1686744ce58"
                         });
                 });
 
@@ -161,31 +161,31 @@ namespace IdeaBunker.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "146673e2-9466-4601-99c6-8977c3a2f7c0",
+                            Id = "b2df4af1-c3e8-40a9-a95d-e1686744ce58",
                             Description = "",
                             Name = "Unpublished"
                         },
                         new
                         {
-                            Id = "82009f55-5a1b-41db-b31f-8b2b1c7868db",
+                            Id = "cefadc65-eda5-40f6-a186-1b7a384a1d27",
                             Description = "",
                             Name = "Active"
                         },
                         new
                         {
-                            Id = "2827b9b6-be37-4dee-816a-12d8c6459a57",
+                            Id = "17934f81-570b-4ed3-bec2-74946278d82f",
                             Description = "",
                             Name = "Approved"
                         },
                         new
                         {
-                            Id = "63f7061f-10d1-488c-9689-771b96075083",
+                            Id = "3fd4b0f4-d882-431a-b6f6-e5d8ee09d871",
                             Description = "",
                             Name = "Archive"
                         },
                         new
                         {
-                            Id = "953fe4d3-7c91-4992-968d-2abc94cb4fd2",
+                            Id = "34576490-8250-452b-a052-a48be8f13f46",
                             Description = "",
                             Name = "Pending"
                         });
@@ -195,6 +195,9 @@ namespace IdeaBunker.Migrations
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -449,49 +452,49 @@ namespace IdeaBunker.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "cc9496b0-a2a4-4adf-a275-137080e1abb1",
+                            Id = "4fa89dc3-40d5-4eb8-b789-1bec37f1fbc9",
                             Description = "",
                             Name = "Active"
                         },
                         new
                         {
-                            Id = "5baabaa7-bd8c-4b9e-a25d-df2940773fcc",
+                            Id = "fccf0e80-c904-4eac-9303-ad6e8a500d94",
                             Description = "",
                             Name = "Approved"
                         },
                         new
                         {
-                            Id = "ae24b6bb-3750-4879-b68d-2f59db65432f",
+                            Id = "f6ae6340-ab94-41d7-8782-10ce41b72a85",
                             Description = "",
                             Name = "Archive"
                         },
                         new
                         {
-                            Id = "04dc1f3c-060e-493a-9998-f9e72880d022",
+                            Id = "ca74dcc5-d84d-4ac7-86ed-d7d890bd68da",
                             Description = "",
                             Name = "Completed"
                         },
                         new
                         {
-                            Id = "d39099e1-e63f-4e26-87f9-41ef17e42be1",
+                            Id = "7853f0b5-617c-4a29-8396-6285857f28a5",
                             Description = "",
                             Name = "Denied"
                         },
                         new
                         {
-                            Id = "fa81706d-dd39-4455-9519-bbaf61f4c0d4",
+                            Id = "885de3d0-1fb8-422e-8bf2-dde517f85d2d",
                             Description = "",
                             Name = "Pending"
                         },
                         new
                         {
-                            Id = "bd47f38c-4d8d-415d-8a2f-d99c902101d7",
+                            Id = "456e8f06-2433-4189-a605-152b47be69af",
                             Description = "",
                             Name = "Unpublished"
                         },
                         new
                         {
-                            Id = "914a64cb-b82d-4442-af4c-9fa3ff3051a6",
+                            Id = "1829cfb0-003c-4f98-9ec2-b599dd0aea4c",
                             Description = "",
                             Name = "Waitlist"
                         });
@@ -543,7 +546,7 @@ namespace IdeaBunker.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "ba552cfb-8fb6-4aff-8ab1-73d6f797f88c",
+                            Id = "49b402ba-9643-40c6-b9cb-63407a5bb30f",
                             Description = "",
                             Name = "Default"
                         });
