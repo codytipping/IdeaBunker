@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using IdeaBunker.Areas.Public.ViewModels;
+using IdeaBunker.Permissions;
 
 namespace IdeaBunker.Areas.Public.Controllers;
 
-[Authorize(Policy = "Permissions.Projects.Create")]
+[Authorize(Policy = PermissionsMaster.Project.Delete)]
 public partial class ProjectController : Controller
 {
     public async Task<IActionResult> Delete(string id)

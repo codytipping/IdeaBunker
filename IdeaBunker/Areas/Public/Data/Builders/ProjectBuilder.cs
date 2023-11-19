@@ -14,12 +14,6 @@ public class ProjectBuilder
             .OnDelete(DeleteBehavior.Restrict);
 
         builder.Entity<Project>()
-            .HasOne(p => p.Clearance)
-            .WithMany(sc => sc.Projects)
-            .HasForeignKey(p => p.ClearanceId)
-            .OnDelete(DeleteBehavior.Restrict);
-
-        builder.Entity<Project>()
             .HasOne(p => p.User)
             .WithMany(u => u.Projects)
             .HasForeignKey(p => p.UserId)

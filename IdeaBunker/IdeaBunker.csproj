@@ -26,6 +26,8 @@
 
   <ItemGroup>
     <Folder Include="Areas\Private\Controllers\" />
+    <Folder Include="Areas\Private\Models\Enums\" />
+    <Folder Include="Areas\Private\Permissions\" />
     <Folder Include="Areas\Private\Views\" />
   </ItemGroup>
 

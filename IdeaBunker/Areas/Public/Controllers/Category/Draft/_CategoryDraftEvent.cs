@@ -17,7 +17,6 @@ public partial class CategoryDraftController : Controller
             Action = model.Action,
             UserId = model.UserId,
             UserNameAndRank = model.UserNameAndRank,
-            Description = model.Description,
             EventDescription = model.EventDescription,
             SecurityCount = model.SecurityCount,
         };
@@ -32,7 +31,7 @@ public partial class CategoryDraftController : Controller
         {
             Name = model.Name,
             Description = model.Description,
-            StatusId = model.StatusId,
+            StatusId = model.StatusId!,
             UserId = model.UserId,
         };
         _context.Add(category);

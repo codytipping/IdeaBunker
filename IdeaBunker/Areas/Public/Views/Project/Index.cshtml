@@ -20,7 +20,6 @@
             <tr>
                 <th>Name</th>
                 <th>Category</th>
-                <th>Clearance</th>
                 <th>Status</th>
                 <th></th>
             </tr>
@@ -31,7 +30,6 @@
                 <tr>
                     <td>@Html.DisplayFor(modelItem => item.Name)</td>
                     <td>@Html.DisplayFor(modelItem => item.CategoryName)</td>
-                    <td>@Html.DisplayFor(modelItem => item.ClearanceName)</td>
                     <td>@Html.DisplayFor(modelItem => item.StatusName)</td>
                     <td>
                         @if ((AuthorizationService.AuthorizeAsync(User, PermissionsMaster.Project.Vote)).Result.Succeeded)
@@ -48,7 +46,11 @@
                         }
                         @if ((AuthorizationService.AuthorizeAsync(User, PermissionsMaster.Project.Delete)).Result.Succeeded)
                         {
-                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a><text> | </text>
+                        }
+                        @if ((AuthorizationService.AuthorizeAsync(User, PermissionsMaster.Project.Delete)).Result.Succeeded)
+                        {
+                            <a asp-controller="Comment" asp-action="Index" asp-route-id="@item.Id">COMMENTS</a>
                         }
                     </td>
                 </tr>

@@ -6,7 +6,7 @@ namespace IdeaBunker.Areas.Public.Models;
 public class Category : Entity
 {
     [ForeignKey("Status")]
-    public string? StatusId { get; set; }
+    public required string StatusId { get; set; }
     public virtual CategoryStatus? Status { get; set; }
 
     [ForeignKey("User")]

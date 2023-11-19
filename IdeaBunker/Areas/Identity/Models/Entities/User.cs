@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations.Schema;
 using IdeaBunker.Areas.Public.Models;
-using IdeaBunker.Areas.Private.Models;
 
 namespace IdeaBunker.Models;
 public class User : IdentityUser
@@ -18,10 +17,6 @@ public class User : IdentityUser
     [ForeignKey("MilitaryRank")]
     public string? RankId { get; set; }
     public virtual Rank? Rank { get; set; }
-
-    [ForeignKey("Clearance")]
-    public string? ClearanceId { get; set; }
-    public virtual Clearance? Clearance { get; set; }
 
     public virtual ICollection<Category>? Categories { get; set; }
     public virtual ICollection<Comment>? Comments { get; set; }

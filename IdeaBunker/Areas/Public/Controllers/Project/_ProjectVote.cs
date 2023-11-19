@@ -3,10 +3,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using IdeaBunker.Areas.Public.Models;
+using IdeaBunker.Permissions;
 
 namespace IdeaBunker.Areas.Public.Controllers;
 
-[Authorize(Policy = "Permissions.Projects.Vote")]
+[Authorize(Policy = PermissionsMaster.Project.Vote)]
 public partial class ProjectController : Controller
 {
     public async Task<IActionResult> Vote(string id)

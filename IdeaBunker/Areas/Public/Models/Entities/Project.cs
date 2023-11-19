@@ -1,5 +1,4 @@
-﻿using IdeaBunker.Areas.Private.Models;
-using IdeaBunker.Models;
+﻿using IdeaBunker.Models;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IdeaBunker.Areas.Public.Models;
@@ -12,10 +11,6 @@ public class Project : Entity
     [ForeignKey("Category")]
     public string CategoryId { get; set; } = string.Empty;
     public virtual Category? Category { get; set; }
-
-    [ForeignKey("Clearance")]
-    public string ClearanceId { get; set; } = string.Empty;
-    public virtual Clearance? Clearance { get; set; }
 
     [ForeignKey("Status")]
     public string StatusId { get; set; } = string.Empty;

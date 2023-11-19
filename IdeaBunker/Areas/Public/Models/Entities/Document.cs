@@ -11,9 +11,9 @@ public class Document : Entity
 
     [ForeignKey("Project")]
     public required string ProjectId { get; set; }
-    public required virtual Project Project { get; set; }
+    public virtual Project? Project { get; set; }
 
     [ForeignKey("User")]
     public required string UserId { get; set; }
-    public required virtual User User { get; set; }
+    public virtual User? User { get; set; }
 }

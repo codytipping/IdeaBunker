@@ -2,10 +2,11 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc;
 using IdeaBunker.Areas.Public.ViewModels;
+using IdeaBunker.Permissions;
 
 namespace IdeaBunker.Areas.Public.Controllers;
 
-[Authorize(Policy = "Permissions.Projects.Create")]
+[Authorize(Policy = PermissionsMaster.Project.Create)]
 public partial class ProjectController : Controller
 {
     public IActionResult Create()
@@ -23,7 +24,6 @@ public partial class ProjectController : Controller
         {            
             model.Action = "Create";
             model = await UpdateModelAsync(model);
-            model.ClearanceId = GetClearanceId("No Clearance");
             model.StatusId = GetStatusId("Unpublished");           
             await AddProjectAsync(model);
             return RedirectToAction(nameof(Index), "ProjectDraft");

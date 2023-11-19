@@ -2,10 +2,11 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using IdeaBunker.Permissions;
 
 namespace IdeaBunker.Areas.Public.Controllers;
 
-[Authorize(Policy = "Permissions.Categories.Edit")]
+[Authorize(Policy = PermissionsMaster.Category.Edit)]
 public partial class CategoryController : Controller
 {
     public async Task<IActionResult> Edit(string id)

@@ -1,5 +1,6 @@
 ﻿using IdeaBunker.Areas.Public.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using IdeaBunker.Permissions;
 
 namespace IdeaBunker.Areas.Public.Controllers;
 

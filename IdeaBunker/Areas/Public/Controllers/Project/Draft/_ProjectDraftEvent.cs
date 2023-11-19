@@ -28,7 +28,6 @@ public partial class ProjectDraftController : Controller
             Action = model.Action,
             UserId = model.UserId,
             UserNameAndRank = model.UserNameAndRank,
-            Description = model.Description,
             EventDescription = model.EventDescription,
             SecurityCount = model.SecurityCount,
         };
@@ -44,7 +43,6 @@ public partial class ProjectDraftController : Controller
             Name = model.Name,
             Description = model.Description,
             CategoryId = model.CategoryId,
-            ClearanceId = model.ClearanceId,
             StatusId = model.StatusId,
             UserId = model.UserId,
             UpvoteCount = model.UpvoteCount,
@@ -66,7 +64,6 @@ public partial class ProjectDraftController : Controller
             UpvoteCount = project.UpvoteCount,
             DownvoteCount = project.DownvoteCount,
             CategoryName = GetCategoryName(project!.CategoryId),
-            ClearanceName = GetClearanceName(project!.ClearanceId),
             StatusName = GetStatusName(project!.StatusId),
         };
         return model;
@@ -82,7 +79,6 @@ public partial class ProjectDraftController : Controller
             UserNameAndRank = await GetNameAndRankAsync(project!.UserId),
             Description = project!.Description,
             CategoryDescription = $"{project?.Category?.Name}: {project?.Category?.Description}",
-            ClearanceDescription = $"{project?.Clearance?.Name}: {project?.Clearance?.Description}",
             StatusDescription = $"{project?.Status?.Name}: {project?.Status?.Description}",
         };
         return model;
@@ -97,7 +93,6 @@ public partial class ProjectDraftController : Controller
             Name = model.Name,
             Description = model.Description,
             CategoryId = model.CategoryId,
-            ClearanceId = model.ClearanceId,
             StatusId = model.StatusId,
             UserId = model.UserId,
             UpvoteCount = model.UpvoteCount,

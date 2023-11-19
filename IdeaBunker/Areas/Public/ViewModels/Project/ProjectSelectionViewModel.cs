@@ -6,7 +6,6 @@ public class ProjectSelectionViewModel
     public string Name { get; set; } = string.Empty;
     public string UserNameAndRank { get; set; } = string.Empty;
     public string CategoryName { get; set; } = string.Empty;
-    public string ClearanceName { get; set; } = string.Empty;
     public int UpvoteCount { get; set; } = 0;
     public int DownvoteCount { get; set; } = 0;
     public bool Selected { get; set; }

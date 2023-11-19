@@ -1,10 +1,11 @@
 ﻿using IdeaBunker.Areas.Public.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using IdeaBunker.Permissions;
 
 namespace IdeaBunker.Areas.Public.Controllers;
 
-[Authorize(Policy = "Permissions.Categories.Delete")]
+[Authorize(Policy = PermissionsMaster.Category.Delete)]
 public partial class CategoryController : Controller
 {
     public async Task<IActionResult> Delete(string id)

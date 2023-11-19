@@ -1,30 +1,30 @@
 ﻿using IdeaBunker.Areas.Public.ViewModels;
-using IdeaBunker.Permissions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using IdeaBunker.Permissions;
 
 namespace IdeaBunker.Areas.Public.Controllers;
 
-[Authorize(Policy = PermissionsMaster.Category.Create)]
-public partial class CategoryDraftController : Controller
+[Authorize(Policy = PermissionsMaster.Comment.Delete)]
+public partial class CommentController : Controller
 {
     public async Task<IActionResult> Delete(string id)
     {
-        var model = await SetCategoryDetailsViewModelAsync(id);
+        var model = await SetCommentViewModelAsync(id);
         return View(model);
     }
 
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> DeleteConfirmed(string id, CategoryViewModel model)
+    public async Task<IActionResult> DeleteConfirmed(string id, CommentViewModel model)
     {
-        var category = await _context.Categories.FindAsync(id);
-        if (category is not null)
+        var comment = await _context.Comments.FindAsync(id);
+        if (comment is not null)
         {
             model.Action = "Delete";
             model = await UpdateModelAsync(model);
-            await SetCategoryEventAsync(model, id);
-            _context.Categories.Remove(category);
+            await SetCommentEventAsync(model, id);
+            _context.Comments.Remove(comment);
         }
         await _context.SaveChangesAsync();
         return RedirectToAction(nameof(Index));

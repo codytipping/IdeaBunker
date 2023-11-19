@@ -1,12 +1,9 @@
-﻿using IdeaBunker.Areas.Private.Models;
-using Microsoft.EntityFrameworkCore;
-
-namespace IdeaBunker.Data;
+﻿namespace IdeaBunker.Data;
 
 public partial class Context
 {
-    public DbSet<Clearance> Clearances { get; set; }
-   /* public DbSet<Directorate> Directorates { get; set; }
+    /*public DbSet<Clearance> Clearances { get; set; }
+    public DbSet<Directorate> Directorates { get; set; }
     public DbSet<DirectorateEvent> DirectoratesEvent { get; set; }
     public DbSet<DirectorateProject> DirectoratesProject { get; set; }
     public DbSet<DirectorateRole> DirectoratesRole { get; set; }

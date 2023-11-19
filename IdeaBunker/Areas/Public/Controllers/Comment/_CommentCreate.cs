@@ -5,25 +5,24 @@ using IdeaBunker.Permissions;
 
 namespace IdeaBunker.Areas.Public.Controllers;
 
-[Authorize(Policy = PermissionsMaster.Category.Create)]
-public partial class CategoryController : Controller
+[Authorize(Policy = PermissionsMaster.Comment.Create)]
+public partial class CommentController : Controller
 {
-    public IActionResult Create()
+    public IActionResult Create(string id)
     {
-        CategoryViewModel model = new();      
+        CommentViewModel model = new() { ProjectId = id };        
         return View(model);
     }
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create(CategoryViewModel model)
+    public async Task<IActionResult> Create(CommentViewModel model)
     {
         if (ModelState.IsValid)
         {
             model.Action = "Create";
             model = await UpdateModelAsync(model);
-            model.StatusId = GetStatusId("Unpublished");
-            await AddCategoryAsync(model);
+            await AddCommentAsync(model);
             return RedirectToAction(nameof(Index));
         }
         return View(model);

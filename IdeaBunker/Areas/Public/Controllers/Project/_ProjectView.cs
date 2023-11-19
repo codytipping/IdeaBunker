@@ -1,10 +1,11 @@
 ﻿using IdeaBunker.Areas.Public.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using IdeaBunker.Permissions;
 
 namespace IdeaBunker.Areas.Public.Controllers;
 
-[Authorize(Policy = "Permissions.Projects.View")]
+[Authorize(Policy = PermissionsMaster.Project.View)]
 public partial class ProjectController : Controller
 {
     public async Task<IActionResult> Details(string id)

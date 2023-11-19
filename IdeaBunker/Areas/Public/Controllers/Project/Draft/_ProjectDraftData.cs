@@ -17,16 +17,6 @@ public partial class ProjectDraftController : Controller
         return _context.Categories.Where(c => c.Id == id).Select(c => c.Name).FirstOrDefault()!;
     }
 
-    public string GetClearanceId(string name)
-    {
-        return _context.Clearances.Where(c => c.Name == name).Select(c => c.Id).FirstOrDefault()!;
-    }
-
-    public string GetClearanceName(string id)
-    {
-        return _context.Clearances.Where(c => c.Id == id).Select(c => c.Name).FirstOrDefault()!;
-    }
-
     public string GetStatusId(string name)
     {
         return _context.ProjectsStatus.Where(s => s.Name == name).Select(s => s.Id).FirstOrDefault()!;
@@ -41,7 +31,6 @@ public partial class ProjectDraftController : Controller
     {
         var project = await _context.Projects
             .Include(p => p.Category)
-            .Include(p => p.Clearance)
             .Include(p => p.User)
             .Include(p => p.Status)
             .FirstOrDefaultAsync(p => p.Id == id);
@@ -54,7 +43,6 @@ public partial class ProjectDraftController : Controller
         var projects = await _context.Projects
             .Where(p => p.Status != null && p.UserId == user!.Id && p.Status.Name == "Unpublished")
             .Include(p => p.Category)
-            .Include(p => p.Clearance)
             .Include(p => p.User)
             .Include(p => p.Status)
             .ToListAsync();

@@ -2,17 +2,17 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc;
 using IdeaBunker.Areas.Public.ViewModels;
+using IdeaBunker.Permissions;
 
 namespace IdeaBunker.Areas.Public.Controllers;
 
-[Authorize(Policy = "Permissions.Projects.Edit")]
+[Authorize(Policy = PermissionsMaster.Project.Edit)]
 public partial class ProjectController : Controller
 {
     public async Task<IActionResult> Edit(string id)
     {
         var model = await SetProjectViewModelAsync(id);
         ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", model.CategoryId);
-        ViewData["ClearanceId"] = new SelectList(_context.Clearances, "Id", "Name", model.ClearanceId);
         ViewData["StatusId"] = new SelectList(_context.ProjectsStatus, "Id", "Name", model.StatusId);
         return View(model);
     }
@@ -29,7 +29,6 @@ public partial class ProjectController : Controller
             return RedirectToAction(nameof(Index));
         }
         ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", model.CategoryId);
-        ViewData["ClearanceId"] = new SelectList(_context.Clearances, "Id", "Name", model.ClearanceId);
         ViewData["StatusId"] = new SelectList(_context.ProjectsStatus, "Id", "Name", model.StatusId);
         return View(model);
     }

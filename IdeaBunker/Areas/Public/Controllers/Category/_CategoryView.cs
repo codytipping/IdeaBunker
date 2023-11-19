@@ -1,10 +1,11 @@
 ﻿using IdeaBunker.Areas.Public.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using IdeaBunker.Permissions;
 
 namespace IdeaBunker.Areas.Public.Controllers;
 
-[Authorize(Policy = "Permissions.Categories.View")]
+[Authorize(Policy = PermissionsMaster.Category.View)]
 public partial class CategoryController : Controller
 {
     public async Task<IActionResult> Details(string id)

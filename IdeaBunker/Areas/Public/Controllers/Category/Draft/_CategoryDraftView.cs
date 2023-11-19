@@ -1,10 +1,11 @@
 ﻿using IdeaBunker.Areas.Public.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using IdeaBunker.Permissions;
 
 namespace IdeaBunker.Areas.Public.Controllers;
 
-[Authorize(Policy = "Permissions.Categories.Create")]
+[Authorize(Policy = PermissionsMaster.Category.Create)]
 public partial class CategoryDraftController : Controller
 {
     public async Task<IActionResult> Index()

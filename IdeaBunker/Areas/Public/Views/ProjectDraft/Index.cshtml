@@ -18,7 +18,6 @@
             <tr>
                 <th>Name</th>
                 <th>Category</th>
-                <th>Clearance</th>
                 <th>Status</th>
                 <th></th>
             </tr>
@@ -29,7 +28,6 @@
                 <tr>
                     <td>@Html.DisplayFor(modelItem => item.Name)</td>
                     <td>@Html.DisplayFor(modelItem => item.CategoryName)</td>
-                    <td>@Html.DisplayFor(modelItem => item.ClearanceName)</td>
                     <td>@Html.DisplayFor(modelItem => item.StatusName)</td>
                     <td>
                         <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> <text> | </text>
