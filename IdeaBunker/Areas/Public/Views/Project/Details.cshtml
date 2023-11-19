@@ -54,4 +54,9 @@
         }
         <a asp-action="Index">Back to List</a>
     </div>
+    <br/>
+    <h4>Comments</h4>
+    <div>
+        @await Html.PartialAsync("_CommentPartial", Model);
+    </div>
 }

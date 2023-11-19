@@ -12,6 +12,11 @@ public partial class ProjectController : Controller
         return _context.Categories.Where(c => c.Id == id).Select(c => c.Name).FirstOrDefault()!;
     }
 
+    public string GetProjectName(string id)
+    {
+        return _context.Projects.Where(p => p.Id == id).Select(p => p.Name).FirstOrDefault()!;
+    }
+
     public string GetStatusId(string name)
     {
         return _context.ProjectsStatus.Where(s => s.Name == name).Select(s => s.Id).FirstOrDefault()!;
@@ -20,6 +25,24 @@ public partial class ProjectController : Controller
     public string GetStatusName(string id)
     {
         return _context.ProjectsStatus.Where(s => s.Id == id).Select(s => s.Name).FirstOrDefault()!;
+    }
+
+    public async Task<IList<Comment>> GetCommentsAsync(string id)
+    {
+        var comments = await _context.Comments.Where(c => c.ProjectId == id).ToListAsync();
+        return comments!;
+    }
+
+    public async Task<IList<CommentViewModel>> GetCommentViewModelsAsync(string id)
+    {
+        var comments = await GetCommentsAsync(id);
+        var models = new List<CommentViewModel>();
+        foreach (var comment in comments)
+        {
+            var model = await SetCommentViewModelAsync(comment.Id);
+            models.Add(model);
+        }
+        return models;
     }
 
     public async Task<Project> GetProjectInfoAsync(string id)

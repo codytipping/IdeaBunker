@@ -48,10 +48,6 @@
                         {
                             <a asp-action="Delete" asp-route-id="@item.Id">Delete</a><text> | </text>
                         }
-                        @if ((AuthorizationService.AuthorizeAsync(User, PermissionsMaster.Project.Delete)).Result.Succeeded)
-                        {
-                            <a asp-controller="Comment" asp-action="Index" asp-route-id="@item.Id">COMMENTS</a>
-                        }
                     </td>
                 </tr>
             }

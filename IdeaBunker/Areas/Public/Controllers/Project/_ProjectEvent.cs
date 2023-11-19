@@ -52,6 +52,19 @@ public partial class ProjectController : Controller
         await SetProjectEventAsync(model, project.Id);
     }
 
+    public async Task<CommentViewModel> SetCommentViewModelAsync(string id)
+    {
+        var comment = await _context.Comments.FirstOrDefaultAsync(c => c.Id == id)!;
+        CommentViewModel model = new()
+        {
+            Id = comment!.Id,
+            ProjectId = comment.ProjectId,
+            Name = GetProjectName(comment.ProjectId),
+            Description = comment.Description,
+        };
+        return model;
+    }
+
     public async Task<ProjectViewModel> SetProjectViewModelAsync(string id)
     {
         var project = await _context.Projects.FirstOrDefaultAsync(p => p.Id == id)!;
@@ -74,11 +87,12 @@ public partial class ProjectController : Controller
         ProjectDetailsViewModel model = new()
         {
             Id = project!.Id,
-            Name = project!.Name,
-            UserNameAndRank = await GetNameAndRankAsync(project!.UserId),
+            Name = project!.Name,           
             Description = project!.Description,
             CategoryDescription = $"{project?.Category?.Name}: {project?.Category?.Description}",
             StatusDescription = $"{project?.Status?.Name}: {project?.Status?.Description}",
+            UserNameAndRank = await GetNameAndRankAsync(project!.UserId),
+            Comments = await GetCommentViewModelsAsync(project!.Id),
         };
         return model;
     }

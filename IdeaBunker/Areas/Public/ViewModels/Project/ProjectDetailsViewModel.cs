@@ -8,4 +8,5 @@ public class ProjectDetailsViewModel : ViewModel
     public string StatusDescription { get; set; } = string.Empty;
     public int UpvoteCount { get; set; } = 0;
     public int DownvoteCount { get; set; } = 0;
+    public IList<CommentViewModel>? Comments { get; set; }
 }
