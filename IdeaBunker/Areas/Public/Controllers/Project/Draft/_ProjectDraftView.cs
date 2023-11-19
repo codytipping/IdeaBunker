@@ -1,4 +1,4 @@
-﻿using IdeaBunker.Areas.Public.ViewModels.Projects;
+﻿using IdeaBunker.Areas.Public.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IdeaBunker.Areas.Public.Controllers;

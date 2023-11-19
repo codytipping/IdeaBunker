@@ -1,18 +1,12 @@
 ﻿using IdeaBunker.Areas.Public.Models;
-using IdeaBunker.Areas.Private.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using IdeaBunker.Areas.Public.ViewModels.Projects;
+using IdeaBunker.Areas.Public.ViewModels;
 
 namespace IdeaBunker.Areas.Public.Controllers;
 
 public partial class ProjectController : Controller
 {
-    public string GetCategoryId(string name)
-    {
-        return _context.Categories.Where(c => c.Name == name).Select(c => c.Id).FirstOrDefault()!;
-    }
-
     public string GetCategoryName(string id)
     {
         return _context.Categories.Where(c => c.Id == id).Select(c => c.Name).FirstOrDefault()!;
@@ -69,16 +63,6 @@ public partial class ProjectController : Controller
             .Select(r => r.Name)
             .FirstOrDefault();
         return $"{user!.FirstName} {user.LastName}, {rankName}";
-    }
-
-    public async Task<string> GetRankNameAsync(string userId)
-    {
-        var user = await _userManager.FindByIdAsync(userId);
-        var rankName = _context.Ranks
-            .Where(r => user != null && r.Id == user.RankId)
-            .Select(r => r.Name)
-            .FirstOrDefault();
-        return rankName ??= string.Empty;
     }
 
     public async Task<(string UserId, string UserNameAndRank)> GetUserInfoAsync()

@@ -1,6 +1,6 @@
 ﻿using IdeaBunker.ViewModels;
 
-namespace IdeaBunker.Areas.Public.ViewModels.Projects;
+namespace IdeaBunker.Areas.Public.ViewModels;
 
 public class ProjectVoteViewModel : ViewModel
 {

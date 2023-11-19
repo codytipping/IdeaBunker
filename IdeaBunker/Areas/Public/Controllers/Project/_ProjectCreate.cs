@@ -1,10 +1,7 @@
-﻿using IdeaBunker.ViewModels;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc;
-using IdeaBunker.Areas.Public.ViewModels.Projects;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.CodeAnalysis.Elfie.Extensions;
+using IdeaBunker.Areas.Public.ViewModels;
 
 namespace IdeaBunker.Areas.Public.Controllers;
 

@@ -1,5 +1,5 @@
 ﻿using IdeaBunker.Areas.Public.Models;
-using IdeaBunker.Areas.Public.ViewModels.Projects;
+using IdeaBunker.Areas.Public.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 

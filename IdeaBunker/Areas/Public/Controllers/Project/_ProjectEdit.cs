@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc;
-using IdeaBunker.Areas.Public.ViewModels.Projects;
+using IdeaBunker.Areas.Public.ViewModels;
 
 namespace IdeaBunker.Areas.Public.Controllers;
 

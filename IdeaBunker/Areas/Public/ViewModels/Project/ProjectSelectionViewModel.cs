@@ -1,4 +1,4 @@
-﻿namespace IdeaBunker.Areas.Public.ViewModels.Projects;
+﻿namespace IdeaBunker.Areas.Public.ViewModels;
 
 public class ProjectSelectionViewModel
 {

@@ -1,4 +1,4 @@
-﻿using IdeaBunker.Areas.Public.ViewModels.Projects;
+﻿using IdeaBunker.Areas.Public.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;

@@ -1,6 +1,6 @@
 ﻿using IdeaBunker.ViewModels;
 
-namespace IdeaBunker.Areas.Public.ViewModels.Categories;
+namespace IdeaBunker.Areas.Public.ViewModels;
 
 public class CategoryViewModel : ViewModel
 {

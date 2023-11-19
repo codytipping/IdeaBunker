@@ -23,11 +23,18 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Public" asp-controller="Project" asp-action="Index">Projects</a>
-                        </li>
-                        
+                        @if ((AuthorizationService.AuthorizeAsync(User, PermissionsMaster.Category.View)).Result.Succeeded)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="Public" asp-controller="Category" asp-action="Index">Categories</a>
+                            </li>
+                        }
+                        @if ((AuthorizationService.AuthorizeAsync(User, PermissionsMaster.Project.View)).Result.Succeeded)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="Public" asp-controller="Project" asp-action="Index">Projects</a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>

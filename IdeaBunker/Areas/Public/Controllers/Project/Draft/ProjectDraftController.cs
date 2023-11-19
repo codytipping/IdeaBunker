@@ -1,4 +1,4 @@
-﻿using IdeaBunker.Areas.Public.ViewModels.Projects;
+﻿using IdeaBunker.Areas.Public.ViewModels;
 using IdeaBunker.Data;
 using IdeaBunker.Models;
 using Microsoft.AspNetCore.Identity;

@@ -1,6 +1,6 @@
 ﻿using IdeaBunker.ViewModels;
 
-namespace IdeaBunker.Areas.Public.ViewModels.Documents;
+namespace IdeaBunker.Areas.Public.ViewModels;
 
 public class DocumentViewModel : ViewModel
 {
