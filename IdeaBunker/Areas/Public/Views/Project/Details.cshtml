@@ -48,6 +48,10 @@
         {
             <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a><text> | </text>
         }
+        @if ((AuthorizationService.AuthorizeAsync(User, PermissionsMaster.Document.Upload)).Result.Succeeded)
+        {
+            <a asp-controller="Document" asp-action="Upload" asp-route-id="@Model?.Id">Upload Document</a>
+        }
     </div>
     <br/>
     @if ((AuthorizationService.AuthorizeAsync(User, PermissionsMaster.Comment.View)).Result.Succeeded)
