@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Identity;
 using IdeaBunker.Models;
+using IdeaBunker.Areas.Identity.Models;
 
 namespace IdeaBunker.Areas.Identity.Pages.Account
 {

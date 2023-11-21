@@ -2,8 +2,10 @@
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations.Schema;
 using IdeaBunker.Areas.Public.Models;
+using IdeaBunker.Models;
 
-namespace IdeaBunker.Models;
+namespace IdeaBunker.Areas.Identity.Models;
+
 public class User : IdentityUser
 {
     [PersonalData]

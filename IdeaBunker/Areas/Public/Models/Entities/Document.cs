@@ -1,4 +1,5 @@
-﻿using IdeaBunker.Models;
+﻿using IdeaBunker.Areas.Identity.Models;
+using IdeaBunker.Models;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IdeaBunker.Areas.Public.Models;

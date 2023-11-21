@@ -1,6 +1,7 @@
-﻿namespace IdeaBunker.Models;
+﻿namespace IdeaBunker.Areas.Identity.Models;
 
-public class Rank : Enum
+
+public class Rank : IdeaBunker.Models.Enum
 {
     public virtual ICollection<User>? Users { get; set; }
 }

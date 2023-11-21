@@ -3,6 +3,7 @@
 #nullable disable
 
 using System.Text;
+using IdeaBunker.Areas.Identity.Models;
 using IdeaBunker.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;

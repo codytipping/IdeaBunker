@@ -8,6 +8,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Areas\Private\Controllers\**" />
+    <Compile Remove="Areas\Private\Models\**" />
+    <Compile Remove="Areas\Private\Views\**" />
+    <Content Remove="Areas\Private\Controllers\**" />
+    <Content Remove="Areas\Private\Models\**" />
+    <Content Remove="Areas\Private\Views\**" />
+    <EmbeddedResource Remove="Areas\Private\Controllers\**" />
+    <EmbeddedResource Remove="Areas\Private\Models\**" />
+    <EmbeddedResource Remove="Areas\Private\Views\**" />
+    <None Remove="Areas\Private\Controllers\**" />
+    <None Remove="Areas\Private\Models\**" />
+    <None Remove="Areas\Private\Views\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="7.0.13" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.12" />
@@ -22,13 +37,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.11" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Areas\Private\Controllers\" />
-    <Folder Include="Areas\Private\Models\Enums\" />
-    <Folder Include="Areas\Private\Permissions\" />
-    <Folder Include="Areas\Private\Views\" />
   </ItemGroup>
 
 </Project>

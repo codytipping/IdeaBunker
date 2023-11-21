@@ -4,6 +4,7 @@
 
 using System.ComponentModel.DataAnnotations;
 using System.Text;
+using IdeaBunker.Areas.Identity.Models;
 using IdeaBunker.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

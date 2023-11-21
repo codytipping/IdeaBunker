@@ -1,5 +1,6 @@
 ﻿using IdeaBunker.Areas.Public.Models;
 using IdeaBunker.Areas.Public.ViewModels;
+using IdeaBunker.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -74,7 +75,7 @@ public partial class CategoryDraftController : Controller
             Id = model.Id,
             Name = model.Name,
             Description = model.Description,
-            StatusId = model.StatusId,
+            StatusId = model.StatusId!,
             UserId = model.UserId,
         };
         _context.Update(category);

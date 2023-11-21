@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using IdeaBunker.Models;
 using Microsoft.AspNetCore.Authorization;
 using IdeaBunker.Authorizations;
+using IdeaBunker.Areas.Identity.Models;
 
 namespace IdeaBunker;
 

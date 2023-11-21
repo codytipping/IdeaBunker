@@ -1,4 +1,5 @@
-﻿using IdeaBunker.Data;
+﻿using IdeaBunker.Areas.Identity.Models;
+using IdeaBunker.Data;
 using IdeaBunker.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
