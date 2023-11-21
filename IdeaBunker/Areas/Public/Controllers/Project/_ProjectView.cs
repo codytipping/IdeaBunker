@@ -17,12 +17,12 @@ public partial class ProjectController : Controller
     public async Task<IActionResult> Index()
     {
         var projects = await GetProjectsAsync();
-        var viewModels = new List<ProjectViewModel>();
+        var models = new List<ProjectViewModel>();
         foreach (var project in projects)
         {
-            var viewModel = await SetProjectViewModelAsync(project.Id);
-            viewModels.Add(viewModel);
+            var model = await SetProjectViewModelAsync(project.Id);
+            models.Add(model);
         }
-        return View(viewModels);
+        return View(models);
     }
 }

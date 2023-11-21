@@ -11,12 +11,12 @@ public partial class CommentController : Controller
     public async Task<IActionResult> Index(string id)
     {
         var comments = await GetCommentsAsync(id);
-        var viewModels = new List<CommentViewModel>();
+        var models = new List<CommentViewModel>();
         foreach (var comment in comments)
         {
-            var viewModel = await SetCommentViewModelAsync(comment.Id);
-            viewModels.Add(viewModel);
+            var model = await SetCommentViewModelAsync(comment.Id);
+            models.Add(model);
         }
-        return View(viewModels);
+        return View(models);
     }
 }
