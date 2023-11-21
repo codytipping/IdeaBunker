@@ -5,6 +5,7 @@ namespace IdeaBunker.Data;
 
 public class UserBuilder
 {
+    /*
     public static void ConfigureUser(ModelBuilder builder)
     {
         builder.Entity<User>()
@@ -19,4 +20,5 @@ public class UserBuilder
             .HasForeignKey(u => u.RankId)
             .OnDelete(DeleteBehavior.Restrict);
     }
+    */
 }

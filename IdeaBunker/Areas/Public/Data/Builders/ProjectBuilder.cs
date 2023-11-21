@@ -1,7 +1,7 @@
-﻿using IdeaBunker.Models;
+﻿using IdeaBunker.Areas.Public.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace IdeaBunker.Data;
+namespace IdeaBunker.Areas.Public.Data;
 
 public class ProjectBuilder
 {
@@ -14,22 +14,16 @@ public class ProjectBuilder
             .OnDelete(DeleteBehavior.Restrict);
 
         builder.Entity<Project>()
-            .HasOne(p => p.Clearance)
-            .WithMany(sc => sc.Projects)
-            .HasForeignKey(p => p.ClearanceId)
-            .OnDelete(DeleteBehavior.Restrict);
-
-        builder.Entity<Project>()
             .HasOne(p => p.User)
             .WithMany(u => u.Projects)
             .HasForeignKey(p => p.UserId)
             .OnDelete(DeleteBehavior.Restrict);
 
-        builder.Entity<Project>()
+        /*builder.Entity<Project>()
             .HasMany(p => p.ProjectTasks)
             .WithOne(pt => pt.Project)
             .HasForeignKey(pt => pt.ProjectId)
-            .OnDelete(DeleteBehavior.Restrict);
+            .OnDelete(DeleteBehavior.Restrict);*/
 
         builder.Entity<Project>()
             .HasOne(p => p.Status)

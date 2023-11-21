@@ -2,13 +2,13 @@
 
 public partial class PermissionsMaster 
 {
-    public class RolePermissions : BasePermissions
+    public class Role : BasePermissions
     {
-        public const string View = "Permissions.Roles.View";
-        public const string Create = "Permissions.Roles.Create";
-        public const string Edit = "Permissions.Roles.Edit";
-        public const string Delete = "Permissions.Roles.Delete";
-        public const string Assign = "Permissions.Roles.Assign";
+        public const string View = "PermissionsMaster.Role.View";
+        public const string Create = "PermissionsMaster.Role.Create";
+        public const string Edit = "PermissionsMaster.Role.Edit";
+        public const string Delete = "PermissionsMaster.Role.Delete";
+        public const string Assign = "PermissionsMaster.Role.Assign";
 
         public override IList<string> GetList()
         {

@@ -1,6 +1,6 @@
-﻿namespace IdeaBunker.Models;
+﻿namespace IdeaBunker.Areas.Public.Models;
 
-public class CategoryStatus : Enum
+public class CategoryStatus : IdeaBunker.Models.Enum
 {
     public virtual ICollection<Category>? Categories { get; set; }
 }

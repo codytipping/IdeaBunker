@@ -1,4 +1,6 @@
-﻿namespace IdeaBunker.Models;
+﻿using IdeaBunker.Models;
+
+namespace IdeaBunker.Areas.Public.Models.Events;
 
 public class DocumentEvent : Event
 {

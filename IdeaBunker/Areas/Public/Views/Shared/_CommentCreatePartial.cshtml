@@ -1,0 +1,42 @@
+﻿@model CommentViewModel
+
+@if ((AuthorizationService.AuthorizeAsync(User, PermissionsMaster.Comment.Create)).Result.Succeeded)
+{
+    <div class="row justify-content-center">
+        <div class="col-5 mt-5">
+            <h4>Comment</h4>
+            <hr />
+            <form asp-controller="Comment" asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="ProjectId" />
+                <div class="form-group">
+                    <label class="control-label">Reply</label>
+                    <input asp-for="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Provide Feedback</label>
+                    <input asp-for="EventDescription" class="form-control" placeholder="Why are you creating this comment?" />
+                    <span asp-validation-for="EventDescription" class="text-danger"></span>
+                </div>
+                <br />
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+                <br />
+            </form>
+            <div>
+                @if ((AuthorizationService.AuthorizeAsync(User, PermissionsMaster.Comment.View)).Result.Succeeded)
+                {
+                    <a asp-action="Index">Back to List</a>
+                }
+            </div>
+        </div>
+    </div>
+
+    @section Scripts {
+    @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
+}

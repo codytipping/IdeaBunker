@@ -2,12 +2,12 @@
 
 public partial class PermissionsMaster
 {
-    public class CommentPermissions : BasePermissions
+    public class Comment : BasePermissions
     {
-        public const string View = "Permissions.Comments.View";
-        public const string Create = "Permissions.Comments.Create";
-        public const string Edit = "Permissions.Comments.Edit";
-        public const string Delete = "Permissions.Comments.Delete";
+        public const string View = "PermissionsMaster.Comment.View";
+        public const string Create = "PermissionsMaster.Comment.Create";
+        public const string Edit = "PermissionsMaster.Comment.Edit";
+        public const string Delete = "PermissionsMaster.Comment.Delete";
 
         public override IList<string> GetList()
         {

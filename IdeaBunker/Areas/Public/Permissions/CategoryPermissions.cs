@@ -2,16 +2,17 @@
 
 public partial class PermissionsMaster
 {
-    public class CategoryPermissions : BasePermissions
+    public class Category : BasePermissions
     {
-        public const string View = "Permissions.Categories.View";
-        public const string Create = "Permissions.Categories.Create";
-        public const string Edit = "Permissions.Categories.Edit";
-        public const string Delete = "Permissions.Categories.Delete";
+        public const string View = "PermissionsMaster.Category.View";
+        public const string Create = "PermissionsMaster.Category.Create";
+        public const string Edit = "PermissionsMaster.Category.Edit";
+        public const string Delete = "PermissionsMaster.Category.Delete";
+        public const string Publish = "PermissionsMaster.Category.Publish";       
 
         public override IList<string> GetList()
         {
-            return new List<string> { View, Create, Edit, Delete, };
+            return new List<string> { View, Create, Edit, Delete, Publish, };
         }
     }
 }

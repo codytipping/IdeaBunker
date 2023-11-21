@@ -1,7 +1,7 @@
-﻿using IdeaBunker.Models;
+﻿using IdeaBunker.Areas.Public.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace IdeaBunker.Data;
+namespace IdeaBunker.Areas.Public.Data;
 
 public class CommentBuilder
 {
@@ -19,10 +19,10 @@ public class CommentBuilder
             .HasForeignKey(c => c.ProjectId)
             .OnDelete(DeleteBehavior.Cascade);
 
-        builder.Entity<Comment>()
+        /*builder.Entity<Comment>()
             .HasOne(c => c.ProjectTask)
             .WithMany(pt => pt.Comments)
             .HasForeignKey(c => c.ProjectTaskId)
-            .OnDelete(DeleteBehavior.Cascade);
+            .OnDelete(DeleteBehavior.Cascade);*/
     }
 }

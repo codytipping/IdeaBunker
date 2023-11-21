@@ -9,8 +9,7 @@ public class Event
     public required string Action { get; set; }
     public required string UserId { get; set; }
     public required string UserNameAndRank { get; set; }
-    public required string Description { get; set; }
-    public required string EventDescription { get; set; }
+    public string? EventDescription { get; set; }
     public required int SecurityCount { get; set; } = 0;
 
     [DataType(DataType.DateTime)]

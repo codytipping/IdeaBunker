@@ -7,11 +7,11 @@ public partial class Context
 {
     public void PrivateContext(ModelBuilder builder)
     {
-        DirectorateBuilder.ConfigureDirectorate(builder);
+        /*DirectorateBuilder.ConfigureDirectorate(builder);
         DivisionBuilder.ConfigureDivision(builder);
         ProjectTaskBuilder.ConfigureProjectTask(builder);
         SectionBuilder.ConfigureSection(builder);
         SeedPrivateBuilder.ConfigurePrivateSeedData(builder);
-        TeamBuilder.ConfigureTeam(builder);
+        TeamBuilder.ConfigureTeam(builder);*/
     }
 }

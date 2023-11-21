@@ -3,7 +3,7 @@ using IdeaBunker.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
-namespace IdeaBunker.Services;
+namespace IdeaBunker.Areas.Identity.Services;
 
 public interface IUserLockoutService
 {

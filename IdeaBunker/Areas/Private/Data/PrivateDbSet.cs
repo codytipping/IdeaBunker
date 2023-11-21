@@ -1,11 +1,8 @@
-﻿using IdeaBunker.Models;
-using Microsoft.EntityFrameworkCore;
-
-namespace IdeaBunker.Data;
+﻿namespace IdeaBunker.Data;
 
 public partial class Context
 {
-    public DbSet<Clearance> Clearances { get; set; }
+    /*public DbSet<Clearance> Clearances { get; set; }
     public DbSet<Directorate> Directorates { get; set; }
     public DbSet<DirectorateEvent> DirectoratesEvent { get; set; }
     public DbSet<DirectorateProject> DirectoratesProject { get; set; }
@@ -28,5 +25,5 @@ public partial class Context
     public DbSet<TeamEvent> TeamsEvent { get; set; }
     public DbSet<TeamProject> TeamsProject { get; set; }
     public DbSet<TeamRole> TeamsRole { get; set; }
-    public DbSet<TeamUser> TeamsUser { get; set; }
+    public DbSet<TeamUser> TeamsUser { get; set; }*/
 }

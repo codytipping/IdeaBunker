@@ -1,0 +1,64 @@
+﻿@model ProjectViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if ((AuthorizationService.AuthorizeAsync(User, PermissionsMaster.Project.Create)).Result.Succeeded)
+{
+    <h1>Edit</h1>
+    <div class="row justify-content-center">
+        <div class="col-5 mt-5">
+            <h4>Project</h4>
+            <hr />
+            <form asp-action="Edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="UpvoteCount" />
+                <input type="hidden" asp-for="DownvoteCount" />
+                <div class="form-group">
+                    <label class="control-label">Name</label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Description</label>
+                    <input asp-for="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Category</label>
+                    <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+                    <span asp-validation-for="CategoryId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Status</label>
+                    <select asp-for="StatusId" class="form-control" asp-items="ViewBag.StatusId"></select>
+                    <span asp-validation-for="StatusId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Provide Feedback</label>
+                    <input asp-for="EventDescription" class="form-control" placeholder="Why are you editing this project?" />
+                    <span asp-validation-for="EventDescription" class="text-danger"></span>
+                </div>
+                <br />
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+            <div>
+                @if ((AuthorizationService.AuthorizeAsync(User, PermissionsMaster.Project.Create)).Result.Succeeded)
+                {
+                    <a asp-action="Index">Back to List</a>
+                }
+            </div>
+        </div>
+    </div>
+
+    @section Scripts {
+    @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
+}

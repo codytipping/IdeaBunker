@@ -1,7 +1,7 @@
-﻿using IdeaBunker.Models;
+﻿using IdeaBunker.Areas.Public.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace IdeaBunker.Data;
+namespace IdeaBunker.Areas.Public.Data;
 
 public class CategoryBuilder
 {

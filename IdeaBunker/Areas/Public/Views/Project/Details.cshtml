@@ -1,0 +1,69 @@
+﻿@model ProjectDetailsViewModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if ((AuthorizationService.AuthorizeAsync(User, PermissionsMaster.Project.View)).Result.Succeeded)
+{
+    <h1>Details</h1>
+
+    <div>
+        <h4>Project</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">Name</dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt class="col-sm-2">Author</dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.UserNameAndRank)
+            </dd>
+            <dt class="col-sm-2">Description</dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+            <dt class="col-sm-2">Category</dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.CategoryDescription)
+            </dd>
+            <dt class="col-sm-2">Status</dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.StatusDescription)
+            </dd>
+            <dt class="col-sm-2">Upvotes</dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.UpvoteCount)
+            </dd>
+            <dt class="col-sm-2">Downvotes</dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.DownvoteCount)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        @if ((AuthorizationService.AuthorizeAsync(User, PermissionsMaster.Project.Edit)).Result.Succeeded)
+        {
+            <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a><text> | </text>
+        }
+    </div>
+    <br/>
+    @if ((AuthorizationService.AuthorizeAsync(User, PermissionsMaster.Comment.View)).Result.Succeeded)
+    {
+        <h4>Comments</h4>
+        <div>
+            @if (Model?.Comments is not null) 
+            { 
+                @await Html.PartialAsync("_CommentViewPartial", Model.Comments) 
+            }
+        </div>
+    }
+    @if ((AuthorizationService.AuthorizeAsync(User, PermissionsMaster.Comment.Create)).Result.Succeeded)
+    {
+        <div>
+            @await Html.PartialAsync("_CommentCreatePartial", Model?.Comment)
+        </div>
+    }
+}

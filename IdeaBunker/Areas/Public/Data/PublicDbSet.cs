@@ -1,4 +1,5 @@
-﻿using IdeaBunker.Models;
+﻿using IdeaBunker.Areas.Public.Models.Events;
+using IdeaBunker.Areas.Public.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace IdeaBunker.Data;

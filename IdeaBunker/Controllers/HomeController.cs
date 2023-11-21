@@ -1,4 +1,5 @@
-﻿using IdeaBunker.ViewModels;
+﻿using IdeaBunker.Data;
+using IdeaBunker.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -9,15 +10,18 @@ namespace IdeaBunker.Controllers;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
+    private readonly Context _context;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(ILogger<HomeController> logger, Context context)
     {
         _logger = logger;
+        _context = context; 
     }
 
     public IActionResult Index()
     {
-        return View();
+        var rank = _context.Ranks.FirstOrDefault();
+        return View(rank);
     }
 
     public IActionResult Privacy()

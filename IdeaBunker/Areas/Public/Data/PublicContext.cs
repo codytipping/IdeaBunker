@@ -1,4 +1,4 @@
-﻿using IdeaBunker.Models;
+﻿using IdeaBunker.Areas.Public.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace IdeaBunker.Data;
@@ -11,6 +11,6 @@ public partial class Context
         CommentBuilder.ConfigureComment(builder);
         DocumentBuilder.ConfigureDocument(builder);
         ProjectBuilder.ConfigureProject(builder);
-        SeedPublicBuilder.ConfigureSeedData(builder);
+        PublicSeedBuilder.ConfigureSeedData(builder);
     }
 }
