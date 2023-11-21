@@ -47,10 +47,20 @@
         @if ((AuthorizationService.AuthorizeAsync(User, PermissionsMaster.Project.Edit)).Result.Succeeded)
         {
             <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a><text> | </text>
+        }       
+    </div>
+    <br/>
+    <div>
+        <h4>Documents</h4>
+        @if ((AuthorizationService.AuthorizeAsync(User, PermissionsMaster.Document.View)).Result.Succeeded)
+        {
+            <div>
+                @await Html.PartialAsync("_DocumentViewPartial", Model?.Documents)
+            </div>
         }
         @if ((AuthorizationService.AuthorizeAsync(User, PermissionsMaster.Document.Upload)).Result.Succeeded)
         {
-            <a asp-controller="Document" asp-action="Upload" asp-route-id="@Model?.Id">Upload Document</a>
+            <a asp-controller="Document" asp-action="Upload" asp-route-id="@Model?.Id">Upload</a>
         }
     </div>
     <br/>

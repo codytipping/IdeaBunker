@@ -33,6 +33,12 @@ public partial class ProjectController : Controller
         return comments!;
     }
 
+    public async Task<IList<Document>> GetDocumentsAsync(string id)
+    {
+        var documents = await _context.Documents.Where(d => d.ProjectId == id).ToListAsync();
+        return documents!;
+    }
+
     public async Task<IList<CommentViewModel>> GetCommentViewModelsAsync(string id)
     {
         var comments = await GetCommentsAsync(id);
@@ -40,6 +46,18 @@ public partial class ProjectController : Controller
         foreach (var comment in comments)
         {
             var model = await SetCommentViewModelAsync(comment.Id);
+            models.Add(model);
+        }
+        return models;
+    }
+
+    public async Task<IList<DocumentViewModel>> GetDocumentViewModelsAsync(string id)
+    {
+        var documents = await GetDocumentsAsync(id);
+        var models = new List<DocumentViewModel>();
+        foreach (var document in documents)
+        {
+            var model = await SetDocumentViewModelAsync(document.Id);
             models.Add(model);
         }
         return models;

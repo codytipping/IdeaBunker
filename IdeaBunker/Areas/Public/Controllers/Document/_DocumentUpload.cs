@@ -10,15 +10,15 @@ namespace IdeaBunker.Areas.Public.Controllers;
 [Authorize(Policy = PermissionsMaster.Document.Upload)]
 public partial class DocumentController : Controller
 {
-    public IActionResult Upload()
+    public IActionResult Upload(string id)
     {
-        DocumentViewModel model = new();
+        DocumentViewModel model = new() { ProjectId = id, };
         return View(model);
     }
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create(string id, DocumentViewModel model)
+    public async Task<IActionResult> Upload(DocumentViewModel model)
     {
         if (ModelState.IsValid
             && model.UploadedDocument != null && model.UploadedDocument.Length > 0)
@@ -30,10 +30,9 @@ public partial class DocumentController : Controller
                 fileData = memoryStream.ToArray();
             }
             model.Action = "Upload";
-            model.ProjectId = id;
             model = await UpdateModelAsync(model);
             await AddDocumentAsync(model, fileData);
-            return RedirectToAction("Index", new { message = "File uploaded successfully!" });
+            return RedirectToAction("Details", "Project", new { id = model.ProjectId, });
         }
         return View(model);
     }

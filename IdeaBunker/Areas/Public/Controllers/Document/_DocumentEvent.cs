@@ -13,15 +13,14 @@ public partial class DocumentController : Controller
 {
     public async Task AddDocumentAsync(DocumentViewModel model, byte[] fileData)
     {
-        model ??= new();
         Document document = new()
         {
             Name = model.Name,
             Description = model.Description,
             UserId = model.UserId,
             ProjectId = model.ProjectId!,
-            Path = model.Path!,
-            Mime = model.Mime!,
+            Path = model.UploadedDocument!.FileName,
+            Mime = model.UploadedDocument!.ContentType,
             Data = fileData,
         };
         _context.Add(document);
@@ -79,7 +78,7 @@ public partial class DocumentController : Controller
         DocumentEvent documentEvent = new()
         {
             DocumentId = model.Id,
-            DocumentName = GetDocumentName(model.Id),
+            DocumentName = model.Name,
             Action = model.Action,
             UserId = model.UserId,
             UserNameAndRank = model.UserNameAndRank,

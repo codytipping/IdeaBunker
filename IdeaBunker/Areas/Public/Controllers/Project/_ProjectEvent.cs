@@ -68,6 +68,21 @@ public partial class ProjectController : Controller
         return model;
     }
 
+    public async Task<DocumentViewModel> SetDocumentViewModelAsync(string id)
+    {
+        var document = await _context.Documents.FirstOrDefaultAsync(d => d.Id == id)!;
+        DocumentViewModel model = new()
+        {
+            Id = document!.Id,
+            ProjectId = document.ProjectId,
+            Name = document!.Name,
+            Description = document.Description,
+            UserId = document.UserId,
+            UserNameAndRank = await GetNameAndRankAsync(document.UserId),
+        };
+        return model;
+    }
+
     public async Task<ProjectViewModel> SetProjectViewModelAsync(string id)
     {
         var project = await _context.Projects.FirstOrDefaultAsync(p => p.Id == id)!;
@@ -93,10 +108,12 @@ public partial class ProjectController : Controller
             Name = project!.Name,
             Description = project!.Description,
             CategoryDescription = $"{project?.Category?.Name}: {project?.Category?.Description}",
-            StatusDescription = $"{project?.Status?.Name}: {project?.Status?.Description}",
-            UserNameAndRank = await GetNameAndRankAsync(project!.UserId),
-            Comments = await GetCommentViewModelsAsync(project!.Id),
+            StatusDescription = $"{project?.Status?.Name}: {project?.Status?.Description}",            
             Comment = new() { ProjectId = project!.Id },
+            Document = new() { ProjectId = project!.Id },
+            Comments = await GetCommentViewModelsAsync(project!.Id),
+            Documents = await GetDocumentViewModelsAsync(project!.Id),
+            UserNameAndRank = await GetNameAndRankAsync(project!.UserId),
         };
         return model;
     }
