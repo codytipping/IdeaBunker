@@ -23,11 +23,11 @@
                     <td>
                         @if ((AuthorizationService.AuthorizeAsync(User, PermissionsMaster.Document.Download)).Result.Succeeded)
                         {
-                            <a asp-action="Download" asp-route-id="@item.Id">Download</a><text> | </text>
+                            <a asp-controller="Document" asp-action="Download" asp-route-id="@item.Id">Download</a><text> | </text>
                         }
                         @if ((AuthorizationService.AuthorizeAsync(User, PermissionsMaster.Document.View)).Result.Succeeded)
                         {
-                            <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                            <a asp-controller="Document" asp-action="Details" asp-route-id="@item.Id">Details</a>
                         }
                     </td>
                 </tr>
