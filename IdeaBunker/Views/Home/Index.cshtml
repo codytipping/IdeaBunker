@@ -1,4 +1,4 @@
-﻿@model Rank
+﻿@model IList<ProjectViewModel>
 
 @{
     ViewData["Title"] = "Home Page";
@@ -7,3 +7,20 @@
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
 </div>
+
+@foreach (var item in Model)
+{
+    <div class="card col-md-6 justify-content-center mx-auto">
+        <div class="card-body">
+            <h4 class="card-title">@item.Name</h4>
+            <h6 class="card-subtitle mb-2 text-muted">@item.CategoryName | @item.StatusName</h6>
+            <br />
+            <p class="card-text">@item.Description</p>
+            <p class="list-group-item">Upvotes:    @item.UpvoteCount</p>
+            <p class="list-group-item">Downvotes:  @item.DownvoteCount</p>
+            <br/>
+            <a asp-controller="Project" asp-action="Details" asp-route-id="@item.Id">Details</a>
+        </div>
+    </div>
+    <br />
+}

@@ -44,6 +44,8 @@ public partial class ProjectDraftController : Controller
             Description = project.Description,
             UpvoteCount = project.UpvoteCount,
             DownvoteCount = project.DownvoteCount,
+            CategoryId = project.CategoryId,
+            StatusId = project.StatusId,
             CategoryName = GetCategoryName(project!.CategoryId),
             StatusName = GetStatusName(project!.StatusId),
         };

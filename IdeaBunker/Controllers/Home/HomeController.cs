@@ -7,7 +7,7 @@ using System.Diagnostics;
 namespace IdeaBunker.Controllers;
 
 [Authorize]
-public class HomeController : Controller
+public partial class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
     private readonly Context _context;
@@ -16,17 +16,6 @@ public class HomeController : Controller
     {
         _logger = logger;
         _context = context; 
-    }
-
-    public IActionResult Index()
-    {
-        var rank = _context.Ranks.FirstOrDefault();
-        return View(rank);
-    }
-
-    public IActionResult Privacy()
-    {
-        return View();
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
