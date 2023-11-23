@@ -22,7 +22,6 @@ public partial class CategoryDraftController : Controller
     {
         if (ModelState.IsValid)
         {
-            model.Action = "Edit";
             model = await UpdateModelAsync(model);
             await UpdateCategoryAsync(model);
             return RedirectToAction(nameof(Index));

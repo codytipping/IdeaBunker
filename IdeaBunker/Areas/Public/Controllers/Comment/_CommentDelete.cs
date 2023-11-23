@@ -21,9 +21,7 @@ public partial class CommentController : Controller
         var comment = await _context.Comments.FindAsync(id);
         if (comment is not null)
         {
-            model.Action = "Delete";
             model = await UpdateModelAsync(model);
-            await SetCommentEventAsync(model, id);
             _context.Comments.Remove(comment);
         }
         await _context.SaveChangesAsync();

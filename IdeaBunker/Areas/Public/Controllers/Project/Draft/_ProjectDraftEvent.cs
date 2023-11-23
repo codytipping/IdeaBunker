@@ -17,24 +17,6 @@ public partial class ProjectDraftController : Controller
         return projectEvent;
     }
 
-    public async Task SetProjectEventAsync(ProjectViewModel viewModel, string id)
-    {
-        var model = viewModel!;
-        ProjectEvent projectEvent = new()
-        {
-            ProjectId = id,
-            ProjectName = model.Name,
-            VoteType = model.VoteType,
-            Action = model.Action,
-            UserId = model.UserId,
-            UserNameAndRank = model.UserNameAndRank,
-            EventDescription = model.EventDescription,
-            SecurityCount = model.SecurityCount,
-        };
-        _context.Add(projectEvent);
-        await _context.SaveChangesAsync();
-    }
-
     public async Task AddProjectAsync(ProjectViewModel model)
     {
         model ??= new();
@@ -50,7 +32,6 @@ public partial class ProjectDraftController : Controller
         };
         _context.Add(project);
         await _context.SaveChangesAsync();
-        await SetProjectEventAsync(model, project.Id);
     }
 
     public async Task<ProjectViewModel> SetProjectViewModelAsync(string id)
@@ -100,6 +81,5 @@ public partial class ProjectDraftController : Controller
         };
         _context.Update(project);
         await _context.SaveChangesAsync();
-        await SetProjectEventAsync(model, project.Id);
     }
 }

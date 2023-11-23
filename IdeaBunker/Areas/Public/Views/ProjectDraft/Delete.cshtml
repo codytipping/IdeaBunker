@@ -46,11 +46,6 @@
                 <form asp-action="Delete">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-group">
-                        <label class="control-label"><b>Provide Feedback</b></label>
-                        <input asp-for="EventDescription" class="form-control" placeholder="Why are you deleting this project?" />
-                        <span asp-validation-for="EventDescription" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
                         <input type="submit" value="Delete" class="btn btn-primary" />
                     </div>
                     @if ((AuthorizationService.AuthorizeAsync(User, PermissionsMaster.Project.Create)).Result.Succeeded)

@@ -20,7 +20,6 @@ public partial class CategoryController : Controller
     {
         if (ModelState.IsValid)
         {
-            model.Action = "Create";
             model = await UpdateModelAsync(model);
             model.StatusId = GetStatusId("Unpublished");
             await AddCategoryAsync(model);

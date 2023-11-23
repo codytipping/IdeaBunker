@@ -21,9 +21,7 @@ public partial class DocumentController : Controller
         var document = await _context.Documents.FindAsync(id);
         if (document is not null)
         {
-            model.Action = "Delete";
             model = await UpdateModelAsync(model);
-            await SetDocumentEventAsync(model);
             _context.Documents.Remove(document);
         }
         await _context.SaveChangesAsync();

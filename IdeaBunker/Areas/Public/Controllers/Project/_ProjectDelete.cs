@@ -21,9 +21,7 @@ public partial class ProjectController : Controller
         var project = await _context.Projects.FindAsync(id);
         if (project is not null)
         {
-            model.Action = "Delete";
             model = await UpdateModelAsync(model);
-            await SetProjectEventAsync(model, id);
             _context.Projects.Remove(project);
         }
         await _context.SaveChangesAsync();

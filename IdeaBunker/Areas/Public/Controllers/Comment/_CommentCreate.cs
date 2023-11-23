@@ -21,7 +21,7 @@ public partial class CommentController : Controller
     {
         if (ModelState.IsValid)
         {
-            model.Action = "Create";
+            
             model = await UpdateModelAsync(model);
             await AddCommentAsync(model);
             return RedirectToAction("Details", "Project", new { id = model.ProjectId });

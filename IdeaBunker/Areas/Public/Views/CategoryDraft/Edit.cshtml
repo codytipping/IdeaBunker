@@ -1,22 +1,20 @@
-﻿@model ProjectViewModel
+﻿@model CategoryViewModel
 
 @{
     ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@if ((AuthorizationService.AuthorizeAsync(User, PermissionsMaster.Project.Edit)).Result.Succeeded)
+@if ((AuthorizationService.AuthorizeAsync(User, PermissionsMaster.Category.Edit)).Result.Succeeded)
 {
     <h1>Edit</h1>
     <div class="row justify-content-center">
         <div class="col-5 mt-5">
-            <h4>Project</h4>
+            <h4>Category</h4>
             <hr />
             <form asp-action="Edit">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" asp-for="Id" />
-                <input type="hidden" asp-for="UpvoteCount" />
-                <input type="hidden" asp-for="DownvoteCount" />
                 <div class="form-group">
                     <label class="control-label">Name</label>
                     <input asp-for="Name" class="form-control" />
@@ -26,11 +24,6 @@
                     <label class="control-label">Description</label>
                     <input asp-for="Description" class="form-control" />
                     <span asp-validation-for="Description" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Category</label>
-                    <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
-                    <span asp-validation-for="CategoryId" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label class="control-label">Status</label>
@@ -43,7 +36,7 @@
                 </div>
             </form>
             <div>
-                @if ((AuthorizationService.AuthorizeAsync(User, PermissionsMaster.Project.View)).Result.Succeeded)
+                @if ((AuthorizationService.AuthorizeAsync(User, PermissionsMaster.Category.View)).Result.Succeeded)
                 {
                     <a asp-action="Index">Back to List</a>
                 }

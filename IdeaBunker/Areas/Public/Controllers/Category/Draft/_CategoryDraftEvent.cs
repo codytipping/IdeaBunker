@@ -8,23 +8,6 @@ namespace IdeaBunker.Areas.Public.Controllers;
 
 public partial class CategoryDraftController : Controller
 {
-    public async Task SetCategoryEventAsync(CategoryViewModel viewModel, string id)
-    {
-        var model = viewModel!;
-        CategoryEvent categoryEvent = new()
-        {
-            CategoryId = id,
-            CategoryName = model.Name,
-            Action = model.Action,
-            UserId = model.UserId,
-            UserNameAndRank = model.UserNameAndRank,
-            EventDescription = model.EventDescription,
-            SecurityCount = model.SecurityCount,
-        };
-        _context.Add(categoryEvent);
-        await _context.SaveChangesAsync();
-    }
-
     public async Task AddCategoryAsync(CategoryViewModel model)
     {
         model ??= new();
@@ -37,7 +20,6 @@ public partial class CategoryDraftController : Controller
         };
         _context.Add(category);
         await _context.SaveChangesAsync();
-        await SetCategoryEventAsync(model, category.Id);
     }
 
     public async Task<CategoryViewModel> SetCategoryViewModelAsync(string id)
@@ -75,11 +57,10 @@ public partial class CategoryDraftController : Controller
             Id = model.Id,
             Name = model.Name,
             Description = model.Description,
-            StatusId = model.StatusId!,
+            StatusId = model.StatusId,
             UserId = model.UserId,
         };
         _context.Update(category);
         await _context.SaveChangesAsync();
-        await SetCategoryEventAsync(model, category.Id);
     }
 }

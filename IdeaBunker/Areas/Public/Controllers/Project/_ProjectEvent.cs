@@ -1,6 +1,7 @@
 ﻿using IdeaBunker.Areas.Public.Models;
 using IdeaBunker.Areas.Public.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace IdeaBunker.Areas.Public.Controllers;
@@ -14,24 +15,6 @@ public partial class ProjectController : Controller
             .OrderByDescending(p => p.Date)
             .FirstOrDefaultAsync();
         return projectEvent;
-    }
-
-    public async Task SetProjectEventAsync(ProjectViewModel viewModel, string id)
-    {
-        var model = viewModel!;
-        ProjectEvent projectEvent = new()
-        {
-            ProjectId = id,
-            ProjectName = model.Name,
-            VoteType = model.VoteType,
-            Action = model.Action,
-            UserId = model.UserId,
-            UserNameAndRank = model.UserNameAndRank,
-            EventDescription = model.EventDescription,
-            SecurityCount = model.SecurityCount,
-        };
-        _context.Add(projectEvent);
-        await _context.SaveChangesAsync();
     }
 
     public async Task AddProjectAsync(ProjectViewModel model)
@@ -49,7 +32,6 @@ public partial class ProjectController : Controller
         };
         _context.Add(project);
         await _context.SaveChangesAsync();
-        await SetProjectEventAsync(model, project.Id);
     }
 
     public async Task<CommentViewModel> SetCommentViewModelAsync(string id)
@@ -134,6 +116,5 @@ public partial class ProjectController : Controller
         };
         _context.Update(project);
         await _context.SaveChangesAsync();
-        await SetProjectEventAsync(model, project.Id);
     }
 }

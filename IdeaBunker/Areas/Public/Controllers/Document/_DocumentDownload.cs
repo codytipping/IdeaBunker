@@ -15,9 +15,7 @@ public partial class DocumentController : Controller
         byte[] data = document.Data;
         string mime = document.Mime;
         var model = await SetDocumentViewModelAsync(document.Id);
-        model.Action = "Download";
         model = await UpdateModelAsync(model);
-        await SetDocumentEventAsync(model);
         return new FileContentResult(data, mime) { FileDownloadName = $"{document.Path}" };
     }
 }

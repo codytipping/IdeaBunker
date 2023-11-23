@@ -20,7 +20,6 @@ public partial class CommentController : Controller
     {
         if (ModelState.IsValid)
         {
-            model.Action = "Edit";
             model = await UpdateModelAsync(model);
             await UpdateCommentAsync(model);
             return RedirectToAction(nameof(Index));

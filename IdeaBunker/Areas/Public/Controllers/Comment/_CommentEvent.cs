@@ -21,25 +21,6 @@ public partial class CommentController : Controller
         };
         _context.Add(comment);
         await _context.SaveChangesAsync();
-        await SetCommentEventAsync(model, comment.Id);
-    }
-
-    public async Task SetCommentEventAsync(CommentViewModel viewModel, string id)
-    {
-        var model = viewModel!;
-        CommentEvent commentEvent = new()
-        {
-            CommentId = id,
-            ProjectId = model.ProjectId!,
-            ProjectName = model.Name,
-            Action = model.Action,
-            UserId = model.UserId,
-            UserNameAndRank = model.UserNameAndRank,
-            EventDescription = model.EventDescription,
-            SecurityCount = model.SecurityCount,
-        };
-        _context.Add(commentEvent);
-        await _context.SaveChangesAsync();
     }
 
     public async Task<CommentViewModel> SetCommentViewModelAsync(string id)
@@ -67,6 +48,5 @@ public partial class CommentController : Controller
         };
         _context.Update(comment);
         await _context.SaveChangesAsync();
-        await SetCommentEventAsync(model, comment.Id);
     }
 }

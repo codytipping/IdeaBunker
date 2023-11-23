@@ -29,7 +29,6 @@ public partial class DocumentController : Controller
                 model.UploadedDocument.CopyTo(memoryStream);
                 fileData = memoryStream.ToArray();
             }
-            model.Action = "Upload";
             model = await UpdateModelAsync(model);
             await AddDocumentAsync(model, fileData);
             return RedirectToAction("Details", "Project", new { id = model.ProjectId, });

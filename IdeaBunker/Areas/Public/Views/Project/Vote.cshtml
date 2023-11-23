@@ -27,11 +27,6 @@
                         @Html.DisplayFor(model => model.DownvoteCount)
                     </dd>
                 </dl>
-                <div class="form-group">
-                    <label class="control-label"><b>Provide Feedback</b></label>
-                    <input asp-for="EventDescription" class="form-control" placeholder="Why vote this way for @Model.Name?" />
-                    <span asp-validation-for="EventDescription" class="text-danger"></span>
-                </div>
                 <br />
                 <input type="hidden" asp-for="VoteType" id="VoteType" name="VoteType" />
                 <button type="submit" onclick="setVoteType('upvote')" class="btn btn-primary">Upvote</button>

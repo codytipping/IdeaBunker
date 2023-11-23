@@ -25,7 +25,6 @@ public partial class DocumentController : Controller
         };
         _context.Add(document);
         await _context.SaveChangesAsync();
-        await SetDocumentEventAsync(model);
     }
 
     public async Task<string> GetNameAndRankAsync(string userId)
@@ -70,23 +69,6 @@ public partial class DocumentController : Controller
             ProjectDescription = $"{document?.Project?.Name}: {document?.Project?.Description}",
         };
         return model;
-    }
-
-    public async Task SetDocumentEventAsync(DocumentViewModel viewModel)
-    {
-        var model = viewModel!;
-        DocumentEvent documentEvent = new()
-        {
-            DocumentId = model.Id,
-            DocumentName = model.Name,
-            Action = model.Action,
-            UserId = model.UserId,
-            UserNameAndRank = model.UserNameAndRank,
-            EventDescription = model.EventDescription,
-            SecurityCount = model.SecurityCount,
-        };
-        _context.Add(documentEvent);
-        await _context.SaveChangesAsync();
     }
 
     public async Task<DocumentViewModel> UpdateModelAsync(DocumentViewModel model)

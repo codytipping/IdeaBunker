@@ -11,7 +11,7 @@
     <p>
         @if ((AuthorizationService.AuthorizeAsync(User, PermissionsMaster.Project.Create)).Result.Succeeded)
         {
-            <a asp-action="Create">Create New</a> <text> | </text>
+            <a asp-action="Create"><i class="bi bi-plus-lg"></i></a> <text> | </text>
             <a asp-controller="ProjectDraft" asp-action="Index">View Your Unpublished Projects</a>
         }
     </p>

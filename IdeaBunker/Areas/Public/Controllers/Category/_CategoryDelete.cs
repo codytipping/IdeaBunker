@@ -21,9 +21,9 @@ public partial class CategoryController : Controller
         var category = await _context.Categories.FindAsync(id);
         if (category is not null)
         {
-            model.Action = "Delete";
+            
             model = await UpdateModelAsync(model);
-            await SetCategoryEventAsync(model, id);
+            
             _context.Categories.Remove(category);
         }
         await _context.SaveChangesAsync();

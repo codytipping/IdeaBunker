@@ -23,7 +23,6 @@ public partial class ProjectController : Controller
     {
         if (ModelState.IsValid)
         {
-            model.Action = "Edit";
             model = await UpdateModelAsync(model);
             await UpdateProjectAsync(model);
             return RedirectToAction(nameof(Index));

@@ -22,13 +22,20 @@ public partial class ProjectController : Controller
     {
         if (ModelState.IsValid)
         {            
-            model.Action = "Create";
             model = await UpdateModelAsync(model);
             model.StatusId = GetStatusId("Unpublished");           
             await AddProjectAsync(model);
-            return RedirectToAction(nameof(Index), "ProjectDraft");
+            return RedirectToAction(nameof(CreateEvent));
         }
         ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", model.CategoryId);
         return View(model);
+    }
+
+    public IActionResult CreateEvent()
+    {
+        ProjectViewModel model = new();
+        model.Event!.ShowModal = true;
+        ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name");
+        return View("Create", model);
     }
 }

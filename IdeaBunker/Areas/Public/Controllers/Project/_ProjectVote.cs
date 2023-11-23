@@ -40,7 +40,6 @@ public partial class ProjectController : Controller
         _context.Projects.Update(project);
         await _context.SaveChangesAsync();
         var viewModel = await TranslateViewModel(model, false);
-        await SetProjectEventAsync(viewModel, viewModel.Id);
         return true;
     }
 
@@ -55,7 +54,6 @@ public partial class ProjectController : Controller
         _context.Projects.Update(project);
         await _context.SaveChangesAsync();
         var viewModel = await TranslateViewModel(model, true);
-        await SetProjectEventAsync(viewModel, viewModel.Id);
         return true;
     }
 
@@ -75,18 +73,15 @@ public partial class ProjectController : Controller
 
     private async Task<ProjectViewModel> TranslateViewModel(ProjectVoteViewModel viewModel, bool vote)
     {
-        viewModel.Action = "Vote";
         var (userId, userNameAndRank) = await GetUserInfoAsync();
         ProjectViewModel model = new()
         {
             Id = viewModel.Id,
             Name = viewModel.Name,
-            Action = viewModel.Action,
             VoteType = vote,
             UserId = userId,
             UserNameAndRank = userNameAndRank,
             Description = viewModel.Description,
-            EventDescription = viewModel.EventDescription,
         };
         return model;
     }
